@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#0b1020" />
-  <title>Cross-Race Face Challenge | 안면인식 스피드 테스트</title>
-  <meta name="description" content="로그인 없이 바로 플레이! 제한 시간 안에 머리스타일·안경 함정을 뚫고 진짜 이목구비를 구분할 수 있나요? (36라운드 · 동아시아/흑인/유럽 360° 테스트)" />
+  <title>Cross-Race Face Challenge | 실사 안면인식 스피드 테스트</title>
+  <meta name="description" content="로그인 없이 바로 플레이! 100% 실사 사진으로 제한 시간 안에 머리스타일·안경 함정을 뚫고 진짜 이목구비를 구분해 보세요." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="🧠 Cross-Race Face Challenge (36 Rounds)" />
-  <meta property="og:description" content="머리스타일·수염·안경 함정을 뚫고 진짜 얼굴 골격을 찾아보세요! 로그인 없이 링크 클릭 즉시 플레이 가능." />
+  <meta property="og:title" content="🧠 Cross-Race 실사 안면인식 스피드 테스트" />
+  <meta property="og:description" content="머리스타일·수염·안경 함정을 뚫고 진짜 동일 인물을 찾아보세요! 로그인 없이 클릭 즉시 플레이." />
   <meta name="twitter:card" content="summary" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
   <style>
@@ -73,7 +73,7 @@
       font-size: 0.74rem;
       flex-shrink: 0;
     }
-    .top-Controls {
+    .top-controls {
       display: flex;
       align-items: center;
       gap: 5px;
@@ -166,38 +166,26 @@
       grid-template-columns: 1fr 1fr;
       gap: 7px;
     }
-    .len-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      margin-top: 6px;
-    }
-    .speed-btn, .len-btn {
+    .speed-btn {
       background: var(--card);
       border: 1.5px solid var(--border);
       color: var(--text);
       border-radius: 12px;
-      padding: 8px 10px;
+      padding: 9px 11px;
       text-align: left;
       cursor: pointer;
     }
-    .len-btn {
-      text-align: center;
-      padding: 7px 6px;
-    }
-    .speed-btn.active, .len-btn.active {
+    .speed-btn.active {
       border-color: var(--accent-2);
       background: rgba(56, 189, 248, 0.14);
     }
-    .speed-btn strong { display: block; font-size: 0.84rem; }
-    .speed-btn span { font-size: 0.71rem; color: var(--muted); }
-    .len-btn strong { display: block; font-size: 0.79rem; }
-    .len-btn span { font-size: 0.68rem; color: var(--muted); }
+    .speed-btn strong { display: block; font-size: 0.85rem; }
+    .speed-btn span { font-size: 0.72rem; color: var(--muted); }
 
     .cat-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 7px;
+      gap: 8px;
     }
     .cat-btn {
       display: flex;
@@ -208,7 +196,7 @@
       border: 1px solid var(--border);
       color: var(--text);
       border-radius: 15px;
-      padding: 11px 13px;
+      padding: 12px 13px;
       cursor: pointer;
       transition: transform 0.1s ease, border-color 0.15s ease;
       text-align: left;
@@ -217,11 +205,11 @@
     .cat-btn:hover { border-color: var(--accent); }
     .cat-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
     .cat-icon { font-size: 1.4rem; flex-shrink: 0; }
-    .cat-title { font-weight: 800; font-size: 0.91rem; display: block; }
+    .cat-title { font-weight: 800; font-size: 0.92rem; display: block; }
     .cat-desc { font-size: 0.73rem; color: var(--muted); display: block; margin-top: 2px; line-height: 1.3; }
     .cat-pill {
       background: rgba(255,255,255,0.08);
-      padding: 4px 8px;
+      padding: 4px 9px;
       border-radius: 999px;
       font-size: 0.72rem;
       font-weight: 800;
@@ -278,6 +266,12 @@
       line-height: 1.48;
       margin: 0;
     }
+    .preload-hint {
+      font-size: 0.74rem;
+      color: #93c5fd;
+      font-weight: 700;
+      min-height: 1.1em;
+    }
     .primary-btn, .secondary-btn {
       width: 100%;
       border: none;
@@ -286,19 +280,23 @@
       font-size: 0.94rem;
       font-weight: 800;
       cursor: pointer;
-      transition: transform 0.08s ease;
+      transition: transform 0.08s ease, opacity 0.15s ease;
     }
     .primary-btn {
       background: linear-gradient(135deg, var(--accent), #2563eb);
       color: #fff;
       box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
     }
+    .primary-btn:disabled {
+      opacity: 0.72;
+      cursor: wait;
+    }
     .secondary-btn {
       background: var(--card-2);
       color: var(--text);
       border: 1px solid var(--border);
     }
-    .primary-btn:active, .secondary-btn:active { transform: scale(0.985); }
+    .primary-btn:active:not(:disabled), .secondary-btn:active { transform: scale(0.985); }
 
     .timer-wrap {
       display: flex;
@@ -323,7 +321,7 @@
       font-variant-numeric: tabular-nums;
       font-weight: 800;
       font-size: 0.92rem;
-      min-width: 44px;
+      min-width: 48px;
       text-align: right;
     }
     .prompt-mini {
@@ -339,11 +337,13 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       gap: 8px;
     }
     .target-top {
       display: flex;
       justify-content: center;
+      width: 100%;
     }
     .target-card {
       width: 44%;
@@ -353,20 +353,20 @@
       border-radius: 14px;
       overflow: hidden;
       position: relative;
-      aspect-ratio: 4 / 4.5;
+      aspect-ratio: 3 / 3.8;
     }
     .card-tag {
       position: absolute;
       top: 6px;
       left: 6px;
-      background: rgba(11, 16, 32, 0.82);
+      background: rgba(11, 16, 32, 0.85);
       color: #fff;
       font-weight: 800;
       font-size: 0.73rem;
       padding: 2px 7px;
       border-radius: 7px;
-      border: 1px solid rgba(255,255,255,0.18);
-      z-index: 2;
+      border: 1px solid rgba(255,255,255,0.2);
+      z-index: 3;
     }
     .target-card .card-tag {
       background: var(--accent-2);
@@ -377,12 +377,13 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 7px;
+      width: 100%;
     }
     .choices-4 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
-      max-width: 370px;
+      max-width: 365px;
       width: 100%;
       margin: 0 auto;
     }
@@ -393,25 +394,84 @@
       overflow: hidden;
       position: relative;
       cursor: pointer;
-      aspect-ratio: 4 / 4.6;
-      transition: transform 0.08s ease, border-color 0.12s ease;
+      aspect-ratio: 3 / 3.85;
+      transition: transform 0.08s ease, border-color 0.12s ease, box-shadow 0.12s ease;
     }
-    .face-card svg, .target-card svg {
+    .face-card img, .target-card img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
       display: block;
+      user-select: none;
+      -webkit-user-drag: none;
     }
     .face-card.selected {
       border-color: var(--accent-2);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.32);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.35);
     }
     .face-card.correct {
       border-color: var(--good);
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
     }
     .face-card.wrong {
       border-color: var(--bad);
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4);
+    }
+
+    /* Composite card wrapper + interactive tap zones */
+    .composite-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 385px;
+      width: auto;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      background: var(--card);
+    }
+    .composite-wrap img {
+      display: block;
+      max-width: 100%;
+      max-height: 55dvh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .comp-grid-4 {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .comp-grid-3 {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 43%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .comp-zone {
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: border-color 0.12s ease, background-color 0.12s ease;
+    }
+    .comp-zone.selected {
+      border-color: var(--accent-2);
+      background: rgba(56, 189, 248, 0.16);
+    }
+    .comp-zone.correct {
+      border-color: var(--good);
+      background: rgba(34, 197, 94, 0.16);
+    }
+    .comp-zone.wrong {
+      border-color: var(--bad);
+      background: rgba(239, 68, 68, 0.18);
     }
 
     .thumb-bar {
@@ -453,8 +513,11 @@
     .verdict-bad { color: var(--bad); }
     .explain-actions {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
+      grid-template-columns: 1fr;
       gap: 8px;
+    }
+    .explain-actions.has-bio {
+      grid-template-columns: 1fr 1.2fr;
     }
     .bio-btn {
       background: rgba(56, 189, 248, 0.14);
@@ -542,7 +605,7 @@
         <span class="brand-badge">FFA</span>
         <span class="brand-title">Cross-Race Quiz</span>
       </div>
-      <div class="top-Controls">
+      <div class="top-controls">
         <button class="icon-btn" id="btn-top-link" onclick="shareGameLink()" title="Share URL">🔗 URL</button>
         <div class="lang-toggle">
           <button class="lang-btn" id="btn-de" onclick="setLang('de')">DE</button>
@@ -572,20 +635,6 @@
             <span id="t-speed-blitz-desc"></span>
           </button>
         </div>
-        <div class="len-row" style="display:none;">
-          <button class="len-btn" id="len-quick" onclick="setLenMode('quick')">
-            <strong id="t-len-quick"></strong>
-            <span id="t-len-quick-sub"></span>
-          </button>
-          <button class="len-btn active" id="len-std" onclick="setLenMode('std')">
-            <strong id="t-len-std"></strong>
-            <span id="t-len-std-sub"></span>
-          </button>
-          <button class="len-btn" id="len-full" onclick="setLenMode('full')">
-            <strong id="t-len-full"></strong>
-            <span id="t-len-full-sub"></span>
-          </button>
-        </div>
       </div>
 
       <div>
@@ -599,7 +648,7 @@
                 <span class="cat-desc" id="t-cat-east-desc"></span>
               </div>
             </div>
-            <span class="cat-pill" id="pill-east">10R</span>
+            <span class="cat-pill" id="pill-east">5R</span>
           </button>
           <button class="cat-btn" onclick="startGame('black')">
             <div class="cat-left">
@@ -609,7 +658,7 @@
                 <span class="cat-desc" id="t-cat-black-desc"></span>
               </div>
             </div>
-            <span class="cat-pill" id="pill-black">10R</span>
+            <span class="cat-pill" id="pill-black">5R</span>
           </button>
           <button class="cat-btn" onclick="startGame('euro')">
             <div class="cat-left">
@@ -619,7 +668,7 @@
                 <span class="cat-desc" id="t-cat-euro-desc"></span>
               </div>
             </div>
-            <span class="cat-pill" id="pill-euro">10R</span>
+            <span class="cat-pill" id="pill-euro">5R</span>
           </button>
           <button class="cat-btn" onclick="startGame('all')">
             <div class="cat-left">
@@ -645,6 +694,7 @@
         <span class="brief-mode-tag" id="brief-mode-tag"></span>
         <h2 class="brief-title" id="brief-title"></h2>
         <p class="brief-text" id="brief-text"></p>
+        <div class="preload-hint" id="brief-preload-status"></div>
       </div>
       <button class="primary-btn" id="btn-ready" onclick="revealPhotos()"></button>
     </div>
@@ -701,29 +751,26 @@
 const UI = {
   de: {
     heroTitle: "Cross-Race-Effekt Speed-Test",
-    heroSub: "Warum sehen ungewohnte Gesichter unter Zeitdruck oft „gleich“ aus? 36 Szenarien – fair in alle Richtungen!",
+    heroSub: "Warum sehen ungewohnte Gesichter unter Zeitdruck oft „gleich“ aus? 15 echte Foto-Runden – fair in alle Richtungen!",
     scienceNote: "🧠 <b>Kein Rassismus, sondern Neurobiologie:</b> Die <i>Fusiform Face Area (FFA)</i> speichert bei vertrauten Gruppen feine Knochen- & Augenabstände, achtet bei weniger vertrauten Gruppen aber zuerst auf Frisur, Bart, Mütze oder Brille.",
-    speedLabel: "Zeitlimit & Rundenanzahl",
+    speedLabel: "Zeitlimit wählen (Startet erst nach 100 % Foto-Load!)",
     speedNormalDesc: "Fairer Gehirn-Test",
     speedBlitzDesc: "Reiner Bauchgefühl-Modus",
-    lenQuick: "⚡ Kurz (5R)",
-    lenQuickSub: "Schnelltest",
-    lenStd: "🎯 Standard (10R)",
-    lenStdSub: "Empfohlen",
-    lenFull: "🔥 Voll (12R)",
-    lenFullSub: "Alle 36 im Mix",
-    catLabel: "Kategorie wählen (Karten & Reihenfolge jedes Mal neu!)",
+    catLabel: "Kategorie wählen (Reihenfolge jedes Mal neu gemischt!)",
     catEast: "Ostasiatische Gesichter",
-    catEastDesc: "12er-Pool: PSY, Two-Block, K-Pop Blond, Cap, Wolf-Cut & Bob",
+    catEastDesc: "PSY-Check, Two-Block, langes Haar, K-Pop Blond & Brille",
     catBlack: "Schwarze Gesichter",
-    catBlackDesc: "12er-Pool: Skin-Fade, Braids, Locs, Cornrows, Puffs & Brille",
+    catBlackDesc: "Skin-Fade & Bart, Box Braids, Locs, Afro-Locken & Anzug",
     catEuro: "Europäische Gesichter",
-    catEuroDesc: "12er-Pool: Tech-Bro, Pariser Bob, Hipster, Ginger & Tracht",
-    catAll: "360° Mix-Challenge",
-    catAllDesc: "Gleichmäßig gemischt inkl. Gruppen-Vergleich am Ende!",
+    catEuroDesc: "Münchner Tech-Bro, Blonde Wellen, Hipster, Tracht & Nordisch",
+    catAll: "360° Cross-Race Mix (Alle 15)",
+    catAllDesc: "5 Ostasien + 5 Schwarz + 5 Europa inkl. Gruppen-Auswertung!",
     unitRounds: "Runden",
     unitMix: "Mix",
     readyBtn: "Ich bin bereit – Foto zeigen! 👀",
+    loadingBtn: "⏳ Fotos werden geladen",
+    preloadingHint: "⏳ Fotos werden im Hintergrund vorgeladen…",
+    preloadedHint: "✅ Fotos geladen – sofort startklar!",
     modeTarget3: "1 Zielperson + 3 Auswahlbilder",
     modePair4: "Zwillings-Falle: Tippe 2 Fotos derselben Person",
     modePsy4: "Promi-Stil-Check: 1 aus 4",
@@ -748,42 +795,39 @@ const UI = {
       "Super-Recognizer! Deine FFA lässt sich nicht täuschen 🧠✨",
       "Starkes Auge! Nur fiese Styling-Fallen konnten dich bremsen 👀",
       "Klassischer Cross-Race-Effekt! Frisur & Kleidung haben gewonnen 😄",
-      "Komplett auf Haare, Cap & Brille geachtet – völlig menschlich! 😂"
+      "Komplett auf Haare, Mütze & Brille geachtet – völlig menschlich! 😂"
     ],
     resScience: "💡 <b>Fazit:</b> Jedes Gehirn nutzt Abkürzungen (Haare, Bart, Brille), wenn es eine Gruppe seltener im Alltag sieht. Schick den Link weiter und vergleicht eure Werte!"
   },
   en: {
     heroTitle: "Cross-Race Effect Speed Quiz",
-    heroSub: "Why do unfamiliar faces blur together under time pressure? 36 handcrafted scenarios—fairly testing every direction!",
-    scienceNote: "🧠 <b>Neuroscience, not prejudice:</b> Your brain's <i>Fusiform Face Area (FFA)</i> encodes fine bone & eye spacing for faces you see daily, but defaults to hair, beard, cap, or glasses first for less familiar groups.",
-    speedLabel: "Time Limit & Session Length",
+    heroSub: "Why do unfamiliar faces blur together under time pressure? 15 photorealistic rounds—fairly testing every direction!",
+    scienceNote: "🧠 <b>Neuroscience, not prejudice:</b> Your brain's <i>Fusiform Face Area (FFA)</i> encodes fine bone & eye spacing for faces you see daily, but defaults to hair, beard, hat, or glasses first for less familiar groups.",
+    speedLabel: "Time Limit (Starts ONLY after photos 100% load!)",
     speedNormalDesc: "Standard speed test",
     speedBlitzDesc: "Pure split-second instinct",
-    lenQuick: "⚡ Quick (5R)",
-    lenQuickSub: "Warm-up",
-    lenStd: "🎯 Standard (10R)",
-    lenStdSub: "Recommended",
-    lenFull: "🔥 Full (12R)",
-    lenFullSub: "All 36 in Mix",
-    catLabel: "Pick a Category (Shuffled order & card slots every play!)",
+    catLabel: "Pick a Category (Shuffled every play!)",
     catEast: "East Asian Faces",
-    catEastDesc: "12-pool: PSY, K-two-block, K-pop dye, cap, wolf-cut & bob",
+    catEastDesc: "PSY check, K-two-block, straight hair, K-pop blonde & suit",
     catBlack: "Black Faces",
-    catBlackDesc: "12-pool: Skin-fade, braids, locs, cornrows, puffs & glasses",
+    catBlackDesc: "Skin-fade & beard, box braids, locs, afro curls & executive",
     catEuro: "European Faces",
-    catEuroDesc: "12-pool: Tech-bro, Parisian bob, hipster, ginger & Tracht",
-    catAll: "360° Mixed Challenge",
-    catAllDesc: "Balanced mix with per-group accuracy breakdown at the end!",
+    catEuroDesc: "Munich tech-bro, blonde waves, hipster, Tracht & Nordic",
+    catAll: "360° Cross-Race Mix (All 15)",
+    catAllDesc: "5 East Asian + 5 Black + 5 European with group breakdown!",
     unitRounds: "Rounds",
     unitMix: "Mix",
     readyBtn: "I'm ready – Show photos! 👀",
+    loadingBtn: "⏳ Loading photos",
+    preloadingHint: "⏳ Preloading photos in background…",
+    preloadedHint: "✅ Photos ready – zero lag!",
     modeTarget3: "Match TARGET to A, B, or C",
     modePair4: "Pair Finder: Tap the 2 photos of the SAME person",
     modePsy4: "Iconic Style Check: Pick 1 of 4",
     roundWord: "Round",
     pointsWord: "Score",
     correctMsg: "✅ Nailed it! You read the underlying bone structure.",
-    wrongMsg: "❌ Tricked! Hairstyle, cap, or outfit hijacked your memory.",
+    wrongMsg: "❌ Tricked! Hairstyle, hat, or outfit hijacked your memory.",
     timeoutMsg: "⏰ Time's up! Under speed pressure, surface cues overload recognition.",
     bioBtn: "Biometrics 🔍",
     nextBtn: "Next Round →",
@@ -801,35 +845,32 @@ const UI = {
       "Super-Recognizer! Hair & outfits couldn't fool your FFA 🧠✨",
       "Sharp eye! Only the nastiest styling traps caught you 👀",
       "Classic Cross-Race Effect! Hairstyles beat facial geometry 😄",
-      "100% tricked by hair, caps & glasses—welcome to human neuroscience! 😂"
+      "100% tricked by hair, hats & glasses—welcome to human neuroscience! 😂"
     ],
     resScience: "💡 <b>Takeaway:</b> Every human brain leans on shortcuts (hair, beard, glasses) for groups it has less lifetime visual training with. Send the link to a friend and compare!"
   },
   ko: {
     heroTitle: "타인종 안면인식 스피드 테스트",
-    heroSub: "왜 덜 익숙한 인종의 얼굴은 시간 압박 속에서 비슷해 보일까요? 총 36개 라운드로 내 뇌의 진짜 눈썰미를 테스트해 보세요!",
+    heroSub: "왜 덜 익숙한 인종의 얼굴은 시간 압박 속에서 비슷해 보일까요? 100% 실사 15라운드로 내 뇌의 눈썰미를 테스트해 보세요!",
     scienceNote: "🧠 <b>편견이 아닌 뇌과학(FFA) 현상:</b> 인간의 뇌 <i>방추상 얼굴 영역(FFA)</i>은 매일 접한 인종엔 눈 간격·턱선 골격을 정밀 저장하지만, 덜 접한 그룹엔 헤어스타일·수염·모자·안경 같은 외적 단서에 먼저 의존합니다.",
-    speedLabel: "제한 시간 & 라운드 수 선택",
+    speedLabel: "제한 시간 선택 (사진 100% 로딩 완료 후 카운트 시작!)",
     speedNormalDesc: "표준 두뇌 테스트",
     speedBlitzDesc: "순간 직관 극한 모드",
-    lenQuick: "⚡ 퀵 (5판)",
-    lenQuickSub: "가벼운 체험",
-    lenStd: "🎯 표준 (10판)",
-    lenStdSub: "정확도 추천",
-    lenFull: "🔥 전체 (12판)",
-    lenFullSub: "믹스 36판 전체",
-    catLabel: "카테고리 선택 (매 판 문제 순서 & 보기 위치 자동 셔플!)",
-    catEast: "동아시아인 얼굴",
-    catEastDesc: "12종 풀: 싸이, 투블럭, 아이돌 탈색, 볼캡, 울프컷, 단발 함정",
-    catBlack: "흑인 얼굴",
-    catBlackDesc: "12종 풀: 스킨페이드, 브레이드, 드레드락, 콘로우, 퍼프, 안경",
-    catEuro: "유럽 / 서구권 얼굴",
-    catEuroDesc: "12종 풀: 테크브로, 파리지앵 단발, 힙스터, 진저, 전통의상",
-    catAll: "360° 통합 믹스 챌린지",
-    catAllDesc: "인종별 균등 출제 + 결과 화면에서 인종별 정답률 비교 분석!",
+    catLabel: "카테고리 선택 (매 플레이 시 순서 & 보기 위치 셔플!)",
+    catEast: "동아시아인 실사 챌린지",
+    catEastDesc: "싸이 닮은꼴, 투블럭, 긴 생머리, K-팝 탈색, 둥근안경 정장",
+    catBlack: "흑인 실사 챌린지",
+    catBlackDesc: "스킨페이드&수염, 박스 브레이드, 드레드락, 아프로 컬, 임원",
+    catEuro: "유럽 / 서구권 실사 챌린지",
+    catEuroDesc: "뮌헨 테크브로, 허니블론드, 베를린 힙스터, 전통의상, 북유럽",
+    catAll: "360° 크로스레이스 통합 믹스",
+    catAllDesc: "동아시아 5 + 흑인 5 + 유럽 5 (중복 제로 · 인종별 분석 리포트!)",
     unitRounds: "라운드",
     unitMix: "믹스",
     readyBtn: "준비 완료 – 사진 보기! 👀",
+    loadingBtn: "⏳ 사진 불러오는 중",
+    preloadingHint: "⏳ 다음 라운드 사진 미리 불러오는 중…",
+    preloadedHint: "✅ 사진 로딩 완료 – 누르는 즉시 시작!",
     modeTarget3: "타겟 매칭: A·B·C 중 TARGET과 동일 인물 찾기",
     modePair4: "쌍둥이 함정: 4장 중 같은 사람 사진 2장 고르기",
     modePsy4: "시그니처 스타일 체크: 4명 중 1명 찾기",
@@ -838,7 +879,7 @@ const UI = {
     correctMsg: "✅ 정답! 헤어·옷차림에 속지 않고 진짜 골격을 읽었습니다.",
     wrongMsg: "❌ 함정에 걸렸습니다! 머리스타일·모자·안경이 첫인상을 가로챘네요.",
     timeoutMsg: "⏰ 시간 초과! 압박 속에선 외적 스타일이 세부 인식을 방해합니다.",
-    bioBtn: "안면 골격 비교 🔍",
+    bioBtn: "안면 골격 가이드 🔍",
     nextBtn: "다음 라운드 →",
     finishBtn: "최종 결과 보기 🏆",
     statAcc: "정답률",
@@ -860,436 +901,13 @@ const UI = {
   }
 };
 
-// Skin palettes: [light, mid, shadow, lip, noseShade]
-const SKINS = {
-  ea1: ["#fbe5d2", "#f0c9ad", "#d4a17e", "#c97676", "#cfa080"],
-  ea2: ["#f6dcc6", "#e7bc9b", "#c89470", "#be6e6e", "#c2906d"],
-  ea3: ["#fdf0e6", "#f4d5be", "#d9ad8b", "#d17b82", "#d4a686"],
-  ea4: ["#edd0b4", "#dcaf88", "#bc8962", "#b36864", "#b6855f"],
-  bk1: ["#8d5837", "#6f4124", "#4b2914", "#5c2f2c", "#472612"],
-  bk2: ["#6e3f24", "#542d17", "#361b0c", "#472221", "#33190b"],
-  bk3: ["#a36b46", "#845131", "#5c351d", "#6e3b36", "#58321b"],
-  bk4: ["#542e18", "#3d1f0e", "#261105", "#3b1c1c", "#241005"],
-  bk5: ["#b57c52", "#96603a", "#6e4223", "#7d4540", "#693e20"],
-  eu1: ["#fde7dc", "#f3c7b4", "#d69e88", "#cc7a7e", "#d19a84"],
-  eu2: ["#fae0d0", "#ecc0a8", "#cc967c", "#c27375", "#c79178"],
-  eu3: ["#fff0e8", "#f7d2c4", "#dca694", "#d48088", "#d6a08e"],
-  eu4: ["#f2d5be", "#e2b596", "#c28f6e", "#b86d6f", "#bd8a6a"]
-};
-
-function renderPortraitSVG(p, showBio, bioMatch) {
-  if (p.img) {
-    const col = bioMatch ? "#38bdf8" : "#f87171";
-    const bioOverlay = showBio
-      ? `<svg viewBox="0 0 200 225" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;">
-          <rect x="34" y="28" width="132" height="156" rx="22" fill="none" stroke="${col}" stroke-width="2.5" stroke-dasharray="6 4"/>
-          <line x1="65" y1="95" x2="135" y2="95" stroke="${col}" stroke-width="1.6" stroke-dasharray="3 2"/>
-          <polygon points="72,95 128,95 100,132 100,168" fill="rgba(56,189,248,0.08)" stroke="${col}" stroke-width="1.3"/>
-        </svg>`
-      : "";
-    return `<div style="position:relative;width:100%;height:100%;">
-      <img src="${p.img}" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;" />
-      ${bioOverlay}
-    </div>`;
-  }
-  const sk = SKINS[p.skin] || SKINS.ea1;
-  const uid = "u" + Math.random().toString(36).slice(2, 8);
-  const bgMap = {
-    studio: ["#232b3e", "#121724"],
-    cafe: ["#4a382b", "#241a14"],
-    office: ["#263549", "#15202e"],
-    street: ["#334659", "#1b2633"],
-    stage: ["#37224d", "#181126"]
-  };
-  const bg = bgMap[p.bg || "studio"];
-
-  // Geometry parameters
-  const jawW = p.jaw === "round" ? 56 : p.jaw === "square" ? 58 : p.jaw === "wide" ? 60 : p.jaw === "narrow" ? 48 : p.jaw === "heart" ? 55 : p.jaw === "oval" ? 52 : 51;
-  const chinW = p.jaw === "square" ? 34 : p.jaw === "round" ? 28 : p.jaw === "v" ? 15 : p.jaw === "heart" ? 16 : p.jaw === "oval" ? 22 : 21;
-  const faceLen = p.faceLen || 0;
-  const chinY = 166 + faceLen;
-  const eyeDist = 23 + (p.eyeSpacing || 0);
-  const lx = 100 - eyeDist, rx = 100 + eyeDist;
-  const ey = 104 + (p.eyeY || 0);
-  const tilt = p.eyeTilt || 0;
-  const noseY = 128 + (p.noseLen || 0);
-  const noseW = p.noseW || 10;
-  const mouthY = 146 + Math.round(faceLen * 0.55);
-
-  const headPath = `M ${100 - jawW} 88
-    C ${100 - jawW - 2} 46, ${100 + jawW + 2} 46, ${100 + jawW} 88
-    C ${100 + jawW} 124, ${100 + jawW - 6} 145, ${100 + chinW} ${chinY - 6}
-    Q 100 ${chinY + 5} ${100 - chinW} ${chinY - 6}
-    C ${100 - jawW + 6} 145, ${100 - jawW} 124, ${100 - jawW} 88 Z`;
-
-  // Outfit
-  let outfit = "";
-  const o = p.outfit || "hoodie_black";
-  if (o === "tux") {
-    outfit = `<path d="M22 230 Q35 178 74 172 L126 172 Q165 178 178 230 Z" fill="#11151f"/>
-      <polygon points="76,172 100,218 124,172" fill="#f8fafc"/>
-      <path d="M72 172 L92 222 L80 228 L62 182 Z" fill="#1e2536"/>
-      <path d="M128 172 L108 222 L120 228 L138 182 Z" fill="#1e2536"/>
-      <polygon points="100,185 84,177 84,193" fill="#0b0d13"/>
-      <polygon points="100,185 116,177 116,193" fill="#0b0d13"/>
-      <circle cx="100" cy="185" r="4" fill="#1f2433"/>`;
-  } else if (o === "hoodie_black" || o === "hoodie_grey") {
-    const hc = o === "hoodie_black" ? "#161922" : "#5b6475";
-    const hc2 = o === "hoodie_black" ? "#232838" : "#707a8e";
-    outfit = `<path d="M18 230 Q32 175 70 169 L130 169 Q168 175 182 230 Z" fill="${hc}"/>
-      <path d="M56 172 Q70 154 82 175 L100 194 L118 175 Q130 154 144 172 Q125 196 100 198 Q75 196 56 172 Z" fill="${hc2}"/>`;
-  } else if (o === "shirt_white" || o === "linen_white") {
-    outfit = `<path d="M22 230 Q36 178 75 171 L125 171 Q164 178 178 230 Z" fill="#f1f5f9"/>
-      <polygon points="75,171 100,198 85,204 68,177" fill="#e2e8f0"/>
-      <polygon points="125,171 100,198 115,204 132,177" fill="#e2e8f0"/>
-      <polygon points="88,172 100,196 112,172" fill="${sk[2]}"/>`;
-  } else if (o === "sweater_beige" || o === "knit_olive" || o === "yellow_top" || o === "red_knit") {
-    const sc = o === "sweater_beige" ? "#c5ab8e" : o === "knit_olive" ? "#4a5d46" : o === "red_knit" ? "#991b1b" : "#eab308";
-    outfit = `<path d="M20 230 Q34 178 73 172 L127 172 Q166 178 180 230 Z" fill="${sc}"/>
-      <path d="M74 172 Q100 190 126 172" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="5"/>`;
-  } else if (o === "blazer_navy" || o === "suit_dark") {
-    outfit = `<path d="M20 230 Q35 176 74 171 L126 171 Q165 176 180 230 Z" fill="#17233b"/>
-      <polygon points="76,171 100,214 124,171" fill="#e2e8f0"/>
-      <polygon points="96,184 104,184 106,225 94,225" fill="#29436e"/>`;
-  } else if (o === "turtleneck") {
-    outfit = `<path d="M22 230 Q36 178 74 171 L126 171 Q164 178 178 230 Z" fill="#141720"/>
-      <rect x="76" y="159" width="48" height="20" rx="6" fill="#1b1f2b"/>`;
-  } else if (o === "fleece_vest") {
-    outfit = `<path d="M20 230 Q35 177 74 171 L126 171 Q165 177 180 230 Z" fill="#93c5fd"/>
-      <path d="M44 230 L58 173 L84 172 L88 230 Z" fill="#334155"/>
-      <path d="M156 230 L142 173 L116 172 L112 230 Z" fill="#334155"/>`;
-  } else if (o === "tracht") {
-    outfit = `<path d="M20 230 Q35 177 74 171 L126 171 Q165 177 180 230 Z" fill="#3f4d3b"/>
-      <polygon points="75,171 100,216 125,171" fill="#eff6ff"/>
-      <path d="M84 175 L116 175 M88 185 L112 185 M92 195 L108 195" stroke="#3b82f6" stroke-width="2" opacity="0.65"/>
-      <path d="M72 172 L84 226 M128 172 L116 226" stroke="#78350f" stroke-width="4"/>`;
-  } else if (o === "leather") {
-    outfit = `<path d="M20 230 Q35 177 74 171 L126 171 Q165 177 180 230 Z" fill="#18181b"/>
-      <polygon points="66,174 90,204 75,212 56,184" fill="#27272a"/>
-      <polygon points="134,174 110,204 125,212 144,184" fill="#27272a"/>`;
-  } else if (o === "denim") {
-    outfit = `<path d="M20 230 Q35 177 74 171 L126 171 Q165 177 180 230 Z" fill="#254edb"/>
-      <polygon points="76,171 100,206 124,171" fill="#f1f5f9"/>
-      <polygon points="66,172 90,200 76,208 58,180" fill="#1d4ed8"/>
-      <polygon points="134,172 110,200 124,208 142,180" fill="#1d4ed8"/>`;
-  } else if (o === "sport_zip") {
-    outfit = `<path d="M20 230 Q35 176 74 170 L126 170 Q165 176 180 230 Z" fill="#0f172a"/>
-      <path d="M76 164 L124 164 L120 182 L80 182 Z" fill="#1e293b"/>
-      <line x1="100" y1="164" x2="100" y2="230" stroke="#38bdf8" stroke-width="2.5"/>`;
-  } else if (o === "cardigan_cream") {
-    outfit = `<path d="M20 230 Q35 177 74 171 L126 171 Q165 177 180 230 Z" fill="#e7dccb"/>
-      <polygon points="80,171 100,215 120,171" fill="#ffffff"/>
-      <path d="M80 171 L100 215 L120 171" fill="none" stroke="#c7b59b" stroke-width="3"/>`;
-  }
-
-  // Back hair
-  let backHair = "";
-  const hc = p.hairColor || "#14161d";
-  if (p.hair === "long_straight" || p.hair === "long_bangs") {
-    backHair = `<path d="M40 84 Q34 155 38 228 L162 228 Q166 155 160 84 Q100 30 40 84 Z" fill="${hc}"/>`;
-  } else if (p.hair === "blonde_waves") {
-    backHair = `<path d="M36 86 C26 130, 34 168, 30 215 L170 215 C166 168, 174 130, 164 86 Q100 28 36 86 Z" fill="${hc}"/>`;
-  } else if (p.hair === "bob" || p.hair === "bob_bangs") {
-    backHair = `<path d="M39 84 C32 120, 35 152, 48 168 L152 168 C165 152, 168 120, 161 84 Q100 32 39 84 Z" fill="${hc}"/>`;
-  } else if (p.hair === "ponytail") {
-    backHair = `<ellipse cx="100" cy="36" rx="18" ry="11" fill="${hc}"/>
-      <path d="M108 35 Q148 45 156 132 Q140 124 135 88 Q128 54 104 42 Z" fill="${hc}"/>`;
-  } else if (p.hair === "wolf_cut") {
-    backHair = `<path d="M42 104 L30 164 L52 158 L44 176 L156 176 L148 158 L170 164 L158 104 Z" fill="${hc}"/>`;
-  } else if (p.hair === "box_braids") {
-    let strands = "";
-    for (let x = 36; x <= 62; x += 8) {
-      strands += `<path d="M${x} 82 Q${x-4} 155 ${x-2} 228" stroke="${hc}" stroke-width="6.5" stroke-linecap="round" fill="none" stroke-dasharray="5 2"/>`;
-    }
-    for (let x = 138; x <= 164; x += 8) {
-      strands += `<path d="M${x} 82 Q${x+4} 155 ${x+2} 228" stroke="${hc}" stroke-width="6.5" stroke-linecap="round" fill="none" stroke-dasharray="5 2"/>`;
-    }
-    backHair = strands;
-  } else if (p.hair === "locs_down") {
-    let locs = "";
-    for (let x = 40; x <= 60; x += 9) {
-      locs += `<path d="M${x} 78 Q${x-5} 140 ${x-3} 205" stroke="${hc}" stroke-width="7.5" stroke-linecap="round" fill="none"/>`;
-    }
-    for (let x = 140; x <= 160; x += 9) {
-      locs += `<path d="M${x} 78 Q${x+5} 140 ${x+3} 205" stroke="${hc}" stroke-width="7.5" stroke-linecap="round" fill="none"/>`;
-    }
-    backHair = locs;
-  } else if (p.hair === "afro_curls") {
-    backHair = `<circle cx="62" cy="72" r="34" fill="${hc}"/>
-      <circle cx="138" cy="72" r="34" fill="${hc}"/>
-      <circle cx="100" cy="54" r="38" fill="${hc}"/>
-      <circle cx="48" cy="104" r="26" fill="${hc}"/>
-      <circle cx="152" cy="104" r="26" fill="${hc}"/>`;
-  } else if (p.hair === "afro_puffs") {
-    backHair = `<circle cx="56" cy="48" r="24" fill="${hc}"/>
-      <circle cx="144" cy="48" r="24" fill="${hc}"/>`;
-  } else if (p.hair === "locs_bun") {
-    backHair = `<circle cx="100" cy="34" r="20" fill="${hc}"/>`;
-  }
-
-  // Earrings / studs
-  let hoops = "";
-  if (p.hoops) {
-    hoops = `<circle cx="${96 - jawW}" cy="126" r="11" fill="none" stroke="#fbbf24" stroke-width="2.6"/>
-             <circle cx="${104 + jawW}" cy="126" r="11" fill="none" stroke="#fbbf24" stroke-width="2.6"/>`;
-  } else if (p.studs) {
-    hoops = `<circle cx="${99 - jawW}" cy="119" r="2.5" fill="#e2e8f0"/>
-             <circle cx="${101 + jawW}" cy="119" r="2.5" fill="#e2e8f0"/>`;
-  }
-
-  function drawEye(cx, cy, dir) {
-    const t = tilt * dir;
-    const iris = p.iris || "#1e1612";
-    const eType = p.eyes || "almond";
-    let h = eType === "round" ? 6.8 : eType === "psy" ? 3.4 : eType === "monolid" ? 4.4 : eType === "deep" ? 4.8 : 5.3;
-    if (p.expr === "grin") h *= 0.75;
-    const w = eType === "round" ? 13 : 14.5;
-    let crease = "";
-    if (eType === "round" || eType === "double" || eType === "hooded" || eType === "deep") {
-      const off = eType === "hooded" ? 2.5 : eType === "deep" ? 3.2 : 4.2;
-      crease = `<path d="M${cx - w} ${cy - off} Q${cx} ${cy - h - off - 1} ${cx + w} ${cy - off + t}" fill="none" stroke="rgba(40,20,10,0.48)" stroke-width="${eType === 'deep' ? 1.8 : 1.3}"/>`;
-    }
-    const eyeClipId = uid + (dir < 0 ? "el" : "er");
-    const eyeShape = `M${cx - w} ${cy - t*0.3} Q${cx} ${cy - h - 2} ${cx + w} ${cy + t} Q${cx} ${cy + h + 1} ${cx - w} ${cy - t*0.3} Z`;
-    return `${crease}
-      <defs><clipPath id="${eyeClipId}"><path d="${eyeShape}"/></clipPath></defs>
-      <path d="${eyeShape}" fill="#f8fafc"/>
-      <g clip-path="url(#${eyeClipId})">
-        <circle cx="${cx}" cy="${cy - 0.3}" r="${h + 1.2}" fill="${iris}"/>
-        <circle cx="${cx}" cy="${cy - 0.3}" r="${(h + 1.2)*0.48}" fill="#09090b"/>
-        <circle cx="${cx - 1.8}" cy="${cy - 1.8}" r="1.4" fill="#ffffff" opacity="0.9"/>
-      </g>
-      <path d="M${cx - w - 0.5} ${cy - t*0.3} Q${cx} ${cy - h - 2.3} ${cx + w + 0.5} ${cy + t}" fill="none" stroke="#181210" stroke-width="${eType === 'monolid' || eType === 'psy' ? 2.2 : 1.8}" stroke-linecap="round"/>`;
-  }
-
-  function drawBrow(cx, cy, dir) {
-    const bt = p.brow || "natural";
-    const sw = bt === "thick" ? 4.4 : bt === "thin" ? 2.3 : 3.2;
-    const arch = bt === "arched" ? 6 : bt === "straight" ? 1.5 : 3.5;
-    const lightHairs = ["#f3e8c8", "#e8d399", "#efe4c6", "#e6cf9e", "#cbd5e1", "#d4a359"];
-    const bc = p.browColor || (lightHairs.includes(hc) ? "#786142" : hc);
-    const x1 = cx - 15 * dir, x2 = cx + 16 * dir;
-    return `<path d="M${x1} ${cy - 12} Q${cx} ${cy - 13 - arch} ${x2} ${cy - 11}" fill="none" stroke="${bc}" stroke-width="${sw}" stroke-linecap="round"/>`;
-  }
-
-  // Mouth
-  let mouth = "";
-  const lipC = sk[3];
-  if (p.expr === "grin") {
-    mouth = `<path d="M83 ${mouthY - 1} Q100 ${mouthY + 11} 117 ${mouthY - 1} Q100 ${mouthY + 4} 83 ${mouthY - 1} Z" fill="#ffffff" stroke="${lipC}" stroke-width="2"/>
-             <path d="M81 ${mouthY - 2} Q100 ${mouthY + 7} 119 ${mouthY - 2}" fill="none" stroke="${lipC}" stroke-width="2.2" stroke-linecap="round"/>`;
-  } else if (p.expr === "smile") {
-    mouth = `<path d="M85 ${mouthY} Q100 ${mouthY + 6} 115 ${mouthY}" fill="none" stroke="${lipC}" stroke-width="${p.lips === 'full' ? 3.8 : 2.7}" stroke-linecap="round"/>
-             <path d="M88 ${mouthY + 1} Q100 ${mouthY + 8} 112 ${mouthY + 1}" fill="none" stroke="${lipC}" stroke-width="1.8" opacity="0.55"/>`;
-  } else {
-    const lw = p.lips === "full" ? 4.2 : p.lips === "thin" ? 2.1 : 3.0;
-    mouth = `<path d="M86 ${mouthY + 1} Q95 ${mouthY - 2} 100 ${mouthY} Q105 ${mouthY - 2} 114 ${mouthY + 1}" fill="none" stroke="${lipC}" stroke-width="${lw}" stroke-linecap="round"/>
-             <path d="M88 ${mouthY + 2} Q100 ${mouthY + (p.lips === 'full' ? 7 : 4.5)} 112 ${mouthY + 2}" fill="none" stroke="${lipC}" stroke-width="${lw*0.85}" stroke-linecap="round" opacity="0.7"/>`;
-  }
-
-  // Beard / Mustache
-  let beard = "";
-  const bColor = p.beardColor || hc;
-  if (p.beard === "full_box") {
-    beard = `<path d="M${100 - jawW + 2} 112 C${100 - jawW + 3} 145, ${100 - chinW - 4} ${chinY + 2}, 100 ${chinY + 5}
-      C${100 + chinW + 4} ${chinY + 2}, ${100 + jawW - 3} 145, ${100 + jawW - 2} 112
-      L${100 + jawW - 8} 122 Q122 142 118 139 L82 139 Q78 142 ${100 - jawW + 8} 122 Z" fill="${bColor}" opacity="0.93"/>
-      <path d="M82 ${mouthY - 2} Q100 ${mouthY - 8} 118 ${mouthY - 2}" fill="none" stroke="${bColor}" stroke-width="4.5" stroke-linecap="round"/>`;
-  } else if (p.beard === "stubble") {
-    beard = `<path d="M${100 - jawW + 4} 118 C${100 - jawW + 6} 146, ${100 - chinW} ${chinY}, 100 ${chinY + 3}
-      C${100 + chinW} ${chinY}, ${100 + jawW - 6} 146, ${100 + jawW - 4} 118
-      Q122 140 116 139 L84 139 Q78 140 ${100 - jawW + 4} 118 Z" fill="${bColor}" opacity="0.24"/>`;
-  } else if (p.beard === "mustache") {
-    beard = `<path d="M82 ${mouthY - 3} Q100 ${mouthY - 9} 118 ${mouthY - 3}" fill="none" stroke="${bColor}" stroke-width="4.6" stroke-linecap="round"/>`;
-  } else if (p.beard === "goatee") {
-    beard = `<path d="M83 ${mouthY - 3} Q100 ${mouthY - 8} 117 ${mouthY - 3}" fill="none" stroke="${bColor}" stroke-width="4.2" stroke-linecap="round"/>
-      <path d="M86 ${chinY - 4} Q100 ${chinY + 6} 114 ${chinY - 4} L111 ${chinY - 10} Q100 ${chinY - 4} 89 ${chinY - 10} Z" fill="${bColor}" opacity="0.9"/>`;
-  }
-
-  // Front hair / hat
-  let frontHair = "";
-  const h = p.hair || "slick";
-  if (h === "twoblock") {
-    frontHair = `<path d="M${100 - jawW - 2} 92 C${100 - jawW - 5} 44, ${100 + jawW + 5} 44, ${100 + jawW + 2} 92
-      Q142 66 124 88 Q112 72 103 66 Q94 74 76 90 Q58 67 ${100 - jawW - 2} 92 Z" fill="${hc}"/>`;
-  } else if (h === "curtain") {
-    frontHair = `<path d="M43 93 C40 42, 160 42, 157 93 Q142 84 126 90 Q108 74 100 61 Q92 74 74 90 Q58 84 43 93 Z" fill="${hc}"/>`;
-  } else if (h === "slick" || h === "pulled_back" || h === "ponytail" || h === "afro_puffs") {
-    frontHair = `<path d="M${100 - jawW} 92 C${100 - jawW - 4} 42, ${100 + jawW + 4} 42, ${100 + jawW} 92
-      C144 66, 124 60, 100 61 C76 60, 56 66, ${100 - jawW} 92 Z" fill="${hc}"/>`;
-  } else if (h === "long_straight" || h === "bob") {
-    frontHair = `<path d="M42 96 Q48 50 100 47 Q152 50 158 96 Q140 66 102 62 Q60 66 42 96 Z" fill="${hc}"/>`;
-  } else if (h === "long_bangs") {
-    frontHair = `<path d="M42 96 Q48 48 100 46 Q152 48 158 96 L142 88 L60 88 Z" fill="${hc}"/>`;
-  } else if (h === "bob_bangs") {
-    frontHair = `<path d="M41 94 Q47 46 100 45 Q153 46 159 94 L144 86 L128 89 L114 84 L100 89 L86 84 L72 89 L56 86 Z" fill="${hc}"/>`;
-  } else if (h === "idol_messy" || h === "wolf_cut") {
-    frontHair = `<path d="M42 92 C38 42, 162 42, 158 92 L144 82 L132 93 L116 78 L102 94 L88 79 L72 93 L56 82 Z" fill="${hc}"/>`;
-  } else if (h === "skin_fade") {
-    frontHair = `<path d="M52 78 C54 44, 146 44, 148 78 L142 67 L58 67 Z" fill="${hc}"/>`;
-  } else if (h === "high_top") {
-    frontHair = `<path d="M50 80 L47 36 Q100 31 153 36 L150 80 Q125 65 100 65 Q75 65 50 80 Z" fill="${hc}"/>`;
-  } else if (h === "cornrows") {
-    frontHair = `<g stroke="${hc}" stroke-width="6" stroke-linecap="round" fill="none" stroke-dasharray="5 2">
-      <path d="M54 82 Q58 52 68 48"/><path d="M74 74 Q78 48 84 44"/><path d="M100 71 L100 42"/><path d="M126 74 Q122 48 116 44"/><path d="M146 82 Q142 52 132 48"/>
-    </g>`;
-  } else if (h === "buzz") {
-    frontHair = `<path d="M${100 - jawW + 2} 86 C${100 - jawW} 45, ${100 + jawW} 45, ${100 + jawW - 2} 86 Q130 65 100 65 Q70 65 ${100 - jawW + 2} 86 Z" fill="${hc}" opacity="0.72"/>`;
-  } else if (h === "short_curls") {
-    frontHair = `<path d="M48 84 C46 42, 154 42, 152 84 Q128 66 100 66 Q72 66 48 84 Z" fill="${hc}"/>`;
-  } else if (h === "box_braids" || h === "locs_down" || h === "locs_bun") {
-    frontHair = `<path d="M46 86 C48 46, 152 46, 154 86 Q126 62 100 62 Q74 62 46 86 Z" fill="${hc}"/>`;
-  } else if (h === "afro_curls") {
-    frontHair = `<path d="M46 86 Q72 64 100 66 Q128 64 154 86 Q132 52 100 52 Q68 52 46 86 Z" fill="${hc}"/>`;
-  } else if (h === "bald") {
-    frontHair = `<ellipse cx="100" cy="64" rx="22" ry="7" fill="#ffffff" opacity="0.12"/>`;
-  } else if (h === "side_part") {
-    frontHair = `<path d="M45 90 C42 44, 156 44, 155 90 Q136 66 80 63 Q60 68 45 90 Z" fill="${hc}"/>`;
-  } else if (h === "tousled") {
-    frontHair = `<path d="M45 88 C42 42, 158 42, 155 88 Q138 72 122 76 Q104 64 84 76 Q64 70 45 88 Z" fill="${hc}"/>`;
-  } else if (h === "blonde_waves") {
-    frontHair = `<path d="M42 96 Q48 48 100 46 Q152 48 158 96 Q136 66 96 62 Q62 68 42 96 Z" fill="${hc}"/>`;
-  } else if (h === "beanie") {
-    frontHair = `<path d="M43 86 C44 36, 156 36, 157 86 Z" fill="#293548"/>
-      <rect x="42" y="74" width="116" height="15" rx="6" fill="#374761"/>`;
-  } else if (h === "cap") {
-    const cc = p.capColor || "#1e293b";
-    frontHair = `<path d="M44 82 C44 37, 156 37, 156 82 Z" fill="${cc}"/>
-      <path d="M35 83 Q100 66 165 83 Q132 76 100 76 Q68 76 35 83 Z" fill="#0f172a"/>`;
-  }
-
-  // Glasses
-  let glasses = "";
-  if (p.glasses === "round") {
-    glasses = `<g fill="rgba(255,255,255,0.06)" stroke="#cbd5e1" stroke-width="2.1">
-      <circle cx="${lx}" cy="${ey}" r="17"/>
-      <circle cx="${rx}" cy="${ey}" r="17"/>
-      <path d="M${lx + 17} ${ey} Q100 ${ey - 4} ${rx - 17} ${ey}" fill="none"/>
-    </g>`;
-  } else if (p.glasses === "horn" || p.glasses === "rect") {
-    const gc = p.glasses === "horn" ? "#291d18" : "#452c1e";
-    const sw = p.glasses === "horn" ? 3.4 : 2.6;
-    glasses = `<g fill="rgba(255,255,255,0.05)" stroke="${gc}" stroke-width="${sw}">
-      <rect x="${lx - 18}" y="${ey - 12}" width="35" height="24" rx="5"/>
-      <rect x="${rx - 17}" y="${ey - 12}" width="35" height="24" rx="5"/>
-      <line x1="${lx + 17}" y1="${ey - 3}" x2="${rx - 17}" y2="${ey - 3}"/>
-    </g>`;
-  } else if (p.glasses === "wire") {
-    glasses = `<g fill="none" stroke="#d4af37" stroke-width="1.5">
-      <rect x="${lx - 17}" y="${ey - 11}" width="34" height="22" rx="6"/>
-      <rect x="${rx - 17}" y="${ey - 11}" width="34" height="22" rx="6"/>
-      <line x1="${lx + 17}" y1="${ey - 2}" x2="${rx - 17}" y2="${ey - 2}"/>
-    </g>`;
-  } else if (p.glasses === "browline") {
-    glasses = `<g>
-      <rect x="${lx - 17}" y="${ey - 11}" width="34" height="22" rx="6" fill="rgba(255,255,255,0.04)" stroke="#d4af37" stroke-width="1.4"/>
-      <rect x="${rx - 17}" y="${ey - 11}" width="34" height="22" rx="6" fill="rgba(255,255,255,0.04)" stroke="#d4af37" stroke-width="1.4"/>
-      <path d="M${lx - 18} ${ey - 9} Q${lx} ${ey - 14} ${lx + 17} ${ey - 9}" fill="none" stroke="#1e1b18" stroke-width="3.6" stroke-linecap="round"/>
-      <path d="M${rx - 17} ${ey - 9} Q${rx} ${ey - 14} ${rx + 18} ${ey - 9}" fill="none" stroke="#1e1b18" stroke-width="3.6" stroke-linecap="round"/>
-      <line x1="${lx + 17}" y1="${ey - 3}" x2="${rx - 17}" y2="${ey - 3}" stroke="#d4af37" stroke-width="1.6"/>
-    </g>`;
-  } else if (p.glasses === "cateye") {
-    glasses = `<g fill="rgba(255,255,255,0.05)" stroke="#3b1d2e" stroke-width="2.6">
-      <path d="M${lx - 18} ${ey - 12} L${lx + 16} ${ey - 8} Q${lx + 15} ${ey + 11} ${lx - 2} ${ey + 11} Q${lx - 17} ${ey + 10} ${lx - 18} ${ey - 12} Z"/>
-      <path d="M${rx + 18} ${ey - 12} L${rx - 16} ${ey - 8} Q${rx - 15} ${ey + 11} ${rx + 2} ${ey + 11} Q${rx + 17} ${ey + 10} ${rx + 18} ${ey - 12} Z"/>
-      <line x1="${lx + 16}" y1="${ey - 4}" x2="${rx - 16}" y2="${ey - 4}"/>
-    </g>`;
-  } else if (p.glasses === "tint") {
-    glasses = `<g fill="rgba(56,189,248,0.17)" stroke="#94a3b8" stroke-width="1.9">
-      <rect x="${lx - 17}" y="${ey - 11}" width="34" height="22" rx="7"/>
-      <rect x="${rx - 17}" y="${ey - 11}" width="34" height="22" rx="7"/>
-      <line x1="${lx + 17}" y1="${ey - 2}" x2="${rx - 17}" y2="${ey - 2}"/>
-    </g>`;
-  }
-
-  // Landmarks (mole / cleft / freckles / dimples)
-  let mark = "";
-  let markPos = null;
-  if (p.mole === "r_cheek") { markPos = [123, 126]; }
-  else if (p.mole === "l_cheek") { markPos = [77, 126]; }
-  else if (p.mole === "l_eye") { markPos = [lx - 6, ey + 12]; }
-  else if (p.mole === "r_brow") { markPos = [rx + 8, ey - 16]; }
-  else if (p.mole === "u_lip") { markPos = [111, mouthY - 5]; }
-  else if (p.mole === "l_jaw") { markPos = [78, 145]; }
-  else if (p.mole === "chin_side") { markPos = [110, chinY - 9]; }
-
-  if (markPos) {
-    mark += `<circle cx="${markPos[0]}" cy="${markPos[1]}" r="1.5" fill="#2b1912" opacity="0.86"/>`;
-  }
-  if (p.cleft) {
-    mark += `<path d="M100 ${chinY - 6} L100 ${chinY}" stroke="rgba(40,18,10,0.48)" stroke-width="1.7" stroke-linecap="round"/>`;
-    if (!markPos) markPos = [100, chinY - 3];
-  }
-  if (p.freckles) {
-    mark += `<g fill="#8c4f32" opacity="0.42">
-      <circle cx="82" cy="119" r="1.1"/><circle cx="87" cy="122" r="1"/><circle cx="78" cy="123" r="1"/>
-      <circle cx="96" cy="118" r="0.9"/><circle cx="104" cy="118" r="0.9"/>
-      <circle cx="118" cy="119" r="1.1"/><circle cx="113" cy="122" r="1"/><circle cx="122" cy="123" r="1"/>
-    </g>`;
-    if (!markPos) markPos = [100, 119];
-  }
-  if (p.dimples) {
-    mark += `<path d="M77 ${mouthY - 3} Q74 ${mouthY + 1} 77 ${mouthY + 5}" fill="none" stroke="rgba(60,25,15,0.38)" stroke-width="1.4" stroke-linecap="round"/>
-      <path d="M123 ${mouthY - 3} Q126 ${mouthY + 1} 123 ${mouthY + 5}" fill="none" stroke="rgba(60,25,15,0.38)" stroke-width="1.4" stroke-linecap="round"/>`;
-    if (!markPos) markPos = [76, mouthY + 1];
-  }
-
-  let bioSvg = "";
-  if (showBio) {
-    const col = bioMatch ? "#38bdf8" : "#f87171";
-    bioSvg = `<g pointer-events="none">
-      <line x1="${lx}" y1="${ey}" x2="${rx}" y2="${ey}" stroke="${col}" stroke-width="1.6" stroke-dasharray="3 2"/>
-      <circle cx="${lx}" cy="${ey}" r="2.8" fill="${col}"/>
-      <circle cx="${rx}" cy="${ey}" r="2.8" fill="${col}"/>
-      <polygon points="${lx},${ey} ${rx},${ey} 100,${noseY} 100,${chinY}" fill="rgba(56,189,248,0.08)" stroke="${col}" stroke-width="1.2"/>
-      <polyline points="${100 - jawW + 3},124 ${100 - chinW},${chinY - 5} 100,${chinY + 2} ${100 + chinW},${chinY - 5} ${100 + jawW - 3},124" fill="none" stroke="${col}" stroke-width="1.5" stroke-dasharray="4 2"/>
-      ${markPos ? `<circle cx="${markPos[0]}" cy="${markPos[1]}" r="6" fill="none" stroke="#facc15" stroke-width="1.8"/>` : ""}
-    </g>`;
-  }
-
-  return `<svg viewBox="0 0 200 225" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="${uid}bg" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="${bg[0]}"/>
-        <stop offset="100%" stop-color="${bg[1]}"/>
-      </linearGradient>
-      <radialGradient id="${uid}sk" cx="48%" cy="38%" r="60%">
-        <stop offset="0%" stop-color="${sk[0]}"/>
-        <stop offset="68%" stop-color="${sk[1]}"/>
-        <stop offset="100%" stop-color="${sk[2]}"/>
-      </radialGradient>
-    </defs>
-    <rect width="200" height="225" fill="url(#${uid}bg)"/>
-    ${backHair}
-    <rect x="82" y="148" width="36" height="34" rx="10" fill="${sk[2]}"/>
-    ${outfit}
-    ${hoops}
-    <ellipse cx="${100 - jawW}" cy="112" rx="6" ry="12" fill="${sk[2]}"/>
-    <ellipse cx="${100 + jawW}" cy="112" rx="6" ry="12" fill="${sk[2]}"/>
-    <path d="${headPath}" fill="url(#${uid}sk)"/>
-    ${beard}
-    ${drawBrow(lx, ey, 1)}
-    ${drawBrow(rx, ey, -1)}
-    ${drawEye(lx, ey, 1)}
-    ${drawEye(rx, ey, -1)}
-    <path d="M98 ${ey + 3} L${100 - noseW*0.35} ${noseY - 2} Q100 ${noseY + 4} ${100 + noseW*0.35} ${noseY - 2}" fill="none" stroke="${sk[4]}" stroke-width="2" stroke-linecap="round"/>
-    <path d="M${100 - noseW} ${noseY} Q100 ${noseY + 5} ${100 + noseW} ${noseY}" fill="none" stroke="${sk[4]}" stroke-width="2.2" stroke-linecap="round"/>
-    ${mouth}
-    ${mark}
-    ${glasses}
-    ${frontHair}
-    ${bioSvg}
-  </svg>`;
-}
-
-// 36 Handcrafted Rounds (12 East Asian + 12 Black + 12 European)
-// Note: [[A]], [[B]], [[C]], [[D]] tokens in explain are dynamically mapped to shuffled display slots!
+// Strictly 15 unique 100% photorealistic rounds (5 East Asian + 5 Black + 5 European, ZERO duplicates)
 const ROUNDS = [
-  // ==================== EAST ASIAN (12) ====================
+  // ==================== EAST ASIAN (5) ====================
   {
-    cat: "east", type: "psy4", answer: "C",
-    compositeImg: "assets/user_quiz/01.jpg",
-    title: { de: "Echter PSY-Stil im Smoking", en: "Find the Real PSY Style", ko: "턱시도 속 진짜 싸이(PSY) 찾기" },
+    id: "ea_1", cat: "east", type: "psy4", answer: "C",
+    compositeImg: "assets/v2/ea_01.jpg",
+    title: { de: "Echter PSY-Stil im Smoking", en: "Find the Real PSY Style", ko: "턱시도 속 진짜 싸이(PSY) 닮은꼴 찾기" },
     brief: {
       de: "Alle vier tragen Smoking, Fliege und zurückgegelte schwarze Haare. Wer hat PSYs schmale Lachaugen, volle Wangen und breites Grinsen?",
       en: "All four wear tuxedos, bowties, and slicked-back hair. Which one has PSY's narrow smiling eyes, full cheeks, and signature grin?",
@@ -1297,258 +915,79 @@ const ROUNDS = [
     },
     prompt: { de: "Wer ist der echte PSY-Typ?", en: "Which one is PSY?", ko: "진짜 싸이 스타일 얼굴은 누구?" },
     explain: {
-      de: "[[C]] hat die typischen schmalen Lachaugen und vollen Wangen. [[A]] hat große runde Augen, [[B]] einen Kantkiefer und [[D]] hängende Augenwinkel.",
-      en: "[[C]] has the narrow smiling monolids and full cheeks. [[A]] has big round eyes, [[B]] a square jaw, and [[D]] droopy outer corners.",
-      ko: "[[C]]가 특유의 가늘게 웃는 무쌍 눈매와 넓은 광대·턱선을 가졌습니다. [[A]]는 큰 둥근 눈, [[B]]는 각진 턱, [[D]]는 처진 쌍꺼풀 눈매입니다."
-    },
-    cards: {
-      A: { img:"assets/ea_r1_A.jpg", skin:"ea1", jaw:"round", eyes:"round", brow:"thick", noseW:10, expr:"smile", hair:"slick", outfit:"tux", bg:"studio" },
-      B: { img:"assets/ea_r1_B.jpg", skin:"ea2", jaw:"square", eyeSpacing:3, eyes:"monolid", brow:"straight", noseW:13, expr:"neutral", hair:"slick", outfit:"tux", bg:"studio" },
-      C: { img:"assets/ea_r1_C.jpg", skin:"ea1", jaw:"wide", eyeSpacing:1, eyes:"psy", eyeTilt:-1, brow:"natural", noseW:12, expr:"grin", hair:"slick", outfit:"tux", bg:"studio" },
-      D: { img:"assets/ea_r1_D.jpg", skin:"ea2", jaw:"round", faceLen:4, eyes:"double", eyeTilt:4, brow:"thin", lips:"thin", expr:"smile", hair:"slick", outfit:"tux", bg:"studio" }
+      de: "[[C]] hat die typischen schmalen Lachaugen und vollen Wangen. [[A]] hat große runde Augen, [[B]] einen Kantkiefer und [[D]] tiefere Falten.",
+      en: "[[C]] has the narrow smiling monolids and full apple cheeks. [[A]] has big round eyes, [[B]] a square jaw, and [[D]] droopy outer corners.",
+      ko: "[[C]]가 특유의 가늘게 웃는 무쌍 눈매와 둥근 볼·턱선을 가졌습니다. [[A]]는 큰 쌍꺼풀 눈, [[B]]는 각진 턱, [[D]]는 중후한 주름 눈매입니다."
     }
   },
   {
-    cat: "east", type: "target3", answer: "B",
-    compositeImg: "assets/user_quiz/02.jpg",
+    id: "ea_2", cat: "east", type: "target3", answer: "B",
+    compositeImg: "assets/v2/ea_02.jpg",
     title: { de: "Die K-Two-Block-Frisurenfalle", en: "The K-Two-Block Hair Trap", ko: "K-투블럭 & 블랙 후드 함정" },
     brief: {
-      de: "Merke dir den TARGET-Mann oben. Wer unten ist exakt dieselbe Person – trotz komplett anderem Styling?",
-      en: "Study the TARGET man on top. Who below is the exact same person despite a total hair & outfit change?",
+      de: "Merke dir den TARGET-Mann oben. Wer unten (A, B oder C) ist exakt dieselbe Person – trotz komplett anderem Styling?",
+      en: "Study the TARGET man on top. Who below (A, B, or C) is the exact same person despite a total hair & outfit change?",
       ko: "위 TARGET 남성의 이목구비를 기억하세요. 머리와 옷을 완전히 바꿨지만 골격이 100% 동일한 인물은?"
     },
-    prompt: { de: "Wer unten ist exakt die TARGET-Person?", en: "Who below matches TARGET?", ko: "아래 중 TARGET과 동일 인물은?" },
+    prompt: { de: "Wer unten ist exakt die TARGET-Person?", en: "Who below matches TARGET?", ko: "아래 A·B·C 중 TARGET과 동일 인물은?" },
     explain: {
-      de: "[[B]] ist identisch (scharfe Monolid-Augen, schmale Nase, Fleck rechts), hat aber die Haare zurückgegelt! [[A]] und [[C]] kopieren nur Frisur & Hoodie.",
-      en: "[[B]] is the exact same man (sharp monolids, narrow nose, right-cheek mole) with slicked hair! [[A]] and [[C]] only copy the bangs and hoodie.",
-      ko: "[[B]]가 올백 머리와 셔츠로 바꿨지만 날카로운 무쌍 눈매·좁은 콧볼·오른볼 점까지 동일 인물입니다! [[A]]·[[C]]는 투블럭과 후드만 따라 했습니다."
-    },
-    target: { img:"assets/ea_r2_T.jpg", skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-2, brow:"straight", noseW:8, mole:"r_cheek", expr:"neutral", hair:"twoblock", outfit:"hoodie_black", bg:"studio" },
-    cards: {
-      A: { img:"assets/ea_r2_A.jpg", skin:"ea1", jaw:"round", eyeSpacing:2, eyes:"round", brow:"natural", noseW:11, expr:"smile", hair:"twoblock", outfit:"hoodie_black", bg:"studio" },
-      B: { img:"assets/ea_r2_B.jpg", skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-2, brow:"straight", noseW:8, mole:"r_cheek", expr:"smile", hair:"slick", outfit:"shirt_white", bg:"office" },
-      C: { img:"assets/ea_r2_C.jpg", skin:"ea2", jaw:"square", eyeSpacing:3, eyes:"monolid", brow:"thick", noseW:13, expr:"neutral", hair:"twoblock", outfit:"hoodie_black", bg:"studio" }
+      de: "[[B]] ist identisch (scharfe Augenpartie, schmale Nase, Wangenfleck), hat aber die Haare zurückgegelt! [[A]] und [[C]] kopieren nur Frisur & Hoodie.",
+      en: "[[B]] is the exact same man (sharp eyes, narrow nose, cheek mole) with slicked hair! [[A]] and [[C]] only copy the bangs and hoodie.",
+      ko: "[[B]]가 올백 머리와 흰 셔츠로 바꿨지만 눈매·콧날·왼쪽 볼 점까지 TARGET 본인입니다! [[A]]·[[C]]는 투블럭과 후드만 따라 했습니다."
     }
   },
   {
-    cat: "east", type: "pair4", answer: "AD",
-    compositeImg: "assets/user_quiz/03.jpg",
-    title: { de: "Lange schwarze Haare – Welches Paar?", en: "Long Straight Hair – Matching Pair", ko: "긴 생머리 – 같은 사람 2장 찾기" },
+    id: "ea_3", cat: "east", type: "pair4", answer: "AD",
+    compositeImg: "assets/v2/ea_03.jpg",
+    title: { de: "Lange schwarze Haare – Welches Paar?", en: "Long Straight Hair – Matching Pair", ko: "긴 생머리 – 동일 인물 2장 찾기" },
     brief: {
-      de: "Zwei dieser vier Fotos zeigen exakt dieselbe Frau an verschiedenen Tagen. Tippe die BEIDEN Bilder an!",
+      de: "Zwei dieser vier Fotos zeigen exakt dieselbe Frau an verschiedenen Orten. Tippe die BEIDEN Bilder an!",
       en: "Two of these four photos show the exact same woman on different days. Tap the TWO matching portraits!",
-      ko: "네 장 중 두 장은 서로 다른 날 찍힌 동일 여성입니다. 같은 사람 사진 2장을 모두 탭하세요!"
+      ko: "네 장 중 두 장은 서로 다른 장소에서 찍힌 동일 여성입니다. 같은 사람 사진 2장을 모두 고르세요!"
     },
-    prompt: { de: "Tippe 2 Fotos derselben Frau an!", en: "Tap the 2 photos of the SAME woman!", ko: "동일 인물 사진 2장을 고르세요!" },
+    prompt: { de: "Tippe 2 Fotos derselben Frau an!", en: "Tap the 2 photos of the SAME woman!", ko: "동일 인물 사진 2장을 선택하세요!" },
     explain: {
-      de: "[[A]] und [[D]] zeigen dieselbe Frau: schräge Katzenaugen, V-Kinn und Punkt unterm linken Auge.",
-      en: "[[A]] and [[D]] are the same woman: upturned cat-like eyes, V-chin, and left under-eye beauty mark.",
-      ko: "[[A]]와 [[D]]가 올라간 고양이 눈매, V라인 턱, 왼쪽 눈 밑 눈물점까지 완벽히 같은 인물입니다."
-    },
-    cards: {
-      A: { img:"assets/ea_r3_A.jpg", skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-3, brow:"natural", noseW:8, mole:"l_eye", expr:"smile", hair:"long_straight", outfit:"sweater_beige", bg:"cafe" },
-      B: { img:"assets/ea_r3_B.jpg", skin:"ea1", jaw:"round", eyeSpacing:2, eyes:"round", brow:"straight", noseW:10, expr:"smile", hair:"long_bangs", outfit:"hoodie_grey", bg:"office" },
-      C: { img:"assets/ea_r3_C.jpg", skin:"ea2", jaw:"square", eyeSpacing:3, eyes:"double", brow:"arched", noseW:11, expr:"neutral", hair:"long_straight", outfit:"blazer_navy", bg:"street" },
-      D: { img:"assets/ea_r3_D.jpg", skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-3, brow:"natural", noseW:8, mole:"l_eye", expr:"neutral", hair:"long_straight", outfit:"blazer_navy", bg:"office" }
+      de: "[[A]] (Café) und [[D]] (Büro) zeigen dieselbe Frau: sanft geschwungene Augen, V-Kinn und kleiner Schönheitsfleck unterm Auge.",
+      en: "[[A]] (café) and [[D]] (office) are the same woman: upturned eyes, V-chin, and subtle under-eye beauty mark.",
+      ko: "[[A]](카페 니트)와 [[D]](오피스 정장)가 올라간 눈매, 갸름한 턱선, 눈 밑 점까지 완벽히 같은 인물입니다."
     }
   },
   {
-    cat: "east", type: "target3", answer: "C",
-    compositeImg: "assets/user_quiz/04.jpg",
-    title: { de: "K-Pop Platinblond-Falle", en: "K-Pop Platinum Blonde Trap", ko: "K-팝 백금발 탈색 함정" },
+    id: "ea_4", cat: "east", type: "target3", answer: "C",
+    compositeImg: "assets/v2/ea_04.jpg",
+    title: { de: "K-Pop Platinblond-Falle", en: "K-Pop Platinum Blonde Trap", ko: "K-팝 백금발 탈색머리 함정" },
     brief: {
       de: "Helle Haarfarben ziehen 90 % unserer Aufmerksamkeit auf sich. Finde den TARGET-Idol unten wieder!",
       en: "Bright hair dye hijacks 90% of visual memory. Find the TARGET idol below!",
-      ko: "화려한 탈색 머리는 시선의 90%를 빼앗아 갑니다. 염색에 속지 말고 TARGET과 같은 가수를 찾으세요!"
+      ko: "화려한 탈색 머리는 시선의 90%를 빼앗아 갑니다. 염색에 속지 말고 TARGET과 같은 인물을 찾으세요!"
     },
     prompt: { de: "Welcher ist derselbe Sänger wie TARGET?", en: "Which one is the TARGET singer?", ko: "누가 TARGET과 같은 인물일까요?" },
     explain: {
-      de: "[[C]] hat die Haare dunkel gefärbt, besitzt aber exakt denselben Augenabstand, Kieferwinkel und Punkt am linken Kiefer!",
-      en: "[[C]] dyed his hair dark, but shares TARGET's exact eye spacing, narrow jawline, and left-jaw mark!",
-      ko: "[[C]]는 흑발로 덮었지만 좁은 미간과 쌍꺼풀 각도, 갸름한 턱선과 왼쪽 턱 점까지 TARGET 본인입니다!"
-    },
-    target: { skin:"ea1", jaw:"narrow", eyeSpacing:-2, eyes:"double", eyeTilt:-2, brow:"straight", noseW:8, mole:"l_jaw", expr:"neutral", hair:"idol_messy", hairColor:"#f3e8c8", outfit:"leather", bg:"stage" },
-    cards: {
-      A: { skin:"ea1", jaw:"round", eyeSpacing:3, eyes:"round", brow:"thick", noseW:11, expr:"smile", hair:"idol_messy", hairColor:"#f3e8c8", outfit:"leather", bg:"stage" },
-      B: { skin:"ea2", jaw:"square", eyeSpacing:2, eyes:"monolid", brow:"thick", noseW:12, expr:"neutral", hair:"idol_messy", hairColor:"#f3e8c8", outfit:"leather", bg:"stage" },
-      C: { skin:"ea1", jaw:"narrow", eyeSpacing:-2, eyes:"double", eyeTilt:-2, brow:"straight", noseW:8, mole:"l_jaw", expr:"smile", hair:"twoblock", hairColor:"#151821", outfit:"sweater_beige", bg:"cafe" }
+      de: "[[C]] hat die Haare schwarz gefärbt, besitzt aber exakt dieselben Augen, Kieferlinie und den Punkt nahe dem Mundwinkel!",
+      en: "[[C]] dyed his hair dark, but shares TARGET's exact eye shape, narrow jawline, and lower-cheek mole!",
+      ko: "[[C]]는 흑발과 니트로 바꿨지만 눈매·콧날·갸름한 턱선과 입가 아래 점까지 TARGET과 동일 인물입니다!"
     }
   },
   {
-    cat: "east", type: "pair4", answer: "BC",
-    compositeImg: "assets/user_quiz/05.jpg",
-    title: { de: "Runde Brille & Dunkler Anzug", en: "Round Glasses & Dark Suit", ko: "동그란 메탈 안경 & 정장 클론" },
+    id: "ea_5", cat: "east", type: "pair4", answer: "BC",
+    compositeImg: "assets/v2/ea_05.jpg",
+    title: { de: "Runde Brille & Dunkler Anzug", en: "Round Glasses & Dark Suit", ko: "둥근 안경 & 정장 끝판왕 퀴즈" },
     brief: {
       de: "Alle vier tragen runde Metallbrillen und dunkle Sakkos. Welche ZWEI Bilder zeigen denselben Mann?",
       en: "All four wear round metal glasses and dark suits. Which TWO portraits are the exact same man?",
-      ko: "네 명 모두 동그란 안경과 어두운 정장을 입었습니다. 진짜 동일 인물 2장을 찾아보세요!"
+      ko: "네 명 모두 동그란 메탈 안경과 어두운 정장을 입었습니다. 진짜 동일 인물 2장을 찾아보세요!"
     },
     prompt: { de: "Wähle die 2 identischen Männer!", en: "Tap the 2 matching men!", ko: "같은 남성 사진 2장을 선택하세요!" },
     explain: {
-      de: "[[B]] und [[C]] teilen den schmalen Kiefer, eng stehende Augen und das Kinngrübchen. [[A]] ist rundlich, [[D]] kantig.",
-      en: "[[B]] and [[C]] share the narrow jaw, close-set eyes, and chin cleft. [[A]] has a round face and [[D]] a square jaw.",
-      ko: "[[B]]와 [[C]]가 좁은 턱선·가까운 눈 간격·턱 끝 보조개를 공유하는 동일 인물입니다."
-    },
-    cards: {
-      A: { skin:"ea1", jaw:"round", eyeSpacing:3, eyes:"round", brow:"thick", noseW:12, glasses:"round", expr:"smile", hair:"slick", outfit:"suit_dark", bg:"office" },
-      B: { skin:"ea1", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"monolid", brow:"straight", noseW:8, cleft:true, glasses:"round", expr:"neutral", hair:"twoblock", outfit:"suit_dark", bg:"office" },
-      C: { skin:"ea1", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"monolid", brow:"straight", noseW:8, cleft:true, glasses:"round", expr:"smile", hair:"slick", outfit:"suit_dark", bg:"street" },
-      D: { skin:"ea2", jaw:"square", eyeSpacing:2, eyes:"double", eyeTilt:3, brow:"arched", noseW:13, glasses:"round", expr:"neutral", hair:"twoblock", outfit:"suit_dark", bg:"office" }
-    }
-  },
-  {
-    cat: "east", type: "target3", answer: "A",
-    title: { de: "Streetwear-Cap & Denim-Falle", en: "Streetwear Baseball Cap Trap", ko: "스트릿 볼캡 & 데님 자켓 함정" },
-    brief: {
-      de: "Eine tief gezogene Baseball-Cap verdeckt Stirn und Haaransatz komplett. Erkennst du TARGET ohne Cap wieder?",
-      en: "A pulled-down baseball cap hides the entire hairline. Can you spot TARGET with the cap off?",
-      ko: "푹 눌러쓴 볼캡은 이마와 머리 형태를 완전히 가립니다. 모자를 벗은 TARGET을 찾아보세요!"
-    },
-    prompt: { de: "Wer unten ist TARGET?", en: "Who below is TARGET?", ko: "모자 벗은 TARGET은 누구일까요?" },
-    explain: {
-      de: "[[A]] hat die Cap abgenommen, teilt aber exakt den weiten Augenabstand, die Schlupflider und die Wangengrübchen! [[B]] & [[C]] tragen nur dieselbe Cap.",
-      en: "[[A]] took off the cap, keeping the exact wide-set hooded eyes, thick brows, and cheek dimples! [[B]] & [[C]] just wear the same cap.",
-      ko: "[[A]]가 모자를 벗고 가르마 머리로 바꿨지만 넓은 미간·속쌍꺼풀·볼 보조개까지 TARGET 본인입니다!"
-    },
-    target: { skin:"ea4", jaw:"oval", eyeSpacing:2, eyes:"hooded", eyeTilt:2, brow:"thick", noseW:11, dimples:true, expr:"neutral", hair:"cap", capColor:"#1e293b", outfit:"denim", bg:"street" },
-    cards: {
-      A: { skin:"ea4", jaw:"oval", eyeSpacing:2, eyes:"hooded", eyeTilt:2, brow:"thick", noseW:11, dimples:true, expr:"smile", hair:"curtain", outfit:"shirt_white", bg:"cafe" },
-      B: { skin:"ea1", jaw:"v", eyeSpacing:-2, eyes:"monolid", eyeTilt:-2, brow:"thin", noseW:8, expr:"neutral", hair:"cap", capColor:"#1e293b", outfit:"denim", bg:"street" },
-      C: { skin:"ea4", jaw:"square", eyeSpacing:-1, eyes:"round", brow:"straight", noseW:13, expr:"smile", hair:"cap", capColor:"#1e293b", outfit:"denim", bg:"street" }
-    }
-  },
-  {
-    cat: "east", type: "pair4", answer: "BD",
-    title: { de: "Bob-Schnitt mit Pony – Zwillings-Check", en: "See-Through Bangs Bob – Find the Pair", ko: "시스루뱅 칼단발 – 동일 인물 찾기" },
-    brief: {
-      de: "Vier Frauen mit exakt demselben kinnlangen Bob und Pony. Welche ZWEI Bilder zeigen dieselbe Person?",
-      en: "All four women rock the exact same chin-length bob with bangs. Which TWO are the same person?",
-      ko: "네 명 모두 똑같은 시스루뱅 단발머리입니다. 헤어 실루엣을 무시하고 같은 사람 2장을 고르세요!"
-    },
-    prompt: { de: "Tippe 2 Fotos derselben Frau an!", en: "Tap the 2 matching women!", ko: "같은 여성 사진 2장을 탭하세요!" },
-    explain: {
-      de: "[[B]] und [[D]] sind identisch: herzförmiges Kinn, eng stehende Augen, geschwungene Brauen und Fleck links.",
-      en: "[[B]] and [[D]] are identical: heart-shaped chin, close-set double-lid eyes, arched brows, and left-cheek mark.",
-      ko: "[[B]]와 [[D]]가 하트형 턱선·가까운 쌍꺼풀 눈매·아치형 눈썹·왼쪽 볼 점까지 완벽히 일치합니다."
-    },
-    cards: {
-      A: { skin:"ea1", jaw:"round", eyeSpacing:3, eyes:"round", brow:"straight", noseW:11, expr:"smile", hair:"bob_bangs", outfit:"cardigan_cream", bg:"cafe" },
-      B: { skin:"ea3", jaw:"heart", eyeSpacing:-2, eyes:"double", eyeTilt:-2, brow:"arched", noseW:8, mole:"l_cheek", expr:"smile", hair:"bob_bangs", outfit:"cardigan_cream", bg:"cafe" },
-      C: { skin:"ea2", jaw:"square", eyeSpacing:2, eyes:"monolid", brow:"thick", noseW:12, expr:"neutral", hair:"bob_bangs", outfit:"blazer_navy", bg:"office" },
-      D: { skin:"ea3", jaw:"heart", eyeSpacing:-2, eyes:"double", eyeTilt:-2, brow:"arched", noseW:8, mole:"l_cheek", expr:"neutral", hair:"bob_bangs", outfit:"blazer_navy", bg:"office" }
-    }
-  },
-  {
-    cat: "east", type: "target3", answer: "C",
-    compositeImg: "assets/user_quiz/04.jpg",
-    title: { de: "Seongsu Café-Stil vs. Buzz-Cut", en: "Curtain Bangs & Browline Glasses Trap", ko: "성수동 가르마펌 & 하프프레임 안경 함정" },
-    brief: {
-      de: "Braune Curtain-Bangs und Retro-Brille prägen das Gesicht stark. Wer unten ist TARGET nach dem Friseurbesuch?",
-      en: "Chestnut curtain hair and browline glasses define this look. Who is TARGET after a drastic haircut?",
-      ko: "갈색 가르마펌과 하프프레임 안경 인상이 강렬합니다. 짧게 머리를 자른 TARGET을 찾아보세요!"
-    },
-    prompt: { de: "Wer unten stimmt mit TARGET überein?", en: "Who matches TARGET?", ko: "이발 후 TARGET과 같은 사람은?" },
-    explain: {
-      de: "[[C]] trägt jetzt Buzz-Cut ohne Brille, behält aber den markanten Kantkiefer, eng stehende Augen und das Kinngrübchen!",
-      en: "[[C]] got a buzz-cut and ditched the glasses, keeping the exact square jaw, narrow-set eyes, and chin cleft!",
-      ko: "[[C]]는 반삭(버즈컷)으로 바꾸고 안경을 벗었지만 각진 턱선·좁은 미간·턱 끝 보조개가 그대로입니다!"
-    },
-    target: { skin:"ea1", jaw:"square", faceLen:2, eyeSpacing:-2, eyes:"monolid", eyeTilt:-2, brow:"straight", noseW:9, cleft:true, glasses:"browline", hair:"curtain", hairColor:"#4a3222", outfit:"sweater_beige", bg:"cafe" },
-    cards: {
-      A: { skin:"ea1", jaw:"round", eyeSpacing:3, eyes:"round", brow:"natural", noseW:12, glasses:"browline", hair:"curtain", hairColor:"#4a3222", outfit:"sweater_beige", bg:"cafe" },
-      B: { skin:"ea2", jaw:"v", eyeSpacing:2, eyes:"double", brow:"arched", noseW:11, glasses:"browline", hair:"curtain", hairColor:"#4a3222", outfit:"sweater_beige", bg:"cafe" },
-      C: { skin:"ea1", jaw:"square", faceLen:2, eyeSpacing:-2, eyes:"monolid", eyeTilt:-2, brow:"straight", noseW:9, cleft:true, expr:"smile", hair:"buzz", hairColor:"#221a15", outfit:"sport_zip", bg:"street" }
-    }
-  },
-  {
-    cat: "east", type: "target3", answer: "A",
-    title: { de: "Stewardess-Dutt vs. Freizeit-Look", en: "Sleek Crew Hair vs Off-Duty Waves", ko: "승무원 올백 머리 ↔ 오프듀티 웨이브" },
-    brief: {
-      de: "Im Dienst streng zurückgekämmt, privat mit offenen Wellen: Welche Frau unten ist TARGET?",
-      en: "Sleek pulled-back hair on duty, loose waves off duty: which woman below is TARGET?",
-      ko: "근무 중엔 단정한 올백, 퇴근 후엔 풍성한 웨이브! 스타일 변신 뒤의 TARGET을 찾아보세요."
-    },
-    prompt: { de: "Welche Frau ist TARGET?", en: "Which woman is TARGET?", ko: "아래 중 TARGET 본인은 누구?" },
-    explain: {
-      de: "[[A]] trägt offene braune Wellen und Jeansjacke, hat aber exakt dieselben Mandelaugen, vollen Lippen und den Punkt über der Lippe!",
-      en: "[[A]] wears loose waves and denim, matching TARGET's wide-set upturned eyes, full lips, and upper-lip beauty mark!",
-      ko: "[[A]]가 긴 웨이브와 데님 자켓으로 변신했지만 넓은 미간의 올라간 눈매·도톰한 입술·입술 위 점이 일치합니다!"
-    },
-    target: { skin:"ea3", jaw:"v", eyeSpacing:2, eyes:"almond", eyeTilt:-3, brow:"thin", noseW:8, lips:"full", mole:"u_lip", expr:"neutral", hair:"pulled_back", outfit:"blazer_navy", bg:"office" },
-    cards: {
-      A: { skin:"ea3", jaw:"v", eyeSpacing:2, eyes:"almond", eyeTilt:-3, brow:"thin", noseW:8, lips:"full", mole:"u_lip", expr:"smile", hair:"blonde_waves", hairColor:"#4a2e1f", outfit:"denim", bg:"street" },
-      B: { skin:"ea1", jaw:"round", eyeSpacing:-2, eyes:"round", brow:"thick", noseW:11, lips:"thin", expr:"smile", hair:"pulled_back", outfit:"blazer_navy", bg:"office" },
-      C: { skin:"ea2", jaw:"square", eyeSpacing:0, eyes:"hooded", brow:"straight", noseW:11, lips:"medium", expr:"neutral", hair:"pulled_back", outfit:"blazer_navy", bg:"office" }
-    }
-  },
-  {
-    cat: "east", type: "pair4", answer: "AC",
-    title: { de: "Hongdae Wolf-Cut & Getönte Brille", en: "Wolf-Cut & Tinted Glasses", ko: "홍대 울프컷 & 틴트 안경 쌍둥이" },
-    brief: {
-      de: "Alle vier tragen fransigen Wolf-Cut, blaue Tönungsgläser und Ohrstecker. Finde die ZWEI Fotos derselben Person!",
-      en: "All four wear shaggy wolf-cuts, blue-tinted lenses, and ear studs. Find the TWO photos of the same person!",
-      ko: "네 명 모두 샤기 울프컷과 블루 틴트 안경, 귀걸이를 착용했습니다. 같은 사람 2장을 골라보세요!"
-    },
-    prompt: { de: "Wähle das identische Paar!", en: "Tap the 2 matching portraits!", ko: "동일 인물 2장을 탭하세요!" },
-    explain: {
-      de: "[[A]] und [[C]] haben dasselbe längliche schmale Gesicht, tief liegende eng stehende Augen und das Mal an der rechten Braue.",
-      en: "[[A]] and [[C]] share the elongated narrow jaw, close-set deep eyes, thick brows, and right-brow mark.",
-      ko: "[[A]]와 [[C]]가 긴 갸름한 얼굴형·가까운 깊은 눈매·짙은 눈썹·오른쪽 눈썹 위 점까지 동일 인물입니다."
-    },
-    cards: {
-      A: { skin:"ea2", jaw:"narrow", faceLen:4, eyeSpacing:-2, eyes:"deep", brow:"thick", noseW:9, mole:"r_brow", glasses:"tint", studs:true, expr:"neutral", hair:"wolf_cut", outfit:"leather", bg:"stage" },
-      B: { skin:"ea1", jaw:"wide", eyeSpacing:3, eyes:"round", brow:"natural", noseW:12, glasses:"tint", studs:true, expr:"smile", hair:"wolf_cut", outfit:"leather", bg:"stage" },
-      C: { skin:"ea2", jaw:"narrow", faceLen:4, eyeSpacing:-2, eyes:"deep", brow:"thick", noseW:9, mole:"r_brow", glasses:"tint", studs:true, expr:"smile", hair:"wolf_cut", outfit:"hoodie_black", bg:"street" },
-      D: { skin:"ea3", jaw:"round", eyeSpacing:2, eyes:"double", eyeTilt:3, brow:"thin", noseW:11, glasses:"tint", studs:true, expr:"neutral", hair:"wolf_cut", outfit:"turtleneck", bg:"studio" }
-    }
-  },
-  {
-    cat: "east", type: "target3", answer: "B",
-    compositeImg: "assets/user_quiz/02.jpg",
-    title: { de: "Sport-Ponytail vs. Büro-Brille", en: "Gym Ponytail vs Cat-Eye Office Look", ko: "운동복 포니테일 ↔ 오피스 안경 변신" },
-    brief: {
-      de: "Breites Lachen und hoher Pferdeschwanz beim Sport – erkennst du TARGET mit seriösem Büro-Styling wieder?",
-      en: "Big grin and high ponytail after a workout—can you recognize TARGET in serious office attire?",
-      ko: "운동 후 활짝 웃는 하이 포니테일 사진입니다. 무표정 오피스룩으로 바뀐 TARGET을 찾아보세요!"
-    },
-    prompt: { de: "Wer unten ist TARGET?", en: "Who below matches TARGET?", ko: "오피스룩으로 변신한 TARGET은?" },
-    explain: {
-      de: "[[B]] trägt Bob und Cat-Eye-Brille ohne Lächeln, hat aber exakt das runde Gesicht, weiten Augenabstand und die Grübchen!",
-      en: "[[B]] switched to a bob and cat-eye frames, keeping the exact round jaw, wide-set double eyelids, and dimples!",
-      ko: "[[B]]는 단발과 캣아이 안경에 무표정이지만, 둥근 턱선·넓은 미간·쌍꺼풀·보조개가 TARGET과 100% 일치합니다!"
-    },
-    target: { skin:"ea4", jaw:"round", eyeSpacing:3, eyes:"double", brow:"natural", noseW:10, dimples:true, expr:"grin", hair:"ponytail", outfit:"sport_zip", bg:"street" },
-    cards: {
-      A: { skin:"ea1", jaw:"v", eyeSpacing:-2, eyes:"monolid", brow:"arched", noseW:8, expr:"grin", hair:"ponytail", outfit:"sport_zip", bg:"street" },
-      B: { skin:"ea4", jaw:"round", eyeSpacing:3, eyes:"double", brow:"natural", noseW:10, dimples:true, glasses:"cateye", expr:"neutral", hair:"bob", outfit:"turtleneck", bg:"office" },
-      C: { skin:"ea2", jaw:"square", eyeSpacing:0, eyes:"hooded", brow:"thick", noseW:12, expr:"grin", hair:"ponytail", outfit:"sport_zip", bg:"street" }
-    }
-  },
-  {
-    cat: "east", type: "pair4", answer: "CD",
-    title: { de: "Endgegner: Silberhaar-Vorstände", en: "Boss Level: Silver-Haired Executives", ko: "최종보스: 은발 임원진 쌍둥이 찾기" },
-    brief: {
-      de: "Alle vier Vorstände haben silbergraues Haar, Goldrandbrille und dunklen Anzug. Welche ZWEI zeigen denselben Mann?",
-      en: "All four senior executives have silver-grey hair, gold wire glasses, and dark suits. Find the matching pair!",
-      ko: "네 명의 중년 임원 모두 은발과 금테 안경, 어두운 수트를 착용했습니다. 동일 인물 2장을 찾아보세요!"
-    },
-    prompt: { de: "Tippe die 2 identischen Vorstände an!", en: "Tap the 2 photos of the SAME executive!", ko: "같은 임원 사진 2장을 선택하세요!" },
-    explain: {
-      de: "[[C]] und [[D]] teilen den breiten Kiefer, leicht abfallende Schlupflider, kräftige Nase und das Mal links am Kiefer.",
-      en: "[[C]] and [[D]] share the wide jaw, slightly downturned hooded eyes, broad nose, and left-jaw mark.",
-      ko: "[[C]]와 [[D]]가 넓은 턱 골격·살짝 처진 속쌍꺼풀·묵직한 콧볼·왼쪽 턱 점까지 같은 인물입니다."
-    },
-    cards: {
-      A: { skin:"ea1", jaw:"narrow", eyeSpacing:-2, eyes:"monolid", brow:"thin", noseW:8, glasses:"wire", expr:"neutral", hair:"side_part", hairColor:"#cbd5e1", outfit:"suit_dark", bg:"office" },
-      B: { skin:"ea3", jaw:"round", eyeSpacing:3, eyes:"round", brow:"natural", noseW:10, glasses:"wire", expr:"smile", hair:"slick", hairColor:"#cbd5e1", outfit:"suit_dark", bg:"office" },
-      C: { skin:"ea2", jaw:"wide", faceLen:3, eyeSpacing:2, eyes:"hooded", eyeTilt:2, brow:"thick", noseW:12, mole:"l_jaw", glasses:"wire", expr:"neutral", hair:"side_part", hairColor:"#cbd5e1", outfit:"suit_dark", bg:"office" },
-      D: { skin:"ea2", jaw:"wide", faceLen:3, eyeSpacing:2, eyes:"hooded", eyeTilt:2, brow:"thick", noseW:12, mole:"l_jaw", glasses:"wire", expr:"smile", hair:"slick", hairColor:"#cbd5e1", outfit:"blazer_navy", bg:"studio" }
+      de: "[[B]] und [[C]] teilen das schmale Gesicht, identische Augenpartie und Nasenform. [[A]] ist rundlich, [[D]] hat einen breiten Kiefer.",
+      en: "[[B]] and [[C]] share the narrow jawline, identical eye shape, and nose bridge. [[A]] has a round face and [[D]] a broad square jaw.",
+      ko: "[[B]](오피스)와 [[C]](거리 미소)가 갸름한 턱선·눈매·콧날이 일치하는 동일 인물입니다! [[A]]는 둥근 얼굴, [[D]]는 넓은 사각턱입니다."
     }
   },
 
-  // ==================== BLACK (12) ====================
+  // ==================== BLACK (5) ====================
   {
-    cat: "black", type: "target3", answer: "A",
+    id: "bk_1", cat: "black", type: "target3", answer: "A",
     title: { de: "Skin-Fade & Vollbart-Falle", en: "Skin-Fade & Boxed Beard Trap", ko: "스킨페이드 & 풀박스 수염 함정" },
     brief: {
       de: "Ein markanter Vollbart verdeckt die untere Gesichtshälfte, ist aber in 5 Minuten abrasiert! Finde TARGET unten.",
@@ -1557,19 +996,19 @@ const ROUNDS = [
     },
     prompt: { de: "Wer unten ist die TARGET-Person?", en: "Who below is TARGET?", ko: "아래 중 TARGET과 같은 남성은?" },
     explain: {
-      de: "[[A]] hat sich rasiert, behält aber exakt dieselben Mandelaugen, schmale Nase und das Mal an der rechten Braue! [[B]] & [[C]] tragen nur denselben Bart.",
-      en: "[[A]] shaved his beard, keeping the exact almond eyes, narrow nose bridge, and right-brow mark! [[B]] & [[C]] only copy the beard.",
-      ko: "[[A]]가 수염을 밀었지만 좁은 미간의 아몬드 눈매·콧날·오른쪽 눈썹 위 점이 그대로입니다! [[B]]·[[C]]는 수염만 같습니다."
+      de: "[[A]] hat sich rasiert, behält aber exakt dieselben Mandelaugen, schmale Nase und das Mal an der Braue! [[B]] & [[C]] tragen nur denselben Bart.",
+      en: "[[A]] shaved his beard, keeping the exact almond eyes, narrow nose bridge, and brow mark! [[B]] & [[C]] only copy the beard.",
+      ko: "[[A]]가 수염을 밀었지만 아몬드 눈매·콧날·눈썹 근처 점이 그대로입니다! [[B]]·[[C]]는 수염과 터틀넥만 같습니다."
     },
-    target: { img:"assets/bk_r1_T.jpg", skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", mole:"r_brow", beard:"full_box", expr:"neutral", hair:"skin_fade", outfit:"turtleneck", bg:"studio" },
+    target: { img: "assets/v2/bk_r1_T.jpg" },
     cards: {
-      A: { img:"assets/bk_r1_A.jpg", skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", mole:"r_brow", expr:"smile", hair:"short_curls", outfit:"knit_olive", bg:"street" },
-      B: { img:"assets/bk_r1_B.jpg", skin:"bk1", jaw:"wide", eyeSpacing:3, eyes:"round", brow:"thick", noseW:14, lips:"full", beard:"full_box", expr:"neutral", hair:"skin_fade", outfit:"turtleneck", bg:"studio" },
-      C: { img:"assets/bk_r1_C.jpg", skin:"bk2", jaw:"square", eyeSpacing:2, eyes:"double", eyeTilt:3, brow:"arched", noseW:13, lips:"full", beard:"full_box", expr:"neutral", hair:"skin_fade", outfit:"turtleneck", bg:"studio" }
+      A: { img: "assets/v2/bk_r1_A.jpg" },
+      B: { img: "assets/v2/bk_r1_B.jpg" },
+      C: { img: "assets/v2/bk_r1_C.jpg" }
     }
   },
   {
-    cat: "black", type: "pair4", answer: "AC",
+    id: "bk_2", cat: "black", type: "pair4", answer: "AC",
     title: { de: "Lange Box Braids – Welches Paar?", en: "Box Braids – Find the Same Woman", ko: "긴 박스 브레이드 – 같은 여성 찾기" },
     brief: {
       de: "Alle vier Frauen tragen lange Box Braids. Welche ZWEI Fotos zeigen dieselbe Frau bei anderem Licht?",
@@ -1578,19 +1017,19 @@ const ROUNDS = [
     },
     prompt: { de: "Tippe die 2 Fotos derselben Frau an!", en: "Tap the 2 matching women!", ko: "같은 여성 사진 2장을 탭하세요!" },
     explain: {
-      de: "[[A]] und [[C]] sind identisch: V-förmige Wangenpartie, schräg stehende Augen und Schönheitsfleck über der Lippe.",
-      en: "[[A]] and [[C]] are the exact same woman: sculpted V-jaw, upturned eyes, and subtle upper-lip beauty mark.",
-      ko: "[[A]]와 [[C]]가 V라인 턱선·올라간 아몬드 눈매·입술 위 매력점까지 완벽히 같은 인물입니다."
+      de: "[[A]] und [[C]] sind identisch: V-förmige Wangenpartie, Mandelaugen und kleiner Schönheitsfleck über der Oberlippe.",
+      en: "[[A]] and [[C]] are the exact same woman: sculpted V-jaw, almond eyes, and subtle upper-lip beauty mark.",
+      ko: "[[A]](옐로 탑)와 [[C]](네이비 재킷)가 V라인 턱선·눈매·윗입술 위 매력점까지 완벽히 같은 인물입니다."
     },
     cards: {
-      A: { img:"assets/bk_r2_A.jpg", skin:"bk3", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-3, brow:"arched", noseW:10, lips:"full", mole:"u_lip", expr:"smile", hair:"box_braids", outfit:"yellow_top", bg:"cafe" },
-      B: { img:"assets/bk_r2_B.jpg", skin:"bk3", jaw:"round", eyeSpacing:3, eyes:"round", brow:"natural", noseW:13, lips:"full", expr:"smile", hair:"box_braids", outfit:"sweater_beige", bg:"street" },
-      C: { img:"assets/bk_r2_C.jpg", skin:"bk3", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-3, brow:"arched", noseW:10, lips:"full", mole:"u_lip", expr:"neutral", hair:"box_braids", outfit:"blazer_navy", bg:"office" },
-      D: { img:"assets/bk_r2_D.jpg", skin:"bk1", jaw:"square", faceLen:4, eyeSpacing:2, eyes:"hooded", brow:"thick", noseW:12, lips:"medium", expr:"neutral", hair:"box_braids", outfit:"turtleneck", bg:"studio" }
+      A: { img: "assets/v2/bk_r2_A.jpg" },
+      B: { img: "assets/v2/bk_r2_B.jpg" },
+      C: { img: "assets/v2/bk_r2_C.jpg" },
+      D: { img: "assets/v2/bk_r2_D.jpg" }
     }
   },
   {
-    cat: "black", type: "target3", answer: "C",
+    id: "bk_3", cat: "black", type: "target3", answer: "C",
     title: { de: "Dreadlocks offen vs. Dutt", en: "Locs Down vs Office Bun Trap", ko: "드레드락 후드티 ↔ 오피스 올림머리" },
     brief: {
       de: "Offene Dreadlocks prägen die Silhouette extrem. Erkennst du TARGET wieder, wenn die Haare hochgebunden sind?",
@@ -1599,40 +1038,40 @@ const ROUNDS = [
     },
     prompt: { de: "Wer unten ist TARGET?", en: "Which portrait is TARGET?", ko: "머리를 묶은 TARGET은 누구?" },
     explain: {
-      de: "[[C]] trägt die Locs als Dutt und weißes Hemd, hat aber denselben weiten Augenabstand, V-Kiefer und Punkt am Kiefer!",
-      en: "[[C]] tied his locs into a bun and put on a shirt, keeping the wide-set eyes, V-jaw, and left-jaw mark!",
-      ko: "[[C]]가 머리를 번으로 묶고 셔츠를 입었지만 넓은 눈 간격·V라인 턱·왼쪽 턱 점이 그대로입니다!"
+      de: "[[C]] trägt die Locs als Dutt und weißes Hemd, hat aber denselben Augenabstand, V-Kiefer und Punkt am Kiefer!",
+      en: "[[C]] tied his locs into a high bun and put on a shirt, keeping the exact eyes, V-jaw, and jaw mark!",
+      ko: "[[C]]가 머리를 위로 묶고 셔츠를 입었지만 눈 간격·V라인 턱·턱 옆 점이 그대로입니다!"
     },
-    target: { img:"assets/bk_r5_T.jpg", skin:"bk2", jaw:"v", eyeSpacing:3, eyes:"almond", brow:"straight", noseW:11, lips:"full", mole:"l_jaw", expr:"neutral", hair:"locs_down", outfit:"hoodie_grey", bg:"street" },
+    target: { img: "assets/v2/bk_r5_T.jpg" },
     cards: {
-      A: { img:"assets/bk_r5_A.jpg", skin:"bk2", jaw:"round", eyeSpacing:-2, eyes:"round", brow:"thick", noseW:14, lips:"full", expr:"neutral", hair:"locs_down", outfit:"hoodie_grey", bg:"street" },
-      B: { img:"assets/bk_r5_B.jpg", skin:"bk1", jaw:"square", eyeSpacing:0, eyes:"hooded", eyeTilt:3, brow:"arched", noseW:13, lips:"medium", expr:"smile", hair:"locs_down", outfit:"hoodie_grey", bg:"street" },
-      C: { img:"assets/bk_r5_C.jpg", skin:"bk2", jaw:"v", eyeSpacing:3, eyes:"almond", brow:"straight", noseW:11, lips:"full", mole:"l_jaw", expr:"smile", hair:"locs_bun", outfit:"shirt_white", bg:"office" }
+      A: { img: "assets/v2/bk_r5_A.jpg" },
+      B: { img: "assets/v2/bk_r5_B.jpg" },
+      C: { img: "assets/v2/bk_r5_C.jpg" }
     }
   },
   {
-    cat: "black", type: "pair4", answer: "BD",
+    id: "bk_4", cat: "black", type: "pair4", answer: "BD",
     title: { de: "Afro-Locken & Gold-Creolen", en: "Natural Afro Curls & Gold Hoops", ko: "아프로 컬 & 골드 링 귀걸이 함정" },
     brief: {
       de: "Voluminöse Locken und große Ohrringe ziehen den Blick nach außen. Welche ZWEI Bilder zeigen dieselbe Person?",
       en: "Voluminous curls and gold hoops pull your gaze outward—focus on the center triangle of the face!",
-      ko: "풍성한 컬과 큰 골드 링 귀걸이가 시선을 바깥으로 분산시킵니다. 얼굴 중심 삼각형을 보고 2장을 고르세요!"
+      ko: "풍성한 컬과 골드 링 귀걸이가 시선을 바깥으로 분산시킵니다. 얼굴 중심 이목구비를 보고 2장을 고르세요!"
     },
     prompt: { de: "Finde das identische Paar!", en: "Tap the 2 photos of the same person!", ko: "같은 인물 사진 2장을 탭하세요!" },
     explain: {
-      de: "[[B]] und [[D]] zeigen dieselbe Frau (eng stehende Augen, schmaler Nasenrücken, feines Kinngrübchen).",
-      en: "[[B]] and [[D]] are the same woman (close-set almond eyes, narrow nose bridge, subtle chin cleft).",
-      ko: "[[B]]와 [[D]]가 좁은 미간·갸름한 얼굴형·턱 끝 보조개까지 완벽히 일치하는 동일 인물입니다."
+      de: "[[B]] und [[D]] zeigen dieselbe Frau: schmales ovales Gesicht, ruhige Mandelaugen und feines Kinn.",
+      en: "[[B]] and [[D]] are the same woman: narrow oval face, calm almond eyes, and matching nose & chin proportions.",
+      ko: "[[B]](블랙 터틀넥)와 [[D]](화이트 셔츠)가 갸름한 달걀형 얼굴과 눈·코 비율이 완벽히 일치하는 동일 인물입니다."
     },
     cards: {
-      A: { img:"assets/bk_r4_A.jpg", skin:"bk1", jaw:"round", eyeSpacing:3, eyes:"round", brow:"arched", noseW:13, lips:"full", hoops:true, expr:"grin", hair:"afro_curls", outfit:"yellow_top", bg:"cafe" },
-      B: { img:"assets/bk_r4_B.jpg", skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", cleft:true, hoops:true, expr:"neutral", hair:"afro_curls", outfit:"turtleneck", bg:"studio" },
-      C: { img:"assets/bk_r4_C.jpg", skin:"bk3", jaw:"square", eyeSpacing:2, eyes:"double", brow:"thick", noseW:14, lips:"full", hoops:true, expr:"smile", hair:"afro_curls", outfit:"sweater_beige", bg:"street" },
-      D: { img:"assets/bk_r4_D.jpg", skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", cleft:true, hoops:true, expr:"smile", hair:"afro_curls", outfit:"shirt_white", bg:"office" }
+      A: { img: "assets/v2/bk_r4_A.jpg" },
+      B: { img: "assets/v2/bk_r4_B.jpg" },
+      C: { img: "assets/v2/bk_r4_C.jpg" },
+      D: { img: "assets/v2/bk_r4_D.jpg" }
     }
   },
   {
-    cat: "black", type: "target3", answer: "B",
+    id: "bk_5", cat: "black", type: "target3", answer: "B",
     title: { de: "Glatze, Brille & Business-Suit", en: "Bald, Glasses & Executive Suit", ko: "민머리 & 뿔테 안경 임원 함정" },
     brief: {
       de: "Keine Haare als Hinweis – dafür eine markante Brille als Ablenkung! Wer unten ist derselbe Manager wie TARGET?",
@@ -1641,168 +1080,21 @@ const ROUNDS = [
     },
     prompt: { de: "Wer unten stimmt mit TARGET überein?", en: "Who matches TARGET?", ko: "아래 중 TARGET 본인은 누구?" },
     explain: {
-      de: "[[B]] hat Brille und Anzug abgelegt, besitzt aber exakt dieselben geschwungenen Brauen, schmalen Kiefer und Fleck rechts!",
-      en: "[[B]] took off his glasses and suit, matching TARGET's arched brows, narrow jaw, and right-cheek mark!",
-      ko: "[[B]]가 안경과 수트를 벗었지만 아치형 눈썹·갸름한 턱선·오른볼 점이 TARGET과 일치합니다!"
+      de: "[[B]] hat Brille und Anzug abgelegt, besitzt aber exakt dieselben geschwungenen Brauen, schmalen Kiefer und Wangenfleck!",
+      en: "[[B]] took off his glasses and suit, matching TARGET's arched brows, narrow oval jaw, and cheek mark!",
+      ko: "[[B]]가 안경과 수트를 벗고 니트를 입었지만 아치형 눈썹·갸름한 턱선·오른볼 점이 TARGET과 일치합니다!"
     },
-    target: { img:"assets/bk_r3_T.jpg", skin:"bk2", jaw:"narrow", faceLen:3, eyeSpacing:-1, eyes:"hooded", brow:"arched", noseW:10, lips:"medium", mole:"r_cheek", glasses:"rect", expr:"neutral", hair:"bald", outfit:"suit_dark", bg:"office" },
+    target: { img: "assets/v2/bk_r3_T.jpg" },
     cards: {
-      A: { img:"assets/bk_r3_A.jpg", skin:"bk2", jaw:"wide", eyeSpacing:3, eyes:"round", brow:"thick", noseW:14, lips:"full", glasses:"rect", expr:"neutral", hair:"bald", outfit:"suit_dark", bg:"office" },
-      B: { img:"assets/bk_r3_B.jpg", skin:"bk2", jaw:"narrow", faceLen:3, eyeSpacing:-1, eyes:"hooded", brow:"arched", noseW:10, lips:"medium", mole:"r_cheek", expr:"smile", hair:"bald", outfit:"knit_olive", bg:"cafe" },
-      C: { img:"assets/bk_r3_C.jpg", skin:"bk1", jaw:"square", eyeSpacing:2, eyes:"almond", brow:"straight", noseW:13, lips:"full", glasses:"rect", expr:"smile", hair:"bald", outfit:"suit_dark", bg:"office" }
-    }
-  },
-  {
-    cat: "black", type: "target3", answer: "C",
-    title: { de: "High-Top-Fade & Goatee vs. Cap", en: "High-Top Fade & Goatee Trap", ko: "하이탑 페이드 & 고티 수염 ↔ 볼캡" },
-    brief: {
-      de: "Hoher Flat-Top und Kinnbart strecken das Gesicht optisch enorm. Erkennst du TARGET rasiert und mit Cap?",
-      en: "A tall high-top fade and goatee stretch the face vertically. Spot TARGET clean-shaven in a cap!",
-      ko: "높은 하이탑 머리와 턱수염(고티)은 얼굴을 길어 보이게 만듭니다. 면도 후 볼캡을 쓴 TARGET을 찾으세요!"
-    },
-    prompt: { de: "Wer unten ist TARGET?", en: "Which man below is TARGET?", ko: "볼캡을 쓴 TARGET은 누구일까요?" },
-    explain: {
-      de: "[[C]] trägt Cap ohne Bart, teilt aber die tiefdunkle Hautnuance, eng stehende Augen, V-Kinn und den Punkt links!",
-      en: "[[C]] wears a cap clean-shaven, keeping the exact close-set almond eyes, V-jaw, and left-cheek mark!",
-      ko: "[[C]]는 수염을 밀고 모자를 썼지만 좁은 미간의 눈매·V턱선·왼볼 점이 TARGET과 100% 동일합니다!"
-    },
-    target: { skin:"bk4", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", mole:"l_cheek", beard:"goatee", studs:true, expr:"neutral", hair:"high_top", outfit:"denim", bg:"street" },
-    cards: {
-      A: { skin:"bk4", jaw:"round", eyeSpacing:3, eyes:"round", brow:"thick", noseW:14, lips:"full", beard:"goatee", studs:true, expr:"neutral", hair:"high_top", outfit:"denim", bg:"street" },
-      B: { skin:"bk2", jaw:"square", eyeSpacing:2, eyes:"hooded", brow:"arched", noseW:13, lips:"full", beard:"goatee", studs:true, expr:"smile", hair:"high_top", outfit:"denim", bg:"street" },
-      C: { skin:"bk4", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", mole:"l_cheek", expr:"smile", hair:"cap", capColor:"#334155", outfit:"hoodie_grey", bg:"cafe" }
-    }
-  },
-  {
-    cat: "black", type: "pair4", answer: "AB",
-    title: { de: "Twin Afro-Puffs – Zwillings-Falle", en: "Twin Afro Puffs – Match the Pair", ko: "트윈 아프로 퍼프 – 같은 인물 찾기" },
-    brief: {
-      de: "Zwei runde Afro-Puffs prägen die Kopfform sofort. Welche ZWEI Bilder zeigen exakt dieselbe Frau?",
-      en: "Twin high puffs create an unmistakable silhouette. Which TWO portraits show the exact same woman?",
-      ko: "양쪽 하이 퍼프 머리가 강렬한 실루엣을 만듭니다. 표정이 달라도 골격이 같은 두 장을 찾아보세요!"
-    },
-    prompt: { de: "Wähle die 2 Fotos derselben Frau!", en: "Tap the 2 matching women!", ko: "동일 여성 사진 2장을 고르세요!" },
-    explain: {
-      de: "[[A]] (lachend) und [[B]] (neutral) sind identisch: herzförmiges Kinn, weit stehende runde Augen und Wangengrübchen.",
-      en: "[[A]] (grinning) and [[B]] (neutral) are the same woman: heart-shaped jaw, wide-set round eyes, and cheek dimples.",
-      ko: "[[A]](활짝 웃음)와 [[B]](무표정)가 하트형 턱선·넓은 미간의 둥근 눈·볼 보조개까지 같은 인물입니다."
-    },
-    cards: {
-      A: { skin:"bk5", jaw:"heart", eyeSpacing:3, eyes:"round", brow:"arched", noseW:11, lips:"full", dimples:true, expr:"grin", hair:"afro_puffs", outfit:"red_knit", bg:"cafe" },
-      B: { skin:"bk5", jaw:"heart", eyeSpacing:3, eyes:"round", brow:"arched", noseW:11, lips:"full", dimples:true, expr:"neutral", hair:"afro_puffs", outfit:"blazer_navy", bg:"office" },
-      C: { skin:"bk5", jaw:"narrow", eyeSpacing:-2, eyes:"almond", brow:"straight", noseW:10, lips:"medium", expr:"smile", hair:"afro_puffs", outfit:"yellow_top", bg:"street" },
-      D: { skin:"bk3", jaw:"square", eyeSpacing:1, eyes:"hooded", brow:"thick", noseW:13, lips:"full", expr:"neutral", hair:"afro_puffs", outfit:"cardigan_cream", bg:"studio" }
-    }
-  },
-  {
-    cat: "black", type: "target3", answer: "A",
-    title: { de: "Cornrows vs. Kurzer Buzz-Cut", en: "Cornrows to Buzz-Cut Switch", ko: "콘로우 스포츠룩 ↔ 버즈컷 & 금테안경" },
-    brief: {
-      de: "Geflochtene Cornrows im Sport-Outfit vs. ultrakurzer Buzz-Cut im Büro: Wer unten ist TARGET?",
-      en: "Braided cornrows in athletic gear vs ultra-short buzz-cut at the office: who below is TARGET?",
-      ko: "콘로우 헤어와 스포츠 집업을 입은 TARGET이 짧은 머리와 셔츠 차림으로 바뀐 모습을 찾아보세요!"
-    },
-    prompt: { de: "Wer unten stimmt mit TARGET überein?", en: "Who matches TARGET?", ko: "변신 후 TARGET은 누구?" },
-    explain: {
-      de: "[[A]] trägt Buzz-Cut und Goldbrille, hat aber exakt den markanten Kantkiefer, tiefe Augen und das Kinngrübchen!",
-      en: "[[A]] switched to a buzz-cut and wire glasses, keeping the exact square jaw, deep-set eyes, and chin cleft!",
-      ko: "[[A]]가 짧은 버즈컷과 금테 안경으로 바꿨지만 각진 턱·깊은 눈매·턱 끝 보조개가 TARGET 본인입니다!"
-    },
-    target: { skin:"bk1", jaw:"square", faceLen:3, eyeSpacing:2, eyes:"deep", eyeTilt:2, brow:"thick", noseW:13, lips:"full", cleft:true, expr:"neutral", hair:"cornrows", outfit:"sport_zip", bg:"street" },
-    cards: {
-      A: { skin:"bk1", jaw:"square", faceLen:3, eyeSpacing:2, eyes:"deep", eyeTilt:2, brow:"thick", noseW:13, lips:"full", cleft:true, glasses:"wire", expr:"smile", hair:"buzz", outfit:"shirt_white", bg:"office" },
-      B: { skin:"bk1", jaw:"v", eyeSpacing:-2, eyes:"almond", brow:"thin", noseW:10, lips:"medium", expr:"neutral", hair:"cornrows", outfit:"sport_zip", bg:"street" },
-      C: { skin:"bk3", jaw:"round", eyeSpacing:3, eyes:"round", brow:"natural", noseW:14, lips:"full", expr:"smile", hair:"cornrows", outfit:"sport_zip", bg:"street" }
-    }
-  },
-  {
-    cat: "black", type: "pair4", answer: "CD",
-    title: { de: "Honigblonde Box Braids – Farb-Falle", en: "Honey-Blonde Box Braids Trap", ko: "허니블론드 브레이드 염색 함정" },
-    brief: {
-      de: "Auffällige honigblonde Braids lenken sofort vom Gesicht ab. Welche ZWEI Bilder zeigen dieselbe Frau?",
-      en: "Striking honey-blonde braids steal visual attention instantly. Which TWO portraits are the same woman?",
-      ko: "화려한 허니블론드 브레이드 염색이 시선을 강탈합니다. 얼굴 골격만 보고 동일 인물 2장을 찾으세요!"
-    },
-    prompt: { de: "Tippe die 2 identischen Frauen an!", en: "Tap the 2 matching portraits!", ko: "동일 인물 2장을 선택하세요!" },
-    explain: {
-      de: "[[C]] und [[D]] teilen den schmalen Kiefer, eng stehende Katzenaugen, feine Brauen und das Mal an der rechten Braue.",
-      en: "[[C]] and [[D]] share the narrow jaw, close-set upturned eyes, thin brows, and right-brow mark.",
-      ko: "[[C]]와 [[D]]가 갸름한 턱·가까운 올라간 눈매·얇은 눈썹·오른쪽 눈썹 위 점까지 동일 인물입니다."
-    },
-    cards: {
-      A: { skin:"bk2", jaw:"round", eyeSpacing:3, eyes:"round", brow:"thick", noseW:14, lips:"full", expr:"smile", hair:"box_braids", hairColor:"#d4a359", outfit:"denim", bg:"street" },
-      B: { skin:"bk4", jaw:"wide", eyeSpacing:2, eyes:"double", brow:"arched", noseW:13, lips:"full", expr:"neutral", hair:"box_braids", hairColor:"#d4a359", outfit:"leather", bg:"stage" },
-      C: { skin:"bk2", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-3, brow:"thin", noseW:10, lips:"medium", mole:"r_brow", expr:"neutral", hair:"box_braids", hairColor:"#d4a359", outfit:"turtleneck", bg:"studio" },
-      D: { skin:"bk2", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-3, brow:"thin", noseW:10, lips:"medium", mole:"r_brow", expr:"smile", hair:"box_braids", hairColor:"#d4a359", outfit:"cardigan_cream", bg:"cafe" }
-    }
-  },
-  {
-    cat: "black", type: "target3", answer: "B",
-    title: { de: "Professor mit Schnurrbart & Browline", en: "Browline Glasses & Mustache Trap", ko: "하프프레임 안경 & 콧수염 교수님 함정" },
-    brief: {
-      de: "Markante Browline-Brille + Schnurrbart prägen die Gesichtsmitte. Wer unten ist TARGET ohne beides?",
-      en: "Classic browline frames + mustache dominate the mid-face. Who below is TARGET without them?",
-      ko: "하프프레임 안경과 콧수염이 얼굴 중앙 인상을 지배합니다. 둘 다 없앤 TARGET을 찾아보세요!"
-    },
-    prompt: { de: "Wer unten ist derselbe Mann?", en: "Who below is the exact same man?", ko: "안경·콧수염 없는 TARGET은 누구?" },
-    explain: {
-      de: "[[B]] hat Schnurrbart und Brille abgelegt, besitzt aber exakt das ovale Gesicht, Schlupflider und den Punkt rechts am Kinn!",
-      en: "[[B]] shaved the mustache and removed his glasses, keeping the exact oval jaw, hooded eyes, and chin-side mark!",
-      ko: "[[B]]가 콧수염을 밀고 안경을 벗었지만 타원형 턱선·속쌍꺼풀 눈매·턱 옆 점이 그대로입니다!"
-    },
-    target: { skin:"bk3", jaw:"oval", eyeSpacing:-1, eyes:"hooded", brow:"natural", noseW:11, lips:"medium", mole:"chin_side", beard:"mustache", glasses:"browline", expr:"neutral", hair:"short_curls", outfit:"cardigan_cream", bg:"office" },
-    cards: {
-      A: { skin:"bk3", jaw:"square", eyeSpacing:3, eyes:"round", brow:"thick", noseW:14, lips:"full", beard:"mustache", glasses:"browline", expr:"neutral", hair:"short_curls", outfit:"cardigan_cream", bg:"office" },
-      B: { skin:"bk3", jaw:"oval", eyeSpacing:-1, eyes:"hooded", brow:"natural", noseW:11, lips:"medium", mole:"chin_side", expr:"smile", hair:"skin_fade", outfit:"turtleneck", bg:"cafe" },
-      C: { skin:"bk1", jaw:"v", eyeSpacing:2, eyes:"almond", eyeTilt:-3, brow:"arched", noseW:12, lips:"thin", beard:"mustache", glasses:"browline", expr:"smile", hair:"short_curls", outfit:"cardigan_cream", bg:"office" }
-    }
-  },
-  {
-    cat: "black", type: "target3", answer: "C",
-    title: { de: "Sleek Ponytail vs. Offene Afro-Locken", en: "Sleek Ponytail vs Voluminous Curls", ko: "슬릭 포니테일 ↔ 풍성한 내추럴 컬" },
-    brief: {
-      de: "Vom strengen Business-Ponytail mit Cat-Eye-Brille zur riesigen Lockenpracht: Welche Frau ist TARGET?",
-      en: "From sleek executive ponytail & cat-eye frames to voluminous curls: which woman below is TARGET?",
-      ko: "단정한 포니테일·캣아이 안경 차림에서 풍성한 아프로 컬로 변신한 TARGET을 찾아보세요!"
-    },
-    prompt: { de: "Welche Frau unten ist TARGET?", en: "Which portrait matches TARGET?", ko: "아래 중 TARGET과 동일 인물은?" },
-    explain: {
-      de: "[[C]] trägt offene Locken ohne Brille, teilt aber exakt den weiten Augenabstand, V-Kiefer und Punkt unterm linken Auge!",
-      en: "[[C]] let her natural curls out and removed the glasses, matching TARGET's wide-set eyes, V-jaw, and under-eye mark!",
-      ko: "[[C]]가 풍성한 컬로 풀고 안경을 벗었지만 넓은 미간·V라인 턱·왼쪽 눈 밑 점이 정확히 일치합니다!"
-    },
-    target: { skin:"bk4", jaw:"v", eyeSpacing:2, eyes:"double", eyeTilt:-2, brow:"arched", noseW:11, lips:"full", mole:"l_eye", glasses:"cateye", expr:"neutral", hair:"ponytail", outfit:"suit_dark", bg:"office" },
-    cards: {
-      A: { skin:"bk4", jaw:"round", eyeSpacing:-2, eyes:"round", brow:"straight", noseW:14, lips:"full", glasses:"cateye", expr:"smile", hair:"ponytail", outfit:"suit_dark", bg:"office" },
-      B: { skin:"bk2", jaw:"square", eyeSpacing:0, eyes:"hooded", brow:"thick", noseW:13, lips:"medium", glasses:"cateye", expr:"neutral", hair:"ponytail", outfit:"suit_dark", bg:"office" },
-      C: { skin:"bk4", jaw:"v", eyeSpacing:2, eyes:"double", eyeTilt:-2, brow:"arched", noseW:11, lips:"full", mole:"l_eye", expr:"smile", hair:"afro_curls", outfit:"linen_white", bg:"street" }
-    }
-  },
-  {
-    cat: "black", type: "pair4", answer: "AD",
-    title: { de: "Endgegner: Studio-Beanie & Goatee", en: "Boss Level: Beanie & Goatee Producers", ko: "최종보스: 비니 & 고티 프로듀서 매칭" },
-    brief: {
-      de: "Alle vier Musikproduzenten tragen Strickmütze und Kinnbart. Welche ZWEI Fotos zeigen denselben Mann?",
-      en: "All four producers rock knit beanies and goatees. Which TWO portraits are the exact same man?",
-      ko: "네 명의 프로듀서 모두 비니 모자와 턱수염(고티)을 하고 있습니다. 진짜 동일 인물 2장을 찾으세요!"
-    },
-    prompt: { de: "Tippe die 2 identischen Männer an!", en: "Tap the 2 matching producers!", ko: "같은 남성 사진 2장을 선택하세요!" },
-    explain: {
-      de: "[[A]] und [[D]] haben denselben breiten Kiefer, eng stehende tiefe Augen, gerade Brauen und schmale Nase.",
-      en: "[[A]] and [[D]] share the wide jaw, close-set deep eyes, straight brows, and narrow nose.",
-      ko: "[[A]]와 [[D]]가 넓은 턱 골격·가까운 깊은 눈매·일자 눈썹·슬림한 코 폭까지 같은 인물입니다."
-    },
-    cards: {
-      A: { skin:"bk1", jaw:"wide", eyeSpacing:-2, eyes:"deep", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", beard:"goatee", expr:"neutral", hair:"beanie", outfit:"leather", bg:"stage" },
-      B: { skin:"bk1", jaw:"narrow", eyeSpacing:3, eyes:"round", brow:"arched", noseW:13, lips:"full", beard:"goatee", expr:"smile", hair:"beanie", outfit:"hoodie_black", bg:"studio" },
-      C: { skin:"bk2", jaw:"round", eyeSpacing:2, eyes:"double", eyeTilt:3, brow:"thick", noseW:14, lips:"full", beard:"goatee", expr:"neutral", hair:"beanie", outfit:"leather", bg:"stage" },
-      D: { skin:"bk1", jaw:"wide", eyeSpacing:-2, eyes:"deep", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", beard:"goatee", expr:"smile", hair:"beanie", outfit:"hoodie_grey", bg:"studio" }
+      A: { img: "assets/v2/bk_r3_A.jpg" },
+      B: { img: "assets/v2/bk_r3_B.jpg" },
+      C: { img: "assets/v2/bk_r3_C.jpg" }
     }
   },
 
-  // ==================== EUROPEAN / WESTERN (12) ====================
+  // ==================== EUROPEAN / WESTERN (5) ====================
   {
-    cat: "euro", type: "target3", answer: "B",
+    id: "eu_1", cat: "euro", type: "target3", answer: "B",
     title: { de: "Der „Münchner Tech-Bro“-Klon", en: "The Munich Tech-Bro Clone", ko: "뮌헨 테크브로 플리스 조끼 클론" },
     brief: {
       de: "Blonder Seitenscheitel, Dreitagebart und Fleece-Weste: Für Ungeübte verschmelzen diese drei sofort! Wer ist TARGET?",
@@ -1811,19 +1103,19 @@ const ROUNDS = [
     },
     prompt: { de: "Wer unten ist derselbe Mann wie TARGET?", en: "Who below is the exact same man?", ko: "아래 중 TARGET과 동일 인물은?" },
     explain: {
-      de: "[[B]] trägt zerzauste Haare ohne Weste, hat aber exakt die eng stehenden blaugrauen Augen, schmale Nase und das Kinngrübchen!",
-      en: "[[B]] ditched the vest and stubble, keeping the exact close-set blue-grey hooded eyes, narrow nose, and cleft chin!",
-      ko: "[[B]]가 조끼와 수염을 없앴지만 좁은 미간의 청회색 속쌍꺼풀·오똑한 코·턱 끝 보조개가 그대로입니다!"
+      de: "[[B]] trägt Sakko ohne Weste, hat aber exakt das schmale Gesicht, die blaugrauen Augen und das Kinngrübchen!",
+      en: "[[B]] ditched the vest and stubble, keeping the exact narrow face, blue-grey hooded eyes, and cleft chin!",
+      ko: "[[B]]가 조끼 대신 네이비 재킷을 입었지만 갸름한 얼굴·청회색 눈매·턱 끝 보조개가 그대로입니다!"
     },
-    target: { img:"assets/eu_r1_T.jpg", skin:"eu1", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"straight", noseW:8, lips:"thin", cleft:true, beard:"stubble", hair:"side_part", hairColor:"#c8a96e", outfit:"fleece_vest", bg:"office" },
+    target: { img: "assets/v2/eu_r1_T.jpg" },
     cards: {
-      A: { img:"assets/eu_r1_A.jpg", skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:12, lips:"medium", beard:"stubble", hair:"side_part", hairColor:"#c8a96e", outfit:"fleece_vest", bg:"office" },
-      B: { img:"assets/eu_r1_B.jpg", skin:"eu1", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"straight", noseW:8, lips:"thin", cleft:true, expr:"smile", hair:"tousled", hairColor:"#b89658", outfit:"blazer_navy", bg:"cafe" },
-      C: { img:"assets/eu_r1_C.jpg", skin:"eu2", jaw:"square", eyeSpacing:2, eyes:"double", iris:"#4f7356", brow:"thick", noseW:12, lips:"medium", beard:"stubble", hair:"side_part", hairColor:"#c8a96e", outfit:"fleece_vest", bg:"office" }
+      A: { img: "assets/v2/eu_r1_A.jpg" },
+      B: { img: "assets/v2/eu_r1_B.jpg" },
+      C: { img: "assets/v2/eu_r1_C.jpg" }
     }
   },
   {
-    cat: "euro", type: "pair4", answer: "AC",
+    id: "eu_2", cat: "euro", type: "pair4", answer: "AC",
     title: { de: "Honigblonde Wellen – Welches Paar?", en: "Honey-Blonde Waves – Match the Pair", ko: "허니블론드 웨이브 – 같은 여성 찾기" },
     brief: {
       de: "Alle vier Frauen haben schulterlange honigblonde Wellen. Welche ZWEI Fotos zeigen dieselbe Frau?",
@@ -1832,19 +1124,19 @@ const ROUNDS = [
     },
     prompt: { de: "Tippe 2 Fotos derselben Frau an!", en: "Tap the 2 matching women!", ko: "같은 여성 사진 2장을 탭하세요!" },
     explain: {
-      de: "[[A]] und [[C]] sind dieselbe Frau: grüne Mandelaugen, schmales V-Kinn und kleiner Fleck auf der rechten Wange.",
-      en: "[[A]] and [[C]] are the same woman: green almond eyes, sculpted V-chin, and right-cheek beauty mark.",
-      ko: "[[A]]와 [[C]]가 녹색 아몬드 눈매·갸름한 V라인 턱·오른볼 점까지 정확히 같은 인물입니다."
+      de: "[[A]] und [[C]] sind dieselbe Frau: grüne Mandelaugen, markantes V-Kinn und kleiner Fleck auf der Wange.",
+      en: "[[A]] and [[C]] are the same woman: green almond eyes, sculpted V-chin, and subtle cheek beauty mark.",
+      ko: "[[A]](화이트 셔츠)와 [[C]](블랙 터틀넥)가 녹색 아몬드 눈매·날렵한 V턱선·볼 점까지 같은 인물입니다."
     },
     cards: {
-      A: { img:"assets/eu_r2_A.jpg", skin:"eu1", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-2, iris:"#4f7356", brow:"arched", noseW:8, lips:"medium", mole:"r_cheek", expr:"smile", hair:"blonde_waves", hairColor:"#d8b878", outfit:"linen_white", bg:"street" },
-      B: { img:"assets/eu_r2_B.jpg", skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:11, lips:"full", expr:"smile", hair:"blonde_waves", hairColor:"#d8b878", outfit:"sweater_beige", bg:"cafe" },
-      C: { img:"assets/eu_r2_C.jpg", skin:"eu1", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-2, iris:"#4f7356", brow:"arched", noseW:8, lips:"medium", mole:"r_cheek", expr:"neutral", hair:"blonde_waves", hairColor:"#d8b878", outfit:"turtleneck", bg:"studio" },
-      D: { img:"assets/eu_r2_D.jpg", skin:"eu2", jaw:"square", eyeSpacing:2, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:11, lips:"thin", expr:"neutral", hair:"blonde_waves", hairColor:"#d8b878", outfit:"blazer_navy", bg:"office" }
+      A: { img: "assets/v2/eu_r2_A.jpg" },
+      B: { img: "assets/v2/eu_r2_B.jpg" },
+      C: { img: "assets/v2/eu_r2_C.jpg" },
+      D: { img: "assets/v2/eu_r2_D.jpg" }
     }
   },
   {
-    cat: "euro", type: "target3", answer: "A",
+    id: "eu_3", cat: "euro", type: "target3", answer: "A",
     title: { de: "Berlin-Hipster: Mütze, Bart & Hornbrille", en: "Berlin Hipster: Beanie, Beard & Glasses", ko: "베를린 힙스터 비니·뿔테·수염 함정" },
     brief: {
       de: "Mütze + Hornbrille + Vollbart verdecken fast 70 % des Kopfs! Erkennst du TARGET ohne Mütze wieder?",
@@ -1853,19 +1145,19 @@ const ROUNDS = [
     },
     prompt: { de: "Wer unten ist TARGET?", en: "Which one below is TARGET?", ko: "비니를 벗은 TARGET은 누구?" },
     explain: {
-      de: "[[A]] hat Mütze und Vollbart abgelegt, behält aber den weiten Augenabstand, haselnussbraune Augen und das Mal an der Braue!",
-      en: "[[A]] ditched the beanie and trimmed his beard, keeping the wide-set hazel eyes, slim nose, and right-brow mark!",
-      ko: "[[A]]가 비니와 덥수룩한 수염을 정리했지만 넓은 미간의 헤이즐넛 눈·슬림한 코·눈썹 위 점이 동일합니다!"
+      de: "[[A]] hat Mütze und Vollbart abgelegt, behält aber die haselnussbraunen Augen, Kieferform und das Mal an der Braue!",
+      en: "[[A]] ditched the beanie and trimmed his beard, keeping the wide-set hazel eyes, V-jaw, and brow mark!",
+      ko: "[[A]]가 비니와 덥수룩한 수염을 정리하고 셔츠를 입었지만 헤이즐넛 눈매·턱선·눈썹 위 점이 동일합니다!"
     },
-    target: { img:"assets/eu_r3_T.jpg", skin:"eu1", jaw:"v", eyeSpacing:3, eyes:"almond", iris:"#6e5835", brow:"straight", noseW:8, mole:"r_brow", beard:"full_box", beardColor:"#4a3423", glasses:"horn", expr:"neutral", hair:"beanie", hairColor:"#4a3423", outfit:"turtleneck", bg:"cafe" },
+    target: { img: "assets/v2/eu_r3_T.jpg" },
     cards: {
-      A: { img:"assets/eu_r3_A.jpg", skin:"eu1", jaw:"v", eyeSpacing:3, eyes:"almond", iris:"#6e5835", brow:"straight", noseW:8, mole:"r_brow", beard:"stubble", beardColor:"#4a3423", glasses:"wire", expr:"smile", hair:"tousled", hairColor:"#4a3423", outfit:"shirt_white", bg:"office" },
-      B: { img:"assets/eu_r3_B.jpg", skin:"eu2", jaw:"round", eyeSpacing:-2, eyes:"round", iris:"#4a6b82", brow:"thick", noseW:12, beard:"full_box", beardColor:"#4a3423", glasses:"horn", expr:"neutral", hair:"beanie", hairColor:"#4a3423", outfit:"turtleneck", bg:"cafe" },
-      C: { img:"assets/eu_r3_C.jpg", skin:"eu1", jaw:"square", eyeSpacing:0, eyes:"hooded", iris:"#4f7356", brow:"arched", noseW:12, beard:"full_box", beardColor:"#4a3423", glasses:"horn", expr:"neutral", hair:"beanie", hairColor:"#4a3423", outfit:"turtleneck", bg:"cafe" }
+      A: { img: "assets/v2/eu_r3_A.jpg" },
+      B: { img: "assets/v2/eu_r3_B.jpg" },
+      C: { img: "assets/v2/eu_r3_C.jpg" }
     }
   },
   {
-    cat: "euro", type: "pair4", answer: "BD",
+    id: "eu_4", cat: "euro", type: "pair4", answer: "BD",
     title: { de: "Wiesn-Tracht-Edition: Welches Paar?", en: "Bavarian Tracht Edition: Twin Photos", ko: "독일 옥토버페스트 전통의상 쌍둥이" },
     brief: {
       de: "Alle vier tragen Trachtenjanker und braune Haare. Welche ZWEI Bilder zeigen denselben Mann?",
@@ -1874,19 +1166,19 @@ const ROUNDS = [
     },
     prompt: { de: "Wähle die 2 identischen Männer!", en: "Tap the 2 photos of the SAME man!", ko: "같은 남성 사진 2장을 선택하세요!" },
     explain: {
-      de: "[[B]] und [[D]] zeigen denselben Mann: eng stehende tiefe Augen, schmale Nase, kantiges Kinn mit Grübchen.",
-      en: "[[B]] and [[D]] are the exact same man: close-set hooded eyes, narrow nose, and cleft chin.",
-      ko: "[[B]]와 [[D]]가 가까운 눈 간격·짙은 눈썹·좁은 콧날·턱 끝 보조개까지 완벽히 같은 인물입니다."
+      de: "[[B]] und [[D]] zeigen denselben Mann: schmales langes Gesicht, dichte Brauen, schmale Nase und Kinngrübchen.",
+      en: "[[B]] and [[D]] are the exact same man: narrow elongated face, thick brows, slim nose, and cleft chin.",
+      ko: "[[B]](거리 미소)와 [[D]](실내 무표정)가 긴 갸름한 얼굴·짙은 눈썹·좁은 콧날·턱 보조개까지 동일 인물입니다."
     },
     cards: {
-      A: { img:"assets/eu_r4_A.jpg", skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:12, expr:"grin", hair:"side_part", hairColor:"#5a3e28", outfit:"tracht", bg:"street" },
-      B: { img:"assets/eu_r4_B.jpg", skin:"eu2", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:8, cleft:true, expr:"smile", hair:"tousled", hairColor:"#5a3e28", outfit:"tracht", bg:"street" },
-      C: { img:"assets/eu_r4_C.jpg", skin:"eu1", jaw:"wide", eyeSpacing:2, eyes:"double", eyeTilt:3, iris:"#4f7356", brow:"arched", noseW:13, expr:"neutral", hair:"side_part", hairColor:"#5a3e28", outfit:"tracht", bg:"cafe" },
-      D: { img:"assets/eu_r4_D.jpg", skin:"eu2", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:8, cleft:true, expr:"neutral", hair:"side_part", hairColor:"#5a3e28", outfit:"tracht", bg:"office" }
+      A: { img: "assets/v2/eu_r4_A.jpg" },
+      B: { img: "assets/v2/eu_r4_B.jpg" },
+      C: { img: "assets/v2/eu_r4_C.jpg" },
+      D: { img: "assets/v2/eu_r4_D.jpg" }
     }
   },
   {
-    cat: "euro", type: "target3", answer: "C",
+    id: "eu_5", cat: "euro", type: "target3", answer: "C",
     title: { de: "Nordisch-Minimalistisch im Rollkragen", en: "Nordic Minimalist Platinum Look", ko: "북유럽 플래티넘 올백 & 터틀넥 함정" },
     brief: {
       de: "Streng zurückgebundenes Platinblond & schwarzer Rollkragen: Lass dich nicht vom Look täuschen!",
@@ -1895,166 +1187,132 @@ const ROUNDS = [
     },
     prompt: { de: "Welche Frau unten ist TARGET?", en: "Which woman below is TARGET?", ko: "아래 중 TARGET 본인은 누구?" },
     explain: {
-      de: "[[C]] trägt offene Wellen und Strick, teilt aber exakt die eisblauen schrägen Augen, Kieferlinie und Punkt unterm Auge!",
-      en: "[[C]] wore her hair down in waves, matching TARGET's icy-blue upturned eyes, sharp jawline, and under-eye mark!",
+      de: "[[C]] trägt offene Wellen und Strick, teilt aber exakt die eisblauen Augen, V-Kieferlinie und den Punkt unterm Auge!",
+      en: "[[C]] wore her hair down in waves, matching TARGET's icy-blue eyes, sharp V-jawline, and under-eye beauty mark!",
       ko: "[[C]]가 머리를 웨이브로 풀고 니트를 입었지만 아이스블루 눈매·날렵한 V턱선·눈 밑 점이 일치합니다!"
     },
-    target: { img:"assets/eu_r5_T.jpg", skin:"eu1", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-3, iris:"#4a6b82", brow:"thin", noseW:8, lips:"thin", mole:"l_eye", expr:"neutral", hair:"pulled_back", hairColor:"#efe4c6", outfit:"turtleneck", bg:"studio" },
+    target: { img: "assets/v2/eu_r5_T.jpg" },
     cards: {
-      A: { img:"assets/eu_r5_A.jpg", skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:11, lips:"full", expr:"neutral", hair:"pulled_back", hairColor:"#efe4c6", outfit:"turtleneck", bg:"studio" },
-      B: { img:"assets/eu_r5_B.jpg", skin:"eu2", jaw:"square", eyeSpacing:2, eyes:"hooded", iris:"#4f7356", brow:"thick", noseW:11, lips:"medium", expr:"neutral", hair:"pulled_back", hairColor:"#efe4c6", outfit:"turtleneck", bg:"studio" },
-      C: { img:"assets/eu_r5_C.jpg", skin:"eu1", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-3, iris:"#4a6b82", brow:"thin", noseW:8, lips:"thin", mole:"l_eye", expr:"smile", hair:"blonde_waves", hairColor:"#efe4c6", outfit:"sweater_beige", bg:"cafe" }
-    }
-  },
-  {
-    cat: "euro", type: "target3", answer: "A",
-    title: { de: "Pariser Chic: Bob & Cat-Eye-Brille", en: "Parisian Bob & Cat-Eye Glasses Trap", ko: "파리지앵 칼단발 & 캣아이 안경 함정" },
-    brief: {
-      de: "Dunkler Pony-Bob, Cat-Eye-Brille und roter Strick: Erkennst du TARGET ohne Pony und Brille wieder?",
-      en: "Dark French bob, cat-eye frames, and red knit: can you spot TARGET with her hair up and glasses off?",
-      ko: "다크 브라운 뱅 단발과 캣아이 안경, 레드 니트! 포니테일로 묶고 안경을 벗은 TARGET을 찾으세요."
-    },
-    prompt: { de: "Welche Frau unten ist TARGET?", en: "Who below matches TARGET?", ko: "안경 벗고 머리 묶은 TARGET은?" },
-    explain: {
-      de: "[[A]] trägt Pferdeschwanz im Blazer, hat aber exakt die grünen Augen, Herzform-Wangen und Sommersprossen!",
-      en: "[[A]] tied a ponytail and put on a blazer, keeping the exact wide-set green eyes, heart jaw, and freckles!",
-      ko: "[[A]]가 포니테일과 네이비 재킷으로 바꿨지만 넓은 미간의 녹색 눈·하트형 턱·주근깨가 그대로입니다!"
-    },
-    target: { skin:"eu3", jaw:"heart", eyeSpacing:2, eyes:"almond", iris:"#4f7356", brow:"arched", noseW:8, lips:"full", freckles:true, glasses:"cateye", expr:"neutral", hair:"bob_bangs", hairColor:"#2b1d16", outfit:"red_knit", bg:"cafe" },
-    cards: {
-      A: { skin:"eu3", jaw:"heart", eyeSpacing:2, eyes:"almond", iris:"#4f7356", brow:"arched", noseW:8, lips:"full", freckles:true, expr:"smile", hair:"ponytail", hairColor:"#2b1d16", outfit:"blazer_navy", bg:"office" },
-      B: { skin:"eu3", jaw:"round", eyeSpacing:-2, eyes:"round", iris:"#4a6b82", brow:"straight", noseW:11, lips:"thin", glasses:"cateye", expr:"smile", hair:"bob_bangs", hairColor:"#2b1d16", outfit:"red_knit", bg:"cafe" },
-      C: { skin:"eu1", jaw:"square", eyeSpacing:0, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:11, lips:"medium", glasses:"cateye", expr:"neutral", hair:"bob_bangs", hairColor:"#2b1d16", outfit:"red_knit", bg:"cafe" }
-    }
-  },
-  {
-    cat: "euro", type: "pair4", answer: "BC",
-    title: { de: "Kupferrot / Ginger – Zwillings-Check", en: "Copper-Ginger Hair & Stubble Pair", ko: "진저(적갈색) 헤어 & 수염 쌍둥이 찾기" },
-    brief: {
-      de: "Seltene kupferrote Haare lassen Gesichter sofort gleich wirken! Welche ZWEI Bilder zeigen denselben Mann?",
-      en: "Distinctive copper-red hair makes people group faces instantly! Which TWO portraits are the same man?",
-      ko: "독특한 적갈색(진저) 머리색 때문에 네 명이 순식간에 비슷해 보입니다! 진짜 동일 인물 2장을 고르세요."
-    },
-    prompt: { de: "Tippe die 2 identischen Männer an!", en: "Tap the 2 matching men!", ko: "같은 남성 사진 2장을 탭하세요!" },
-    explain: {
-      de: "[[B]] und [[C]] teilen das schmale längliche Gesicht, eng stehende blaugraue Augen, Sommersprossen und Kinngrübchen.",
-      en: "[[B]] and [[C]] share the long narrow jaw, close-set blue-grey eyes, nose freckles, and cleft chin.",
-      ko: "[[B]]와 [[C]]가 긴 갸름한 얼굴·가까운 청회색 눈·콧등 주근깨·턱 보조개까지 같은 인물입니다."
-    },
-    cards: {
-      A: { skin:"eu3", jaw:"wide", eyeSpacing:3, eyes:"round", iris:"#4f7356", brow:"arched", noseW:12, beard:"stubble", beardColor:"#a84c24", expr:"smile", hair:"curtain", hairColor:"#a84c24", outfit:"denim", bg:"street" },
-      B: { skin:"eu3", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"straight", noseW:8, freckles:true, cleft:true, beard:"stubble", beardColor:"#a84c24", expr:"neutral", hair:"curtain", hairColor:"#a84c24", outfit:"denim", bg:"street" },
-      C: { skin:"eu3", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"straight", noseW:8, freckles:true, cleft:true, beard:"stubble", beardColor:"#a84c24", expr:"smile", hair:"tousled", hairColor:"#a84c24", outfit:"knit_olive", bg:"cafe" },
-      D: { skin:"eu1", jaw:"round", eyeSpacing:2, eyes:"double", iris:"#6e5835", brow:"thick", noseW:11, beard:"stubble", beardColor:"#a84c24", expr:"neutral", hair:"tousled", hairColor:"#a84c24", outfit:"cardigan_cream", bg:"office" }
-    }
-  },
-  {
-    cat: "euro", type: "target3", answer: "C",
-    title: { de: "Mediterraner Espresso-Suit-Look", en: "Mediterranean Slick Hair & Beard Trap", ko: "지중해 올리브톤 올백 & 수염 함정" },
-    brief: {
-      de: "Dunkle zurückgegelte Haare, Vollbart und Maßanzug: Wer unten ist TARGET im lässigen Urlaubs-Look?",
-      en: "Slick dark hair, full beard, and tailored suit: which man below is TARGET on vacation?",
-      ko: "짙은 올백 머리와 풀수염, 수트 차림의 TARGET! 수염을 다듬고 휴양지 셔츠를 입은 본인은 누구?"
-    },
-    prompt: { de: "Wer unten ist TARGET?", en: "Who below is TARGET?", ko: "휴양지 룩으로 바꾼 TARGET은?" },
-    explain: {
-      de: "[[C]] trägt leichtes Stubble und Leinenhemd, hat aber exakt den Kantkiefer, tiefe dunkle Augen und das Mal rechts!",
-      en: "[[C]] trimmed down to light stubble in a linen shirt, keeping the square jaw, close-set deep eyes, and right-cheek mark!",
-      ko: "[[C]]가 수염을 옅게 밀고 리넨 셔츠를 입었지만 각진 턱·가까운 깊은 눈매·오른볼 점이 일치합니다!"
-    },
-    target: { skin:"eu4", jaw:"square", eyeSpacing:-2, eyes:"deep", iris:"#3b2818", brow:"thick", noseW:10, mole:"r_cheek", beard:"full_box", beardColor:"#1c1917", expr:"neutral", hair:"slick", hairColor:"#1c1917", outfit:"suit_dark", bg:"office" },
-    cards: {
-      A: { skin:"eu4", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#3b2818", brow:"natural", noseW:13, beard:"full_box", beardColor:"#1c1917", expr:"neutral", hair:"slick", hairColor:"#1c1917", outfit:"suit_dark", bg:"office" },
-      B: { skin:"eu2", jaw:"v", eyeSpacing:2, eyes:"almond", iris:"#4f7356", brow:"arched", noseW:9, beard:"full_box", beardColor:"#1c1917", expr:"smile", hair:"slick", hairColor:"#1c1917", outfit:"suit_dark", bg:"office" },
-      C: { skin:"eu4", jaw:"square", eyeSpacing:-2, eyes:"deep", iris:"#3b2818", brow:"thick", noseW:10, mole:"r_cheek", beard:"stubble", beardColor:"#1c1917", expr:"smile", hair:"curtain", hairColor:"#1c1917", outfit:"linen_white", bg:"street" }
-    }
-  },
-  {
-    cat: "euro", type: "target3", answer: "B",
-    title: { de: "Sunday Run-Club Baseball-Cap", en: "Run-Club Cap & Sport Zip Trap", ko: "러닝클럽 볼캡 & 스포츠 집업 함정" },
-    brief: {
-      de: "Blaue Lauf-Cap und breites Grinsen nach dem Marathon! Wer unten ist TARGET am Montag im Büro?",
-      en: "Blue running cap and post-race grin! Which man below is TARGET on Monday morning?",
-      ko: "파란 러닝 볼캡을 쓰고 활짝 웃는 TARGET! 월요일 아침 안경을 쓰고 출근한 본인을 찾아보세요."
-    },
-    prompt: { de: "Wer unten stimmt mit TARGET überein?", en: "Who matches TARGET?", ko: "출근룩으로 바뀐 TARGET은 누구?" },
-    explain: {
-      de: "[[B]] trägt Seitenscheitel und Goldbrille ohne Lachen, teilt aber das ovale Gesicht, weit stehende blaue Augen und Grübchen!",
-      en: "[[B]] wears a side-part and wire glasses, matching TARGET's oval jaw, wide-set blue round eyes, and dimples!",
-      ko: "[[B]]는 모자를 벗고 금테 안경을 썼지만 타원형 턱·넓은 미간의 파란 눈·볼 보조개가 그대로입니다!"
-    },
-    target: { skin:"eu1", jaw:"oval", eyeSpacing:3, eyes:"round", iris:"#3b82f6", brow:"natural", noseW:9, dimples:true, expr:"grin", hair:"cap", capColor:"#1e3a8a", outfit:"sport_zip", bg:"street" },
-    cards: {
-      A: { skin:"eu1", jaw:"narrow", eyeSpacing:-2, eyes:"hooded", iris:"#4f7356", brow:"straight", noseW:8, expr:"grin", hair:"cap", capColor:"#1e3a8a", outfit:"sport_zip", bg:"street" },
-      B: { skin:"eu1", jaw:"oval", eyeSpacing:3, eyes:"round", iris:"#3b82f6", brow:"natural", noseW:9, dimples:true, glasses:"wire", expr:"neutral", hair:"side_part", hairColor:"#856544", outfit:"cardigan_cream", bg:"office" },
-      C: { skin:"eu2", jaw:"square", eyeSpacing:0, eyes:"deep", iris:"#6e5835", brow:"thick", noseW:12, expr:"grin", hair:"cap", capColor:"#1e3a8a", outfit:"sport_zip", bg:"street" }
-    }
-  },
-  {
-    cat: "euro", type: "pair4", answer: "AB",
-    title: { de: "Berliner Club-Mullet & Schnurrbart", en: "Berlin Techno Wolf-Cut & Mustache", ko: "베를린 클럽 울프컷 & 콧수염 매칭" },
-    brief: {
-      de: "Vokuhila/Wolf-Cut + Schnurrbart + Schwarz: Der typische Szene-Look! Welche ZWEI Bilder zeigen denselben Mann?",
-      en: "Shaggy mullet + mustache + all-black clubwear! Which TWO portraits show the exact same man?",
-      ko: "울프컷(멀릿)과 콧수염, 올블랙 클럽룩! 강렬한 스타일에 현혹되지 말고 동일 인물 2장을 찾으세요."
-    },
-    prompt: { de: "Wähle das identische Paar!", en: "Tap the 2 matching men!", ko: "같은 남성 사진 2장을 선택하세요!" },
-    explain: {
-      de: "[[A]] und [[B]] haben dasselbe V-Kinn, eng stehende haselnussbraune Augen und den Punkt links am Kiefer.",
-      en: "[[A]] and [[B]] share the sharp V-jaw, close-set hazel eyes, straight brows, and left-jaw mark.",
-      ko: "[[A]]와 [[B]]가 날렵한 V턱선·가까운 헤이즐넛 눈매·일자 눈썹·왼쪽 턱 점까지 동일 인물입니다."
-    },
-    cards: {
-      A: { skin:"eu2", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, iris:"#6e5835", brow:"straight", noseW:8, mole:"l_jaw", beard:"mustache", beardColor:"#261d17", expr:"neutral", hair:"wolf_cut", hairColor:"#261d17", outfit:"leather", bg:"stage" },
-      B: { skin:"eu2", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, iris:"#6e5835", brow:"straight", noseW:8, mole:"l_jaw", beard:"mustache", beardColor:"#261d17", expr:"smile", hair:"wolf_cut", hairColor:"#261d17", outfit:"turtleneck", bg:"studio" },
-      C: { skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:12, beard:"mustache", beardColor:"#261d17", expr:"neutral", hair:"wolf_cut", hairColor:"#261d17", outfit:"leather", bg:"stage" },
-      D: { skin:"eu4", jaw:"square", eyeSpacing:2, eyes:"hooded", iris:"#3b2818", brow:"thick", noseW:12, beard:"mustache", beardColor:"#261d17", expr:"neutral", hair:"wolf_cut", hairColor:"#261d17", outfit:"hoodie_black", bg:"street" }
-    }
-  },
-  {
-    cat: "euro", type: "target3", answer: "A",
-    title: { de: "Haarfarben-Wechsel: Brünett zu Blond", en: "Hair Dye Trap: Brunette Bun to Blonde Bob", ko: "염색 함정: 브루넷 올백 ↔ 금발 단발" },
-    brief: {
-      de: "TARGET hat dunkelbraunes Haar und Hornbrille – und hat sich danach komplett blond gefärbt! Wer ist sie?",
-      en: "TARGET had brunette hair and horn glasses—then dyed her hair champagne blonde! Spot her below.",
-      ko: "갈색 올백 머리와 뿔테 안경을 쓰던 TARGET이 금발 단발로 탈색했습니다! 골격으로 본인을 찾아보세요."
-    },
-    prompt: { de: "Welche Frau ist TARGET?", en: "Which woman is TARGET?", ko: "금발로 염색한 진짜 TARGET은?" },
-    explain: {
-      de: "[[A]] ist jetzt blond ohne Brille, besitzt aber exakt den schmalen Kiefer, grüne Augen, feine Lippen und Punkt über der Lippe!",
-      en: "[[A]] went blonde and ditched the glasses, keeping the narrow jaw, wide-set green eyes, thin lips, and upper-lip mark!",
-      ko: "[[A]]가 금발 단발로 바꾸고 안경을 벗었지만 갸름한 턱·녹색 눈·얇은 입술·입술 위 점이 그대로입니다!"
-    },
-    target: { skin:"eu1", jaw:"narrow", faceLen:2, eyeSpacing:2, eyes:"double", iris:"#4f7356", brow:"thin", browColor:"#5c4028", noseW:8, lips:"thin", mole:"u_lip", glasses:"horn", expr:"neutral", hair:"pulled_back", hairColor:"#5c4028", outfit:"cardigan_cream", bg:"office" },
-    cards: {
-      A: { skin:"eu1", jaw:"narrow", faceLen:2, eyeSpacing:2, eyes:"double", iris:"#4f7356", brow:"thin", browColor:"#5c4028", noseW:8, lips:"thin", mole:"u_lip", expr:"smile", hair:"bob", hairColor:"#e6cf9e", outfit:"hoodie_black", bg:"street" },
-      B: { skin:"eu2", jaw:"round", eyeSpacing:-2, eyes:"round", iris:"#4a6b82", brow:"thick", noseW:11, lips:"full", glasses:"horn", expr:"smile", hair:"pulled_back", hairColor:"#5c4028", outfit:"cardigan_cream", bg:"office" },
-      C: { skin:"eu3", jaw:"square", eyeSpacing:0, eyes:"hooded", iris:"#6e5835", brow:"arched", noseW:11, lips:"medium", glasses:"horn", expr:"neutral", hair:"pulled_back", hairColor:"#5c4028", outfit:"cardigan_cream", bg:"office" }
-    }
-  },
-  {
-    cat: "euro", type: "pair4", answer: "CD",
-    title: { de: "Endgegner: Buzz-Cut & Tönungsbrille", en: "Boss Level: Buzz-Cut & Tinted Frames", ko: "최종보스: 버즈컷 & 틴트 안경 매칭" },
-    brief: {
-      de: "Alle vier tragen ultrakurzen Buzz-Cut und bläuliche Gläser. Welche ZWEI Bilder zeigen exakt denselben Mann?",
-      en: "All four rock ultra-short buzz-cuts and blue-tinted frames. Which TWO portraits are the same man?",
-      ko: "네 명 모두 짧은 버즈컷과 블루 틴트 안경을 착용해 머리 단서가 없습니다! 동일 인물 2장을 고르세요."
-    },
-    prompt: { de: "Tippe die 2 identischen Männer an!", en: "Tap the 2 matching men!", ko: "같은 남성 사진 2장을 탭하세요!" },
-    explain: {
-      de: "[[C]] und [[D]] teilen den markanten Kantkiefer, eng stehende Schlupflider, dichte Brauen und das Kinngrübchen.",
-      en: "[[C]] and [[D]] share the square jaw, close-set blue-grey hooded eyes, thick brows, and chin cleft.",
-      ko: "[[C]]와 [[D]]가 각진 사각턱·가까운 청회색 속쌍꺼풀·짙은 눈썹·턱 끝 보조개까지 일치합니다."
-    },
-    cards: {
-      A: { skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:12, glasses:"tint", expr:"smile", hair:"buzz", hairColor:"#9c7e54", outfit:"hoodie_black", bg:"street" },
-      B: { skin:"eu2", jaw:"v", eyeSpacing:2, eyes:"almond", iris:"#4f7356", brow:"arched", noseW:8, glasses:"tint", expr:"neutral", hair:"buzz", hairColor:"#9c7e54", outfit:"leather", bg:"stage" },
-      C: { skin:"eu4", jaw:"square", eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"thick", noseW:9, cleft:true, glasses:"tint", expr:"neutral", hair:"buzz", hairColor:"#9c7e54", outfit:"turtleneck", bg:"studio" },
-      D: { skin:"eu4", jaw:"square", eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"thick", noseW:9, cleft:true, glasses:"tint", expr:"smile", hair:"buzz", hairColor:"#9c7e54", outfit:"denim", bg:"street" }
+      A: { img: "assets/v2/eu_r5_A.jpg" },
+      B: { img: "assets/v2/eu_r5_B.jpg" },
+      C: { img: "assets/v2/eu_r5_C.jpg" }
     }
   }
 ];
 
+// ==================== IMAGE PRELOADER & PAINT GATE ====================
+const IMG_CACHE = new Map(); // url -> Promise<HTMLImageElement>
+const LOADED_SET = new Set(); // urls already decoded in memory
+
+function getRoundUrls(r) {
+  if (!r) return [];
+  if (r.compositeImg) return [r.compositeImg];
+  const urls = [];
+  if (r.target && r.target.img) urls.push(r.target.img);
+  if (r.cards) {
+    Object.values(r.cards).forEach(c => {
+      if (c && c.img) urls.push(c.img);
+    });
+  }
+  return urls;
+}
+
+function preloadUrl(url) {
+  if (IMG_CACHE.has(url)) return IMG_CACHE.get(url);
+  const p = new Promise((resolve) => {
+    const img = new Image();
+    img.decoding = "async";
+    let done = false;
+    const finish = (ok, el) => {
+      if (done) return;
+      done = true;
+      if (ok) LOADED_SET.add(url);
+      else IMG_CACHE.delete(url);
+      resolve(el || img);
+    };
+    const timeout = setTimeout(() => finish(false, img), 12000);
+    img.onload = () => {
+      clearTimeout(timeout);
+      if (img.decode) {
+        img.decode().then(() => finish(true, img)).catch(() => finish(true, img));
+      } else {
+        finish(true, img);
+      }
+    };
+    img.onerror = () => {
+      clearTimeout(timeout);
+      const retry = new Image();
+      retry.decoding = "async";
+      const t2 = setTimeout(() => finish(false, retry), 10000);
+      retry.onload = () => {
+        clearTimeout(t2);
+        if (retry.decode) {
+          retry.decode().then(() => finish(true, retry)).catch(() => finish(true, retry));
+        } else {
+          finish(true, retry);
+        }
+      };
+      retry.onerror = () => {
+        clearTimeout(t2);
+        finish(false, retry);
+      };
+      retry.src = url + (url.includes("?") ? "&" : "?") + "retry=1";
+    };
+    img.src = url;
+  });
+  IMG_CACHE.set(url, p);
+  return p;
+}
+
+async function preloadRound(r, onProgress) {
+  const urls = getRoundUrls(r);
+  if (!urls.length) return;
+  let completed = 0;
+  if (onProgress) onProgress(0, urls.length);
+  await Promise.all(urls.map(u => preloadUrl(u).then(() => {
+    completed++;
+    if (onProgress) onProgress(completed, urls.length);
+  })));
+}
+
+function isRoundReadyInMemory(r) {
+  const urls = getRoundUrls(r);
+  return urls.every(u => LOADED_SET.has(u));
+}
+
+let bgQueueRunning = false;
+async function warmDeckInBackground(roundsList) {
+  if (bgQueueRunning) return;
+  bgQueueRunning = true;
+  try {
+    for (const r of roundsList) {
+      if (!isRoundReadyInMemory(r)) {
+        await preloadRound(r);
+      }
+    }
+  } finally {
+    bgQueueRunning = false;
+  }
+}
+
+// Wait for live DOM <img> elements inside #stage to be 100% decoded & painted on screen
+async function waitForStagePaint() {
+  const imgs = Array.from(document.querySelectorAll("#stage img"));
+  await Promise.all(imgs.map(img => new Promise(res => {
+    if (img.complete && img.naturalWidth > 0) {
+      if (img.decode) img.decode().then(res).catch(res);
+      else res();
+      return;
+    }
+    const done = () => res();
+    img.addEventListener("load", done, { once: true });
+    img.addEventListener("error", done, { once: true });
+    setTimeout(done, 4000);
+  })));
+  await new Promise(res => requestAnimationFrame(() => requestAnimationFrame(res)));
+}
+
+// ==================== GAME STATE & LOGIC ====================
 function detectInitialLang() {
   try {
     const q = new URLSearchParams(window.location.search).get("lang");
@@ -2068,13 +1326,13 @@ function detectInitialLang() {
 
 let lang = detectInitialLang();
 let speedSec = 6.0;
-let lenMode = "std"; // quick (5 / 9mix) | std (10 / 15mix) | full (12 / 36mix)
 let activeCat = "east";
 let deck = [];
 let idx = 0;
 let score = 0;
-let historyLog = []; // { cat, correct, elapsed }
-let phase = "home";
+let historyLog = [];
+let phase = "home"; // home | brief | loading | play | review | result
+let roundSeq = 0;   // token to cancel stale async transitions
 let picked = [];
 let bioOn = false;
 let timerId = null;
@@ -2090,7 +1348,6 @@ function shuffleArr(arr) {
   return a;
 }
 
-// Permutes card slots A/B/C(/D) so answers can never be memorized, while remapping [[X]] tokens in explain!
 function prepareRoundInstance(raw) {
   if (raw.compositeImg) {
     const cleanExplain = {};
@@ -2111,10 +1368,7 @@ function prepareRoundInstance(raw) {
   const newAns = raw.answer.split("").map(ch => slotOf[ch]).sort().join("");
   const newExplain = {};
   ["de", "en", "ko"].forEach(l => {
-    let txt = raw.explain[l];
-    // For pair4, if [[X]] und/and/와 [[Y]] appears in reverse alphabetical order, keep letters clean:
-    txt = txt.replace(/\[\[([ABCD])\]\]/g, (_, k) => slotOf[k]);
-    newExplain[l] = txt;
+    newExplain[l] = raw.explain[l].replace(/\[\[([ABCD])\]\]/g, (_, k) => slotOf[k]);
   });
   return {
     ...raw,
@@ -2145,7 +1399,7 @@ function setLang(l) {
     document.getElementById("btn-" + code).classList.toggle("active", code === l);
   });
   renderStaticText();
-  if (phase === "brief") renderBrief();
+  if (phase === "brief" || phase === "loading") renderBrief();
   else if (phase === "play" || phase === "review") renderPlayOrReview();
   else if (phase === "result") renderResult();
 }
@@ -2156,33 +1410,6 @@ function setSpeed(s) {
   document.getElementById("speed-blitz").classList.toggle("active", s === 3.5);
 }
 
-function setLenMode(m) {
-  lenMode = m;
-  ["quick", "std", "full"].forEach(k => {
-    document.getElementById("len-" + k).classList.toggle("active", k === m);
-  });
-  updateCategoryPills();
-}
-
-function getCounts() {
-  return { single: 5, mixPerCat: 5 };
-}
-
-function getPhotoRounds(cat) {
-  const isPhoto = (r) => Boolean(r.compositeImg || Object.values(r.cards).every(c => c.img));
-  return ROUNDS.filter(r => r.cat === cat && isPhoto(r));
-}
-
-function updateCategoryPills() {
-  const t = UI[lang];
-  const { single, mixPerCat } = getCounts();
-  const sTxt = `${single} ${t.unitRounds}`;
-  document.getElementById("pill-east").textContent = sTxt;
-  document.getElementById("pill-black").textContent = sTxt;
-  document.getElementById("pill-euro").textContent = sTxt;
-  document.getElementById("pill-all").textContent = `${mixPerCat * 3} ${t.unitMix}`;
-}
-
 function renderStaticText() {
   const t = UI[lang];
   document.getElementById("t-hero-title").textContent = t.heroTitle;
@@ -2191,12 +1418,6 @@ function renderStaticText() {
   document.getElementById("t-speed-label").textContent = t.speedLabel;
   document.getElementById("t-speed-normal-desc").textContent = t.speedNormalDesc;
   document.getElementById("t-speed-blitz-desc").textContent = t.speedBlitzDesc;
-  document.getElementById("t-len-quick").textContent = t.lenQuick;
-  document.getElementById("t-len-quick-sub").textContent = t.lenQuickSub;
-  document.getElementById("t-len-std").textContent = t.lenStd;
-  document.getElementById("t-len-std-sub").textContent = t.lenStdSub;
-  document.getElementById("t-len-full").textContent = t.lenFull;
-  document.getElementById("t-len-full-sub").textContent = t.lenFullSub;
   document.getElementById("t-cat-label").textContent = t.catLabel;
   document.getElementById("t-cat-east").textContent = t.catEast;
   document.getElementById("t-cat-east-desc").textContent = t.catEastDesc;
@@ -2206,10 +1427,16 @@ function renderStaticText() {
   document.getElementById("t-cat-euro-desc").textContent = t.catEuroDesc;
   document.getElementById("t-cat-all").textContent = t.catAll;
   document.getElementById("t-cat-all-desc").textContent = t.catAllDesc;
-  updateCategoryPills();
+
+  const sTxt = `5 ${t.unitRounds}`;
+  document.getElementById("pill-east").textContent = sTxt;
+  document.getElementById("pill-black").textContent = sTxt;
+  document.getElementById("pill-euro").textContent = sTxt;
+  document.getElementById("pill-all").textContent = `15 ${t.unitMix}`;
 }
 
 function goHome() {
+  roundSeq++;
   stopTimer();
   phase = "home";
   showScreen("screen-home");
@@ -2217,23 +1444,30 @@ function goHome() {
 
 function startGame(cat) {
   activeCat = cat;
-  let selected = [];
-  if (cat === "all") {
-    ["east", "black", "euro"].forEach(c => {
-      selected.push(...getPhotoRounds(c));
-    });
-    selected = shuffleArr(selected);
-  } else {
-    selected = shuffleArr(getPhotoRounds(cat));
+  const rawPool = cat === "all" ? ROUNDS : ROUNDS.filter(r => r.cat === cat);
+  // Strict deduplication guard by round id and primary image asset
+  const seenIds = new Set();
+  const seenPrimaryImg = new Set();
+  const uniquePool = [];
+  for (const r of rawPool) {
+    const primaryImg = r.compositeImg || (r.target && r.target.img) || (r.cards && r.cards.A && r.cards.A.img);
+    if (seenIds.has(r.id) || seenPrimaryImg.has(primaryImg)) continue;
+    seenIds.add(r.id);
+    seenPrimaryImg.add(primaryImg);
+    uniquePool.push(r);
   }
-  deck = selected.map(prepareRoundInstance);
+  deck = shuffleArr(uniquePool).map(prepareRoundInstance);
   idx = 0;
   score = 0;
   historyLog = [];
   openBrief();
+  // Kick off background deck preloading immediately
+  warmDeckInBackground(deck);
 }
 
 function openBrief() {
+  roundSeq++;
+  const mySeq = roundSeq;
   stopTimer();
   phase = "brief";
   picked = [];
@@ -2241,6 +1475,22 @@ function openBrief() {
   lastVerdict = null;
   renderBrief();
   showScreen("screen-brief");
+
+  const r = deck[idx];
+  const hintEl = document.getElementById("brief-preload-status");
+  if (isRoundReadyInMemory(r)) {
+    hintEl.textContent = UI[lang].preloadedHint;
+    if (idx + 1 < deck.length) preloadRound(deck[idx + 1]);
+  } else {
+    hintEl.textContent = UI[lang].preloadingHint;
+    preloadRound(r).then(() => {
+      if (mySeq !== roundSeq) return;
+      if (phase === "brief") {
+        hintEl.textContent = UI[lang].preloadedHint;
+      }
+      if (idx + 1 < deck.length) preloadRound(deck[idx + 1]);
+    });
+  }
 }
 
 function renderBrief() {
@@ -2252,23 +1502,59 @@ function renderBrief() {
     r.type === "target3" ? t.modeTarget3 : r.type === "pair4" ? t.modePair4 : t.modePsy4;
   document.getElementById("brief-title").textContent = r.title[lang];
   document.getElementById("brief-text").textContent = r.brief[lang];
-  document.getElementById("btn-ready").textContent = t.readyBtn;
+
+  const btn = document.getElementById("btn-ready");
+  if (phase === "loading") {
+    btn.disabled = true;
+  } else {
+    btn.disabled = false;
+    btn.textContent = t.readyBtn;
+  }
+  const hintEl = document.getElementById("brief-preload-status");
+  hintEl.textContent = isRoundReadyInMemory(r) ? t.preloadedHint : t.preloadingHint;
 }
 
-function revealPhotos() {
-  phase = "play";
+async function revealPhotos() {
+  if (phase !== "brief") return;
+  const mySeq = ++roundSeq;
+  const t = UI[lang];
+  const r = deck[idx];
+  const btn = document.getElementById("btn-ready");
+
+  // 1. Ensure 100% of current round images are downloaded & decoded BEFORE leaving brief screen
+  if (!isRoundReadyInMemory(r)) {
+    phase = "loading";
+    btn.disabled = true;
+    await preloadRound(r, (done, total) => {
+      if (mySeq === roundSeq) {
+        btn.textContent = `${t.loadingBtn} (${done}/${total})…`;
+      }
+    });
+    if (mySeq !== roundSeq) return;
+  }
+
+  // 2. Render photos into #stage with timer frozen at 100% (NOT counting down yet!)
+  stopTimer();
+  phase = "loading";
   picked = [];
   bioOn = false;
-  showScreen("screen-play");
-  renderPlayOrReview();
-  startTs = performance.now();
+
   const bar = document.getElementById("timer-bar");
   const num = document.getElementById("timer-num");
   bar.style.width = "100%";
   bar.classList.remove("danger");
   num.textContent = speedSec.toFixed(1) + "s";
 
-  stopTimer();
+  showScreen("screen-play");
+  renderPlayOrReview();
+
+  // 3. Wait until live DOM <img> elements are decoded AND painted on screen (2x rAF)
+  await waitForStagePaint();
+  if (mySeq !== roundSeq) return;
+
+  // 4. NOW start play phase & timer!
+  phase = "play";
+  startTs = performance.now();
   timerId = setInterval(() => {
     const elapsed = (performance.now() - startTs) / 1000;
     const left = Math.max(0, speedSec - elapsed);
@@ -2281,6 +1567,11 @@ function revealPhotos() {
       finishRound("timeout");
     }
   }, 50);
+
+  // Preload next round silently while user plays
+  if (idx + 1 < deck.length) {
+    preloadRound(deck[idx + 1]);
+  }
 }
 
 function stopTimer() {
@@ -2288,6 +1579,18 @@ function stopTimer() {
     clearInterval(timerId);
     timerId = null;
   }
+}
+
+// Zero-flicker class toggle for pair4 first tap (avoids rebuilding stage DOM!)
+function syncPairSelectionUI() {
+  document.querySelectorAll("[data-choice-card]").forEach(el => {
+    const k = el.getAttribute("data-choice-card");
+    el.classList.toggle("selected", picked.includes(k));
+  });
+  document.querySelectorAll("[data-choice-btn]").forEach(el => {
+    const k = el.getAttribute("data-choice-btn");
+    el.classList.toggle("selected", picked.includes(k));
+  });
 }
 
 function tapChoice(key) {
@@ -2305,7 +1608,7 @@ function tapChoice(key) {
       finishRound(sorted === r.answer ? "correct" : "wrong");
       return;
     }
-    renderPlayOrReview();
+    syncPairSelectionUI();
   } else {
     picked = [key];
     stopTimer();
@@ -2328,6 +1631,21 @@ function toggleBio() {
   renderPlayOrReview();
 }
 
+function renderPortraitCard(p, showBio, bioMatch) {
+  const col = bioMatch ? "#38bdf8" : "#f87171";
+  const bioOverlay = showBio
+    ? `<svg viewBox="0 0 200 225" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;">
+        <rect x="34" y="26" width="132" height="158" rx="22" fill="none" stroke="${col}" stroke-width="2.5" stroke-dasharray="6 4"/>
+        <line x1="65" y1="94" x2="135" y2="94" stroke="${col}" stroke-width="1.6" stroke-dasharray="3 2"/>
+        <polygon points="72,94 128,94 100,130 100,168" fill="rgba(56,189,248,0.08)" stroke="${col}" stroke-width="1.4"/>
+      </svg>`
+    : "";
+  return `<div style="position:relative;width:100%;height:100%;">
+    <img src="${p.img}" alt="" decoding="async" />
+    ${bioOverlay}
+  </div>`;
+}
+
 function renderPlayOrReview() {
   const t = UI[lang];
   const r = deck[idx];
@@ -2341,45 +1659,58 @@ function renderPlayOrReview() {
   let html = "";
 
   if (r.compositeImg) {
-    html = `<div style="display:flex;justify-content:center;align-items:center;width:100%;">
-      <img src="${r.compositeImg}" alt="" loading="eager" style="width:100%;max-width:390px;max-height:54dvh;object-fit:contain;border-radius:14px;border:2px solid var(--border);display:block;" />
+    const gridCls = r.type === "target3" ? "comp-grid-3" : "comp-grid-4";
+    let zones = "";
+    keys.forEach(k => {
+      let zCls = "comp-zone";
+      const isAns = ansChars.includes(k);
+      const isPicked = picked.includes(k);
+      if ((phase === "play" || phase === "loading") && isPicked) zCls += " selected";
+      if (phase === "review") {
+        if (isAns) zCls += " correct";
+        else if (isPicked) zCls += " wrong";
+      }
+      zones += `<div class="${zCls}" data-choice-card="${k}" onclick="tapChoice('${k}')"></div>`;
+    });
+    html = `<div class="composite-wrap">
+      <img src="${r.compositeImg}" alt="" decoding="async" />
+      <div class="${gridCls}">${zones}</div>
     </div>`;
   } else {
     if (r.type === "target3") {
-    html += `<div class="target-top">
-      <div class="target-card">
-        <span class="card-tag">TARGET</span>
-        ${renderPortraitSVG(r.target, phase === "review" && bioOn, true)}
-      </div>
-    </div>`;
-  }
-
-  html += `<div class="${r.type === 'target3' ? 'choices-3' : 'choices-4'}">`;
-  keys.forEach(k => {
-    let cls = "face-card";
-    const isAns = ansChars.includes(k);
-    const isPicked = picked.includes(k);
-    if (phase === "play" && isPicked) cls += " selected";
-    if (phase === "review") {
-      if (isAns) cls += " correct";
-      else if (isPicked) cls += " wrong";
+      html += `<div class="target-top">
+        <div class="target-card">
+          <span class="card-tag">TARGET</span>
+          ${renderPortraitCard(r.target, phase === "review" && bioOn, true)}
+        </div>
+      </div>`;
     }
-    const showCardBio = phase === "review" && bioOn && (isAns || isPicked);
-    html += `<div class="${cls}" onclick="tapChoice('${k}')">
-      <span class="card-tag">${k}</span>
-      ${renderPortraitSVG(r.cards[k], showCardBio, isAns)}
-    </div>`;
-  });
-  html += `</div>`;
+    html += `<div class="${r.type === 'target3' ? 'choices-3' : 'choices-4'}">`;
+    keys.forEach(k => {
+      let cls = "face-card";
+      const isAns = ansChars.includes(k);
+      const isPicked = picked.includes(k);
+      if ((phase === "play" || phase === "loading") && isPicked) cls += " selected";
+      if (phase === "review") {
+        if (isAns) cls += " correct";
+        else if (isPicked) cls += " wrong";
+      }
+      const showCardBio = phase === "review" && bioOn && (isAns || isPicked);
+      html += `<div class="${cls}" data-choice-card="${k}" onclick="tapChoice('${k}')">
+        <span class="card-tag">${k}</span>
+        ${renderPortraitCard(r.cards[k], showCardBio, isAns)}
+      </div>`;
+    });
+    html += `</div>`;
   }
   stage.innerHTML = html;
 
   const bottom = document.getElementById("bottom-controls");
-  if (phase === "play") {
+  if (phase === "play" || phase === "loading") {
     let btns = `<div class="thumb-bar ${keys.length === 3 ? 'cols-3' : 'cols-4'}">`;
     keys.forEach(k => {
       const sel = picked.includes(k) ? "selected" : "";
-      btns += `<button class="thumb-btn ${sel}" onclick="tapChoice('${k}')">${k}</button>`;
+      btns += `<button class="thumb-btn ${sel}" data-choice-btn="${k}" onclick="tapChoice('${k}')">${k}</button>`;
     });
     btns += `</div>`;
     bottom.innerHTML = btns;
@@ -2387,11 +1718,12 @@ function renderPlayOrReview() {
     const vText = lastVerdict === "correct" ? t.correctMsg : lastVerdict === "timeout" ? t.timeoutMsg : t.wrongMsg;
     const vCls = lastVerdict === "correct" ? "verdict-good" : "verdict-bad";
     const nextLbl = idx + 1 < deck.length ? t.nextBtn : t.finishBtn;
+    const showBioBtn = !r.compositeImg;
     bottom.innerHTML = `<div class="explain-box">
       <div class="verdict-line ${vCls}">${vText}</div>
       <div style="color:#d6e0f8;margin-bottom:8px;">${r.explain[lang]}</div>
-      <div class="explain-actions">
-        <button class="bio-btn ${bioOn ? 'active' : ''}" onclick="toggleBio()">${t.bioBtn}</button>
+      <div class="explain-actions ${showBioBtn ? 'has-bio' : ''}">
+        ${showBioBtn ? `<button class="bio-btn ${bioOn ? 'active' : ''}" onclick="toggleBio()">${t.bioBtn}</button>` : ""}
         <button class="primary-btn" style="padding:10px 12px;font-size:0.86rem;" onclick="nextRound()">${nextLbl}</button>
       </div>
     </div>`;
@@ -2512,6 +1844,8 @@ async function copyShare() {
 }
 
 setLang(lang);
+// Gently warm-cache images during idle time on the home screen
+setTimeout(() => warmDeckInBackground(ROUNDS.slice(0, 6)), 350);
 </script>
 </body>
 </html>
