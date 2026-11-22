@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#0b1020" />
-  <title>Cross-Race Face Challenge | 실사 안면인식 스피드 테스트</title>
-  <meta name="description" content="로그인 없이 바로 플레이! 100% 실사 사진으로 제한 시간 안에 머리스타일·안경 함정을 뚫고 진짜 이목구비를 구분해 보세요." />
+  <title>Cross-Race Face Challenge | 하드코어 실사 안면인식 테스트</title>
+  <meta name="description" content="노힌트 하드코어 에디션! 100% 실사 초박빙 도플갱어들 사이에서 골격만으로 동일 인물과 스파이를 색출해 보세요." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="🧠 Cross-Race 실사 안면인식 스피드 테스트" />
-  <meta property="og:description" content="머리스타일·수염·안경 함정을 뚫고 진짜 동일 인물을 찾아보세요! 로그인 없이 클릭 즉시 플레이." />
+  <meta property="og:title" content="🧠 Cross-Race 실사 안면인식 테스트 (Hardcore)" />
+  <meta property="og:description" content="힌트 제로 · 도플갱어 함정! 제한 시간 안에 진짜 이목구비 골격만으로 정답을 찾아보세요." />
   <meta name="twitter:card" content="summary" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
   <style>
@@ -16,7 +16,7 @@
       --bg: #0b1020;
       --card: #151d33;
       --card-2: #1c2744;
-      --border: rgba(255, 255, 255, 0.12);
+      --border: rgba(255, 255, 255, 0.13);
       --text: #f3f6ff;
       --muted: #9aa7c7;
       --accent: #4f8cff;
@@ -24,6 +24,7 @@
       --good: #22c55e;
       --bad: #ef4444;
       --warn: #f59e0b;
+      --purple: #a855f7;
     }
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html, body {
@@ -41,21 +42,21 @@
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
-      padding: 10px 14px calc(14px + env(safe-area-inset-bottom));
+      padding: 8px 13px calc(12px + env(safe-area-inset-bottom));
     }
     .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 6px;
-      padding: 4px 0 8px;
+      padding: 2px 0 6px;
     }
     .brand {
       display: flex;
       align-items: center;
       gap: 6px;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       letter-spacing: -0.02em;
       cursor: pointer;
       min-width: 0;
@@ -66,11 +67,12 @@
       text-overflow: ellipsis;
     }
     .brand-badge {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: linear-gradient(135deg, #ef4444, #f59e0b);
       color: #fff;
-      border-radius: 8px;
-      padding: 3px 6px;
-      font-size: 0.74rem;
+      border-radius: 7px;
+      padding: 2px 6px;
+      font-size: 0.7rem;
+      font-weight: 900;
       flex-shrink: 0;
     }
     .top-controls {
@@ -84,8 +86,8 @@
       background: var(--card);
       color: var(--text);
       border-radius: 999px;
-      padding: 5px 8px;
-      font-size: 0.74rem;
+      padding: 4px 8px;
+      font-size: 0.72rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
@@ -105,7 +107,7 @@
       border: none;
       background: transparent;
       color: var(--muted);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 800;
       padding: 4px 7px;
       border-radius: 999px;
@@ -120,72 +122,72 @@
       display: none;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
     }
     .screen.active { display: flex; }
 
     .hero-card, .panel {
-      background: rgba(21, 29, 51, 0.92);
+      background: rgba(21, 29, 51, 0.93);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 13px 14px;
+      border-radius: 17px;
+      padding: 12px 14px;
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
     }
     .hero-title {
-      font-size: 1.22rem;
+      font-size: 1.16rem;
       font-weight: 800;
-      margin: 0 0 5px;
+      margin: 0 0 4px;
       line-height: 1.24;
     }
     .hero-sub {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--muted);
-      line-height: 1.44;
+      line-height: 1.42;
       margin: 0;
     }
     .science-note {
-      margin-top: 9px;
-      padding: 8px 10px;
-      border-radius: 12px;
+      margin-top: 8px;
+      padding: 7px 10px;
+      border-radius: 11px;
       background: rgba(79, 140, 255, 0.11);
       border: 1px solid rgba(79, 140, 255, 0.28);
-      font-size: 0.76rem;
-      line-height: 1.42;
+      font-size: 0.74rem;
+      line-height: 1.4;
       color: #dbe7ff;
     }
     .section-label {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       color: var(--muted);
       font-weight: 700;
-      margin: 2px 0 5px;
+      margin: 1px 0 5px;
     }
     .speed-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 7px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
     }
     .speed-btn {
       background: var(--card);
       border: 1.5px solid var(--border);
       color: var(--text);
       border-radius: 12px;
-      padding: 9px 11px;
+      padding: 8px 8px;
       text-align: left;
       cursor: pointer;
     }
     .speed-btn.active {
       border-color: var(--accent-2);
-      background: rgba(56, 189, 248, 0.14);
+      background: rgba(56, 189, 248, 0.15);
     }
-    .speed-btn strong { display: block; font-size: 0.85rem; }
-    .speed-btn span { font-size: 0.72rem; color: var(--muted); }
+    .speed-btn strong { display: block; font-size: 0.79rem; margin-bottom: 1px; }
+    .speed-btn span { display: block; font-size: 0.68rem; color: var(--muted); line-height: 1.2; }
 
     .cat-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 8px;
+      gap: 7px;
     }
     .cat-btn {
       display: flex;
@@ -195,8 +197,8 @@
       background: linear-gradient(135deg, var(--card), var(--card-2));
       border: 1px solid var(--border);
       color: var(--text);
-      border-radius: 15px;
-      padding: 12px 13px;
+      border-radius: 14px;
+      padding: 11px 12px;
       cursor: pointer;
       transition: transform 0.1s ease, border-color 0.15s ease;
       text-align: left;
@@ -204,9 +206,9 @@
     .cat-btn:active { transform: scale(0.985); }
     .cat-btn:hover { border-color: var(--accent); }
     .cat-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
-    .cat-icon { font-size: 1.4rem; flex-shrink: 0; }
-    .cat-title { font-weight: 800; font-size: 0.92rem; display: block; }
-    .cat-desc { font-size: 0.73rem; color: var(--muted); display: block; margin-top: 2px; line-height: 1.3; }
+    .cat-icon { font-size: 1.35rem; flex-shrink: 0; }
+    .cat-title { font-weight: 800; font-size: 0.9rem; display: block; }
+    .cat-desc { font-size: 0.72rem; color: var(--muted); display: block; margin-top: 2px; line-height: 1.28; }
     .cat-pill {
       background: rgba(255,255,255,0.08);
       padding: 4px 9px;
@@ -223,15 +225,15 @@
       justify-content: space-between;
       align-items: center;
       gap: 8px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
       font-weight: 700;
     }
     .back-btn {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: var(--muted);
-      font-size: 0.76rem;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #dbe7ff;
+      font-size: 0.74rem;
       font-weight: 700;
       padding: 4px 10px;
       border-radius: 999px;
@@ -239,7 +241,7 @@
       transition: background 0.15s, color 0.15s;
     }
     .back-btn:hover, .back-btn:active {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.15);
       color: #fff;
     }
     .badge {
@@ -250,50 +252,16 @@
       border-radius: 999px;
       background: rgba(79, 140, 255, 0.16);
       color: #bcd5ff;
-      font-size: 0.74rem;
+      font-size: 0.73rem;
       font-weight: 700;
     }
-    .brief-box {
-      text-align: center;
-      padding: 20px 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-    .brief-mode-tag {
-      background: rgba(245, 158, 11, 0.16);
-      color: #fcd34d;
-      border: 1px solid rgba(245, 158, 11, 0.35);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.74rem;
-      font-weight: 700;
-    }
-    .brief-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin: 0;
-      line-height: 1.3;
-    }
-    .brief-text {
-      font-size: 0.89rem;
-      color: #d6e0f8;
-      line-height: 1.48;
-      margin: 0;
-    }
-    .preload-hint {
-      font-size: 0.74rem;
-      color: #93c5fd;
-      font-weight: 700;
-      min-height: 1.1em;
-    }
+
     .primary-btn, .secondary-btn {
       width: 100%;
       border: none;
-      border-radius: 14px;
-      padding: 13px 16px;
-      font-size: 0.94rem;
+      border-radius: 13px;
+      padding: 12px 15px;
+      font-size: 0.92rem;
       font-weight: 800;
       cursor: pointer;
       transition: transform 0.08s ease, opacity 0.15s ease;
@@ -301,27 +269,23 @@
     .primary-btn {
       background: linear-gradient(135deg, var(--accent), #2563eb);
       color: #fff;
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
-    }
-    .primary-btn:disabled {
-      opacity: 0.72;
-      cursor: wait;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.38);
     }
     .secondary-btn {
       background: var(--card-2);
       color: var(--text);
       border: 1px solid var(--border);
     }
-    .primary-btn:active:not(:disabled), .secondary-btn:active { transform: scale(0.985); }
+    .primary-btn:active, .secondary-btn:active { transform: scale(0.985); }
 
     .timer-wrap {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
     .timer-track {
       flex: 1;
-      height: 8px;
+      height: 7px;
       background: rgba(255,255,255,0.1);
       border-radius: 999px;
       overflow: hidden;
@@ -336,16 +300,41 @@
     .timer-num {
       font-variant-numeric: tabular-nums;
       font-weight: 800;
-      font-size: 0.92rem;
-      min-width: 48px;
+      font-size: 0.88rem;
+      min-width: 44px;
       text-align: right;
     }
-    .prompt-mini {
-      text-align: center;
-      font-size: 0.83rem;
-      font-weight: 700;
-      color: #dbe7ff;
-      margin: 0;
+
+    .mission-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mission-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      border: 1.5px solid transparent;
+    }
+    .mission-pill.mode-target4 {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.45);
+      color: #7dd3fc;
+    }
+    .mission-pill.mode-pair4 {
+      background: rgba(168, 85, 247, 0.16);
+      border-color: rgba(168, 85, 247, 0.45);
+      color: #d8b4fe;
+    }
+    .mission-pill.mode-odd4 {
+      background: rgba(245, 158, 11, 0.16);
+      border-color: rgba(245, 158, 11, 0.48);
+      color: #fcd34d;
     }
 
     .stage {
@@ -354,7 +343,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
+      min-height: 0;
     }
     .target-top {
       display: flex;
@@ -362,25 +352,41 @@
       width: 100%;
     }
     .target-card {
-      width: 44%;
-      max-width: 175px;
+      width: 126px;
       background: var(--card);
-      border: 2px solid var(--accent-2);
-      border-radius: 14px;
+      border: 2.5px solid var(--accent-2);
+      border-radius: 13px;
       overflow: hidden;
       position: relative;
-      aspect-ratio: 3 / 3.8;
+      aspect-ratio: 480 / 504;
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.22);
+    }
+    .target-mask {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #131c34, #0d1326);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      z-index: 4;
+      color: #7dd3fc;
+      font-weight: 800;
+      font-size: 0.74rem;
+      text-align: center;
+      padding: 6px;
     }
     .card-tag {
       position: absolute;
-      top: 6px;
-      left: 6px;
-      background: rgba(11, 16, 32, 0.85);
+      top: 5px;
+      left: 5px;
+      background: rgba(11, 16, 32, 0.84);
       color: #fff;
       font-weight: 800;
-      font-size: 0.73rem;
-      padding: 2px 7px;
-      border-radius: 7px;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 6px;
       border: 1px solid rgba(255,255,255,0.2);
       z-index: 3;
     }
@@ -389,35 +395,37 @@
       color: #061224;
       border: none;
     }
-    .choices-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 7px;
-      width: 100%;
-    }
     .choices-4 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
-      max-width: 365px;
+      max-width: 356px;
       width: 100%;
       margin: 0 auto;
+    }
+    .stage.is-target4 .choices-4 {
+      max-width: 306px;
+      gap: 6px;
     }
     .face-card {
       background: var(--card);
       border: 2.5px solid var(--border);
-      border-radius: 14px;
+      border-radius: 13px;
       overflow: hidden;
       position: relative;
       cursor: pointer;
-      aspect-ratio: 3 / 3.85;
-      transition: transform 0.08s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+      aspect-ratio: 480 / 504;
+      transition: transform 0.08s ease, border-color 0.12s ease, box-shadow 0.12s ease, filter 0.15s ease;
+    }
+    .face-card.locked-blur img {
+      filter: blur(14px) brightness(0.5);
+      transform: scale(1.08);
     }
     .face-card img, .target-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 18%;
+      object-position: center center;
       display: block;
       user-select: none;
       -webkit-user-drag: none;
@@ -428,83 +436,31 @@
     }
     .face-card.correct {
       border-color: var(--good);
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.42);
     }
     .face-card.wrong {
       border-color: var(--bad);
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4);
-    }
-
-    /* Composite card wrapper + interactive tap zones */
-    .composite-wrap {
-      position: relative;
-      display: inline-block;
-      max-width: 385px;
-      width: auto;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 2px solid var(--border);
-      background: var(--card);
-    }
-    .composite-wrap img {
-      display: block;
-      max-width: 100%;
-      max-height: 55dvh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-    .comp-grid-4 {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-    }
-    .comp-grid-3 {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 43%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .comp-zone {
-      cursor: pointer;
-      border: 3px solid transparent;
-      transition: border-color 0.12s ease, background-color 0.12s ease;
-    }
-    .comp-zone.selected {
-      border-color: var(--accent-2);
-      background: rgba(56, 189, 248, 0.16);
-    }
-    .comp-zone.correct {
-      border-color: var(--good);
-      background: rgba(34, 197, 94, 0.16);
-    }
-    .comp-zone.wrong {
-      border-color: var(--bad);
-      background: rgba(239, 68, 68, 0.18);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.42);
     }
 
     .thumb-bar {
       display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 7px;
     }
-    .thumb-bar.cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .thumb-bar.cols-4 { grid-template-columns: repeat(4, 1fr); }
     .thumb-btn {
       background: var(--card-2);
       border: 1.5px solid var(--border);
       color: var(--text);
       font-weight: 800;
-      font-size: 0.95rem;
-      padding: 10px 0;
-      border-radius: 12px;
+      font-size: 0.92rem;
+      padding: 9px 0;
+      border-radius: 11px;
       cursor: pointer;
+    }
+    .thumb-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
     }
     .thumb-btn.selected {
       background: var(--accent);
@@ -513,36 +469,33 @@
     }
 
     .explain-box {
-      background: rgba(21, 29, 51, 0.95);
+      background: rgba(21, 29, 51, 0.96);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 10px 12px;
-      font-size: 0.8rem;
-      line-height: 1.42;
+      border-radius: 13px;
+      padding: 9px 11px;
+      font-size: 0.78rem;
+      line-height: 1.4;
     }
     .verdict-line {
       font-weight: 800;
-      font-size: 0.9rem;
-      margin-bottom: 4px;
+      font-size: 0.86rem;
+      margin-bottom: 3px;
     }
     .verdict-good { color: var(--good); }
     .verdict-bad { color: var(--bad); }
     .explain-actions {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-    .explain-actions.has-bio {
-      grid-template-columns: 1fr 1.2fr;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 7px;
     }
     .bio-btn {
       background: rgba(56, 189, 248, 0.14);
       border: 1px solid rgba(56, 189, 248, 0.45);
       color: #7dd3fc;
-      border-radius: 12px;
+      border-radius: 11px;
       font-weight: 800;
-      font-size: 0.82rem;
-      padding: 10px 8px;
+      font-size: 0.79rem;
+      padding: 9px 8px;
       cursor: pointer;
     }
     .bio-btn.active {
@@ -551,7 +504,7 @@
     }
 
     .score-big {
-      font-size: 2.2rem;
+      font-size: 2.15rem;
       font-weight: 900;
       text-align: center;
       margin: 2px 0;
@@ -618,7 +571,7 @@
   <div class="app">
     <div class="topbar">
       <div class="brand" onclick="goHome()">
-        <span class="brand-badge">FFA</span>
+        <span class="brand-badge">HARD</span>
         <span class="brand-title">Cross-Race Quiz</span>
       </div>
       <div class="top-controls">
@@ -642,13 +595,17 @@
       <div>
         <div class="section-label" id="t-speed-label"></div>
         <div class="speed-row">
-          <button class="speed-btn active" id="speed-normal" onclick="setSpeed(6.0)">
-            <strong>⏱️ Normal (6.0s)</strong>
+          <button class="speed-btn active" id="speed-normal" onclick="setMode('normal')">
+            <strong>⏱️ 5.0s</strong>
             <span id="t-speed-normal-desc"></span>
           </button>
-          <button class="speed-btn" id="speed-blitz" onclick="setSpeed(3.5)">
-            <strong>⚡ Blitz (3.5s)</strong>
+          <button class="speed-btn" id="speed-blitz" onclick="setMode('blitz')">
+            <strong>⚡ 3.0s</strong>
             <span id="t-speed-blitz-desc"></span>
+          </button>
+          <button class="speed-btn" id="speed-memory" onclick="setMode('memory')">
+            <strong>🔥 Memory</strong>
+            <span id="t-speed-memory-desc"></span>
           </button>
         </div>
       </div>
@@ -664,7 +621,7 @@
                 <span class="cat-desc" id="t-cat-east-desc"></span>
               </div>
             </div>
-            <span class="cat-pill" id="pill-east">5R</span>
+            <span class="cat-pill" id="pill-east">6R</span>
           </button>
           <button class="cat-btn" onclick="startGame('black')">
             <div class="cat-left">
@@ -674,7 +631,7 @@
                 <span class="cat-desc" id="t-cat-black-desc"></span>
               </div>
             </div>
-            <span class="cat-pill" id="pill-black">5R</span>
+            <span class="cat-pill" id="pill-black">6R</span>
           </button>
           <button class="cat-btn" onclick="startGame('euro')">
             <div class="cat-left">
@@ -684,9 +641,9 @@
                 <span class="cat-desc" id="t-cat-euro-desc"></span>
               </div>
             </div>
-            <span class="cat-pill" id="pill-euro">5R</span>
+            <span class="cat-pill" id="pill-euro">6R</span>
           </button>
-          <button class="cat-btn" onclick="startGame('all')">
+          <button class="cat-btn" onclick="startGame('all')" style="border-color: rgba(56, 189, 248, 0.45);">
             <div class="cat-left">
               <span class="cat-icon">🎲</span>
               <div>
@@ -694,43 +651,29 @@
                 <span class="cat-desc" id="t-cat-all-desc"></span>
               </div>
             </div>
-            <span class="cat-pill" id="pill-all">15 Mix</span>
+            <span class="cat-pill" id="pill-all">18 MIX</span>
           </button>
         </div>
       </div>
     </div>
 
-    <!-- BRIEFING SCREEN -->
-    <div class="screen" id="screen-brief">
-      <div class="hud">
-        <button class="back-btn" id="btn-back-brief" onclick="goHome()"></button>
-        <span id="brief-progress"></span>
-        <span class="badge" id="brief-cat-badge"></span>
-      </div>
-      <div class="panel brief-box">
-        <span class="brief-mode-tag" id="brief-mode-tag"></span>
-        <h2 class="brief-title" id="brief-title"></h2>
-        <p class="brief-text" id="brief-text"></p>
-        <div class="preload-hint" id="brief-preload-status"></div>
-      </div>
-      <button class="primary-btn" id="btn-ready" onclick="revealPhotos()"></button>
-    </div>
-
-    <!-- PLAY / REVIEW SCREEN -->
+    <!-- PLAY / REVIEW SCREEN (Direct No-Hint Flow) -->
     <div class="screen" id="screen-play">
       <div>
-        <div class="hud" style="margin-bottom:5px;">
+        <div class="hud" style="margin-bottom:4px;">
           <button class="back-btn" id="btn-back-play" onclick="goHome()"></button>
           <span id="play-progress"></span>
           <span id="play-score"></span>
         </div>
         <div class="timer-wrap" id="timer-wrap">
           <div class="timer-track"><div class="timer-bar" id="timer-bar"></div></div>
-          <div class="timer-num" id="timer-num">6.0s</div>
+          <div class="timer-num" id="timer-num">5.0s</div>
         </div>
       </div>
 
-      <p class="prompt-mini" id="play-prompt"></p>
+      <div class="mission-bar">
+        <div class="mission-pill mode-target4" id="mission-pill"></div>
+      </div>
 
       <div class="stage" id="stage"></div>
 
@@ -742,7 +685,7 @@
       <div class="panel">
         <div class="badge" id="res-cat-badge" style="margin-bottom:6px;"></div>
         <div class="score-big" id="res-score"></div>
-        <div style="text-align:center;font-weight:800;font-size:0.96rem;margin-bottom:6px;" id="res-rank"></div>
+        <div style="text-align:center;font-weight:800;font-size:0.94rem;margin-bottom:6px;" id="res-rank"></div>
         <div class="stat-row">
           <div class="stat-tile">
             <span id="t-stat-acc"></span>
@@ -769,138 +712,138 @@
 const UI = {
   de: {
     backBtn: "← Zurück",
-    heroTitle: "Cross-Race-Effekt Speed-Test",
-    heroSub: "Warum sehen ungewohnte Gesichter unter Zeitdruck oft „gleich“ aus? 15 echte Foto-Runden – fair in alle Richtungen!",
-    scienceNote: "🧠 <b>Kein Rassismus, sondern Neurobiologie:</b> Die <i>Fusiform Face Area (FFA)</i> speichert bei vertrauten Gruppen feine Knochen- & Augenabstände, achtet bei weniger vertrauten Gruppen aber zuerst auf Frisur, Bart, Mütze oder Brille.",
-    speedLabel: "Zeitlimit wählen (Startet erst nach 100 % Foto-Load!)",
-    speedNormalDesc: "Fairer Gehirn-Test",
-    speedBlitzDesc: "Reiner Bauchgefühl-Modus",
-    catLabel: "Kategorie wählen (Reihenfolge jedes Mal neu gemischt!)",
+    heroTitle: "Cross-Race-Effekt (Hardcore)",
+    heroSub: "Null Vorab-Tipps, keine verräterischen Kleidungs-Tricks! 18 echte Doppelgänger-Runden – erkennst du die echte Knochenstruktur?",
+    scienceNote: "🧠 <b>3 Modi im Zufalls-Mix:</b> 🎯 <b>TARGET-Match (1/4)</b> · 👥 <b>Zwillings-Paar (2/4)</b> · 🕵️ <b>Hochstapler finden (3 gleich, 1 anders)</b>. Kleidung & Frisur helfen hier nicht!",
+    speedLabel: "Schwierigkeitsgrad wählen",
+    speedNormalDesc: "Standard ohne Tipps",
+    speedBlitzDesc: "Reiner Instinkt",
+    speedMemoryDesc: "TARGET verschwindet!",
+    catLabel: "Kategorie starten (Karten & Runden jedes Mal neu gemischt)",
     catEast: "Ostasiatische Gesichter",
-    catEastDesc: "PSY-Check, Two-Block, langes Haar, K-Pop Blond & Brille",
+    catEastDesc: "6 Runden · 4er-Auswahl · Subtile Knochenstruktur",
     catBlack: "Schwarze Gesichter",
-    catBlackDesc: "Skin-Fade & Bart, Box Braids, Locs, Afro-Locken & Anzug",
+    catBlackDesc: "6 Runden · 4er-Auswahl · Keine Styling-Hinweise",
     catEuro: "Europäische Gesichter",
-    catEuroDesc: "Münchner Tech-Bro, Blonde Wellen, Hipster, Tracht & Nordisch",
-    catAll: "360° Cross-Race Mix (Alle 15)",
-    catAllDesc: "5 Ostasien + 5 Schwarz + 5 Europa inkl. Gruppen-Auswertung!",
-    unitRounds: "Runden",
-    unitMix: "Mix",
-    readyBtn: "Ich bin bereit – Foto zeigen! 👀",
-    loadingBtn: "⏳ Fotos werden geladen",
-    preloadingHint: "⏳ Fotos werden im Hintergrund vorgeladen…",
-    preloadedHint: "✅ Fotos geladen – sofort startklar!",
-    modeTarget3: "1 Zielperson + 3 Auswahlbilder",
-    modePair4: "Zwillings-Falle: Tippe 2 Fotos derselben Person",
-    modePsy4: "Promi-Stil-Check: 1 aus 4",
+    catEuroDesc: "6 Runden · 4er-Auswahl · Echte Doppelgänger",
+    catAll: "360° Hardcore-Mix (Alle 18)",
+    catAllDesc: "6 Ostasien + 6 Schwarz + 6 Europa · Mit Analyse!",
+    unitRounds: "R",
+    unitMix: "MIX",
+    loadingPill: "⏳ Fotos laden…",
+    memorizePill: "👀 TARGET einprägen…",
+    hiddenTargetTxt: "🔒 Aus dem Gedächtnis!",
+    missionTarget4: "🎯 Wer ist exakt die TARGET-Person? (1 wählen)",
+    missionPair4: "👥 Welche 2 Fotos zeigen DIESELBE Person?",
+    missionOdd4: "🕵️ 3× dieselbe Person – Wer ist der 1 FALSCHE?",
     roundWord: "Runde",
     pointsWord: "Treffer",
-    correctMsg: "✅ Volltreffer! Du hast auf die echten Gesichtszüge geachtet.",
-    wrongMsg: "❌ Reingefallen! Frisur, Mütze oder Outfit haben dich getäuscht.",
-    timeoutMsg: "⏰ Zeit abgelaufen! Unter Druck blockiert das Styling den Blick.",
-    bioBtn: "Biometrie-Check 🔍",
+    correctMsg: "✅ Stark! Du hast echte Gesichtsknochen statt Frisur/Kleidung gelesen.",
+    wrongMsg: "❌ Daneben! Bei Doppelgängern täuschen Ausdruck, Brille und Haare sofort.",
+    timeoutMsg: "⏰ Zeit abgelaufen! Unter Druck versagt das oberflächliche Styling-Gedächtnis.",
+    bioBtn: "Knochen-Guide 🔍",
     nextBtn: "Nächste Runde →",
-    finishBtn: "Auswertung ansehen 🏆",
+    finishBtn: "Ergebnis ansehen 🏆",
     statAcc: "Trefferquote",
     statTime: "Ø Reaktionszeit",
-    shareBtn: "Ergebnis + Spiel-Link teilen 🔗",
-    switchCatBtn: "Andere Kategorie testen 🔄",
-    copied: "In die Zwischenablage kopiert! 📋",
-    linkCopied: "Spiel-Link kopiert! Einfach weiterschicken 🔗",
+    shareBtn: "Score + Spiel-Link teilen 🔗",
+    switchCatBtn: "Andere Kategorie spielen 🔄",
+    copied: "Ergebnis & Link kopiert! 📋",
+    linkCopied: "Spiel-Link kopiert! 🔗",
     shortEast: "🌏 Ostasien",
     shortBlack: "🌍 Schwarz",
     shortEuro: "🇪🇺 Europa",
     ranks: [
-      "Super-Recognizer! Deine FFA lässt sich nicht täuschen 🧠✨",
-      "Starkes Auge! Nur fiese Styling-Fallen konnten dich bremsen 👀",
-      "Klassischer Cross-Race-Effekt! Frisur & Kleidung haben gewonnen 😄",
-      "Komplett auf Haare, Mütze & Brille geachtet – völlig menschlich! 😂"
+      "Super-Recognizer! Selbst im Hardcore-Modus unbestechlich 🧠🔥",
+      "Überdurchschnittlich scharfes Auge – fast alle Fallen durchschaut 👀",
+      "Klassischer Cross-Race-Effekt: Ohne Tipps wird es richtig schwer! 😅",
+      "Komplett von Frisur, Licht & Doppelgängern ausgetrickst! 😂"
     ],
-    resScience: "💡 <b>Fazit:</b> Jedes Gehirn nutzt Abkürzungen (Haare, Bart, Brille), wenn es eine Gruppe seltener im Alltag sieht. Schick den Link weiter und vergleicht eure Werte!"
+    resScience: "💡 <b>Fazit:</b> Wenn Kleidung, Muttermale und Vorab-Tipps wegfallen, muss die <i>Fusiform Face Area (FFA)</i> reine Millimeter-Abstände von Augen, Nase und Kiefer berechnen."
   },
   en: {
     backBtn: "← Back",
-    heroTitle: "Cross-Race Effect Speed Quiz",
-    heroSub: "Why do unfamiliar faces blur together under time pressure? 15 photorealistic rounds—fairly testing every direction!",
-    scienceNote: "🧠 <b>Neuroscience, not prejudice:</b> Your brain's <i>Fusiform Face Area (FFA)</i> encodes fine bone & eye spacing for faces you see daily, but defaults to hair, beard, hat, or glasses first for less familiar groups.",
-    speedLabel: "Time Limit (Starts ONLY after photos 100% load!)",
-    speedNormalDesc: "Standard speed test",
-    speedBlitzDesc: "Pure split-second instinct",
-    catLabel: "Pick a Category (Shuffled every play!)",
-    catEast: "East Asian Faces",
-    catEastDesc: "PSY check, K-two-block, straight hair, K-pop blonde & suit",
-    catBlack: "Black Faces",
-    catBlackDesc: "Skin-fade & beard, box braids, locs, afro curls & executive",
-    catEuro: "European Faces",
-    catEuroDesc: "Munich tech-bro, blonde waves, hipster, Tracht & Nordic",
-    catAll: "360° Cross-Race Mix (All 15)",
-    catAllDesc: "5 East Asian + 5 Black + 5 European with group breakdown!",
-    unitRounds: "Rounds",
-    unitMix: "Mix",
-    readyBtn: "I'm ready – Show photos! 👀",
-    loadingBtn: "⏳ Loading photos",
-    preloadingHint: "⏳ Preloading photos in background…",
-    preloadedHint: "✅ Photos ready – zero lag!",
-    modeTarget3: "Match TARGET to A, B, or C",
-    modePair4: "Pair Finder: Tap the 2 photos of the SAME person",
-    modePsy4: "Iconic Style Check: Pick 1 of 4",
+    heroTitle: "Cross-Race Face Test (Hardcore)",
+    heroSub: "Zero pre-round hints, zero outfit giveaways, 4 close lookalikes every round! Can you read pure bone structure under pressure?",
+    scienceNote: "🧠 <b>3 Mixed Modes:</b> 🎯 <b>Match TARGET (1/4)</b> · 👥 <b>Same Person Pair (2/4)</b> · 🕵️ <b>Spot the Impostor (3 same, 1 different)</b>. Hair & clothes won't save you!",
+    speedLabel: "Select Difficulty Mode",
+    speedNormalDesc: "No-hint standard",
+    speedBlitzDesc: "Split-second gut",
+    speedMemoryDesc: "TARGET vanishes!",
+    catLabel: "Start Category (Shuffled order & slots every run)",
+    catEast: "East Asian Portraits",
+    catEastDesc: "6 rounds · 4-way close lookalikes · Zero tells",
+    catBlack: "Black Portraits",
+    catBlackDesc: "6 rounds · 4-way close lookalikes · Zero tells",
+    catEuro: "European Portraits",
+    catEuroDesc: "6 rounds · 4-way close lookalikes · Zero tells",
+    catAll: "360° Full Hardcore Mix",
+    catAllDesc: "6 East Asian + 6 Black + 6 Euro · Full breakdown!",
+    unitRounds: "R",
+    unitMix: "MIX",
+    loadingPill: "⏳ Loading portraits…",
+    memorizePill: "👀 Memorize TARGET now…",
+    hiddenTargetTxt: "🔒 Match from memory!",
+    missionTarget4: "🎯 Find the exact SAME person as TARGET (Pick 1)",
+    missionPair4: "👥 Tap the 2 photos of the SAME person",
+    missionOdd4: "🕵️ 3 are the SAME person — Spot the 1 IMPOSTOR!",
     roundWord: "Round",
     pointsWord: "Score",
-    correctMsg: "✅ Nailed it! You read the underlying bone structure.",
-    wrongMsg: "❌ Tricked! Hairstyle, hat, or outfit hijacked your memory.",
-    timeoutMsg: "⏰ Time's up! Under speed pressure, surface cues overload recognition.",
-    bioBtn: "Biometrics 🔍",
+    correctMsg: "✅ Nailed it! You read bone structure past the hair & lighting.",
+    wrongMsg: "❌ Tricked! Lookalike styling & expression fooled your first impression.",
+    timeoutMsg: "⏰ Time's up! Without surface shortcuts, facial matching is tough.",
+    bioBtn: "Bone Guide 🔍",
     nextBtn: "Next Round →",
     finishBtn: "See Final Score 🏆",
     statAcc: "Accuracy",
     statTime: "Avg Speed",
-    shareBtn: "Share Score + Game Link 🔗",
+    shareBtn: "Share Score + Link 🔗",
     switchCatBtn: "Try Another Category 🔄",
-    copied: "Copied to clipboard! 📋",
-    linkCopied: "Game URL copied! Ready to send 🔗",
+    copied: "Score & link copied! 📋",
+    linkCopied: "Game link copied! 🔗",
     shortEast: "🌏 East Asian",
     shortBlack: "🌍 Black",
     shortEuro: "🇪🇺 European",
     ranks: [
-      "Super-Recognizer! Hair & outfits couldn't fool your FFA 🧠✨",
-      "Sharp eye! Only the nastiest styling traps caught you 👀",
-      "Classic Cross-Race Effect! Hairstyles beat facial geometry 😄",
-      "100% tricked by hair, hats & glasses—welcome to human neuroscience! 😂"
+      "Super-Recognizer! Even zero-hint doppelgängers couldn't fool you 🧠🔥",
+      "Sharp eye! You beat most of the cross-styling lookalikes 👀",
+      "Classic Cross-Race Effect—without hints, every face blurs together! 😅",
+      "Outsmarted by doppelgängers & styling shifts—totally human! 😂"
     ],
-    resScience: "💡 <b>Takeaway:</b> Every human brain leans on shortcuts (hair, beard, glasses) for groups it has less lifetime visual training with. Send the link to a friend and compare!"
+    resScience: "💡 <b>Takeaway:</b> Once outfit giveaways and hints are stripped away, your brain's <i>Fusiform Face Area (FFA)</i> must rely purely on millimeter spacing of eyes, nose bridge, and jaw."
   },
   ko: {
     backBtn: "← 뒤로",
-    heroTitle: "타인종 안면인식 스피드 테스트",
-    heroSub: "왜 덜 익숙한 인종의 얼굴은 시간 압박 속에서 비슷해 보일까요? 100% 실사 15라운드로 내 뇌의 눈썰미를 테스트해 보세요!",
-    scienceNote: "🧠 <b>편견이 아닌 뇌과학(FFA) 현상:</b> 인간의 뇌 <i>방추상 얼굴 영역(FFA)</i>은 매일 접한 인종엔 눈 간격·턱선 골격을 정밀 저장하지만, 덜 접한 그룹엔 헤어스타일·수염·모자·안경 같은 외적 단서에 먼저 의존합니다.",
-    speedLabel: "제한 시간 선택 (사진 100% 로딩 완료 후 카운트 시작!)",
-    speedNormalDesc: "표준 두뇌 테스트",
-    speedBlitzDesc: "순간 직관 극한 모드",
-    catLabel: "카테고리 선택 (매 플레이 시 순서 & 보기 위치 셔플!)",
-    catEast: "동아시아인 실사 챌린지",
-    catEastDesc: "싸이 닮은꼴, 투블럭, 긴 생머리, K-팝 탈색, 둥근안경 정장",
-    catBlack: "흑인 실사 챌린지",
-    catBlackDesc: "스킨페이드&수염, 박스 브레이드, 드레드락, 아프로 컬, 임원",
-    catEuro: "유럽 / 서구권 실사 챌린지",
-    catEuroDesc: "뮌헨 테크브로, 허니블론드, 베를린 힙스터, 전통의상, 북유럽",
-    catAll: "360° 크로스레이스 통합 믹스",
-    catAllDesc: "동아시아 5 + 흑인 5 + 유럽 5 (중복 제로 · 인종별 분석 리포트!)",
-    unitRounds: "라운드",
-    unitMix: "믹스",
-    readyBtn: "준비 완료 – 사진 보기! 👀",
-    loadingBtn: "⏳ 사진 불러오는 중",
-    preloadingHint: "⏳ 다음 라운드 사진 미리 불러오는 중…",
-    preloadedHint: "✅ 사진 로딩 완료 – 누르는 즉시 시작!",
-    modeTarget3: "타겟 매칭: A·B·C 중 TARGET과 동일 인물 찾기",
-    modePair4: "쌍둥이 함정: 4장 중 같은 사람 사진 2장 고르기",
-    modePsy4: "시그니처 스타일 체크: 4명 중 1명 찾기",
+    heroTitle: "타인종 안면인식 테스트 (하드코어)",
+    heroSub: "사전 힌트 제로 · 옷차림/점 꼼수 제로! 초박빙 실사 도플갱어들 사이에서 오직 안면 골격만으로 정답을 찾아보세요.",
+    scienceNote: "🧠 <b>3가지 실전 미션 랜덤 출제:</b> 🎯 <b>TARGET 매칭(4지선다)</b> · 👥 <b>동일인물 2장 찾기</b> · 🕵️ <b>스파이 1명 색출(3장 동일인물 · 1명 타인)</b>. 머리·안경·배경 패턴으로는 절대 풀 수 없습니다!",
+    speedLabel: "난이도 모드 선택 (사진 100% 표시 후 카운트 시작)",
+    speedNormalDesc: "노힌트 실전 표준",
+    speedBlitzDesc: "초고속 직관 극한",
+    speedMemoryDesc: "1.8초 뒤 타겟 블라인드!",
+    catLabel: "카테고리 선택 (매 판 문제 순서 & 보기 위치 완전 셔플)",
+    catEast: "동아시아인 하드코어",
+    catEastDesc: "6라운드 · 4지선다 도플갱어 · 노힌트 진검승부",
+    catBlack: "흑인 하드코어",
+    catBlackDesc: "6라운드 · 4지선다 도플갱어 · 노힌트 진검승부",
+    catEuro: "유럽 / 서구권 하드코어",
+    catEuroDesc: "6라운드 · 4지선다 도플갱어 · 노힌트 진검승부",
+    catAll: "360° 크로스레이스 통합 (18R)",
+    catAllDesc: "동아시아 6 + 흑인 6 + 유럽 6 · 인종별 정밀 리포트!",
+    unitRounds: "R",
+    unitMix: "MIX",
+    loadingPill: "⏳ 고화질 실사 불러오는 중…",
+    memorizePill: "👀 TARGET 얼굴을 지금 기억하세요!",
+    hiddenTargetTxt: "🔒 블라인드!\n기억으로 찾으세요",
+    missionTarget4: "🎯 TARGET과 동일 인물을 찾으세요 (1명)",
+    missionPair4: "👥 같은 사람 사진 2장을 고르세요",
+    missionOdd4: "🕵️ 3장은 동일 인물! 다른 사람(스파이) 1명은?",
     roundWord: "라운드",
     pointsWord: "정답",
-    correctMsg: "✅ 정답! 헤어·옷차림에 속지 않고 진짜 골격을 읽었습니다.",
-    wrongMsg: "❌ 함정에 걸렸습니다! 머리스타일·모자·안경이 첫인상을 가로챘네요.",
-    timeoutMsg: "⏰ 시간 초과! 압박 속에선 외적 스타일이 세부 인식을 방해합니다.",
-    bioBtn: "안면 골격 가이드 🔍",
+    correctMsg: "✅ 정답! 헤어·안경·표정에 속지 않고 진짜 안면 골격을 읽었습니다.",
+    wrongMsg: "❌ 오답! 도플갱어의 스타일링·표정 변화에 첫인상이 낚였습니다.",
+    timeoutMsg: "⏰ 시간 초과! 외적 단서 없이는 짧은 순간 골격 비교가 훨씬 까다롭습니다.",
+    bioBtn: "골격 가이드 🔍",
     nextBtn: "다음 라운드 →",
     finishBtn: "최종 결과 보기 🏆",
     statAcc: "정답률",
@@ -908,326 +851,294 @@ const UI = {
     shareBtn: "점수 + 게임 링크 공유하기 🔗",
     switchCatBtn: "다른 카테고리 도전하기 🔄",
     copied: "결과와 링크가 복사되었습니다! 📋",
-    linkCopied: "게임 링크가 복사되었습니다! 바로 공유해 보세요 🔗",
+    linkCopied: "게임 링크가 복사되었습니다! 🔗",
     shortEast: "🌏 동아시아",
     shortBlack: "🌍 흑인",
     shortEuro: "🇪🇺 유럽",
     ranks: [
-      "슈퍼 레코그나이저! 어떤 스타일 변신도 통하지 않네요 🧠✨",
-      "예리한 눈썰미! 가장 까다로운 스타일링 함정만 아깝게 놓쳤어요 👀",
-      "전형적인 타인종 효과(CRE)! 골격보다 헤어·패션이 먼저 보였네요 😄",
-      "머리·모자·안경에 100% 낚였습니다 — 지극히 정상적인 인간 뇌입니다! 😂"
+      "슈퍼 레코그나이저! 노힌트 도플갱어 함정까지 완벽히 뚫었습니다 🧠🔥",
+      "상위권 눈썰미! 까다로운 교차 스타일링 함정을 대부분 간파했네요 👀",
+      "전형적인 타인종 효과(CRE)! 힌트가 사라지니 체감 난이도가 확 오르죠? 😅",
+      "도플갱어와 스타일 변신에 완벽히 포위되었습니다 — 재도전해 보세요! 😂"
     ],
-    resScience: "💡 <b>핵심 요약:</b> 모든 인간의 뇌는 일상에서 덜 마주친 집단일수록 헤어·수염·안경 같은 단축키에 의존합니다. 친구에게 링크를 던져주고 서로 어느 쪽에 강한지 비교해 보세요!"
+    resScience: "💡 <b>핵심 요약:</b> 사전 힌트와 옷차림 패턴을 제거하면 뇌의 <i>방추상 얼굴 영역(FFA)</i>은 오직 미간 거리·콧대 폭·하악각 같은 미세 골격만으로 인물을 판별해야 합니다."
   }
 };
 
-// Strictly 15 unique 100% photorealistic rounds (5 East Asian + 5 Black + 5 European, ZERO duplicates)
+// 18 zero-tell photorealistic rounds (6 East Asian + 6 Black + 6 European)
+// Every round has 4 high-similarity choices (target4 / pair4 / odd4), zero moles, balanced styling splits, and full runtime slot shuffling.
 const ROUNDS = [
-  // ==================== EAST ASIAN (5) ====================
+  // ==================== EAST ASIAN (6) ====================
   {
-    id: "ea_1", cat: "east", type: "psy4", answer: "C",
-    compositeImg: "assets/v2/ea_01.jpg",
-    title: { de: "Echter PSY-Stil im Smoking", en: "Find the Real PSY Style", ko: "턱시도 속 진짜 싸이(PSY) 닮은꼴 찾기" },
-    brief: {
-      de: "Alle vier tragen Smoking, Fliege und zurückgegelte schwarze Haare. Wer hat PSYs schmale Lachaugen, volle Wangen und breites Grinsen?",
-      en: "All four wear tuxedos, bowties, and slicked-back hair. Which one has PSY's narrow smiling eyes, full cheeks, and signature grin?",
-      ko: "네 명 모두 턱시도와 보타이, 올백 머리를 하고 있습니다. 싸이 특유의 가늘게 휘어진 눈매와 넓은 볼, 호탕한 미소를 가진 인물은?"
+    id: "ea_1", cat: "east", type: "target4", answer: "A",
+    target: { img: "assets/v3/ea_1_T.jpg" },
+    cards: {
+      A: { img: "assets/v3/ea_1_A.jpg" },
+      B: { img: "assets/v3/ea_1_B.jpg" },
+      C: { img: "assets/v3/ea_1_C.jpg" },
+      D: { img: "assets/v3/ea_1_D.jpg" }
     },
-    prompt: { de: "Wer ist der echte PSY-Typ?", en: "Which one is PSY?", ko: "진짜 싸이 스타일 얼굴은 누구?" },
     explain: {
-      de: "[[C]] hat die typischen schmalen Lachaugen und vollen Wangen. [[A]] hat große runde Augen, [[B]] einen Kantkiefer und [[D]] tiefere Falten.",
-      en: "[[C]] has the narrow smiling monolids and full apple cheeks. [[A]] has big round eyes, [[B]] a square jaw, and [[D]] droopy outer corners.",
-      ko: "[[C]]가 특유의 가늘게 웃는 무쌍 눈매와 둥근 볼·턱선을 가졌습니다. [[A]]는 큰 쌍꺼풀 눈, [[B]]는 각진 턱, [[D]]는 중후한 주름 눈매입니다."
+      de: "[[A]] ist TARGET ohne Brille mit geteiltem Pony (identischer schmaler Nasenrücken & Augenform). [[B]] hat breitere Nasenflügel, [[C]] & [[D]] kopieren nur Pony & Brille.",
+      en: "[[A]] is TARGET without glasses and parted hair (identical narrow nasal bridge & inner-fold eyes). [[B]] has wider nostrils; [[C]] & [[D]] only copy the bangs and frames.",
+      ko: "[[A]]가 안경을 벗고 가르마를 탔지만 좁고 곧은 콧대·속쌍꺼풀 눈매·턱선이 TARGET과 일치합니다. [[B]]는 콧볼이 더 넓고, [[C]]·[[D]]는 앞머리와 안경만 같습니다."
     }
   },
   {
-    id: "ea_2", cat: "east", type: "target3", answer: "B",
-    compositeImg: "assets/v2/ea_02.jpg",
-    title: { de: "Die K-Two-Block-Frisurenfalle", en: "The K-Two-Block Hair Trap", ko: "K-투블럭 & 블랙 후드 함정" },
-    brief: {
-      de: "Merke dir den TARGET-Mann oben. Wer unten (A, B oder C) ist exakt dieselbe Person – trotz komplett anderem Styling?",
-      en: "Study the TARGET man on top. Who below (A, B, or C) is the exact same person despite a total hair & outfit change?",
-      ko: "위 TARGET 남성의 이목구비를 기억하세요. 머리와 옷을 완전히 바꿨지만 골격이 100% 동일한 인물은?"
+    id: "ea_2", cat: "east", type: "pair4", answer: "AD",
+    cards: {
+      A: { img: "assets/v3/ea_2_A.jpg" },
+      B: { img: "assets/v3/ea_2_B.jpg" },
+      C: { img: "assets/v3/ea_2_C.jpg" },
+      D: { img: "assets/v3/ea_2_D.jpg" }
     },
-    prompt: { de: "Wer unten ist exakt die TARGET-Person?", en: "Who below matches TARGET?", ko: "아래 A·B·C 중 TARGET과 동일 인물은?" },
     explain: {
-      de: "[[B]] ist identisch (scharfe Augenpartie, schmale Nase, Wangenfleck), hat aber die Haare zurückgegelt! [[A]] und [[C]] kopieren nur Frisur & Hoodie.",
-      en: "[[B]] is the exact same man (sharp eyes, narrow nose, cheek mole) with slicked hair! [[A]] and [[C]] only copy the bangs and hoodie.",
-      ko: "[[B]]가 올백 머리와 흰 셔츠로 바꿨지만 눈매·콧날·왼쪽 볼 점까지 TARGET 본인입니다! [[A]]·[[C]]는 투블럭과 후드만 따라 했습니다."
+      de: "[[A]] (offenes Haar) und [[D]] (Pferdeschwanz) zeigen dieselbe Frau: sanft ansteigende Augenwinkel, feine Nase und identisches Oval-Kinn.",
+      en: "[[A]] (hair down) and [[D]] (low ponytail) are the exact same woman: gently upturned outer eyes, slim nasal bridge, and matching oval jaw.",
+      ko: "[[A]](긴 생머리)와 [[D]](포니테일)가 살짝 올라간 눈꼬리·섬세한 콧날·갸름한 달걀형 턱선이 일치하는 동일 인물입니다."
     }
   },
   {
-    id: "ea_3", cat: "east", type: "pair4", answer: "AD",
-    compositeImg: "assets/v2/ea_03.jpg",
-    title: { de: "Lange schwarze Haare – Welches Paar?", en: "Long Straight Hair – Matching Pair", ko: "긴 생머리 – 동일 인물 2장 찾기" },
-    brief: {
-      de: "Zwei dieser vier Fotos zeigen exakt dieselbe Frau an verschiedenen Orten. Tippe die BEIDEN Bilder an!",
-      en: "Two of these four photos show the exact same woman on different days. Tap the TWO matching portraits!",
-      ko: "네 장 중 두 장은 서로 다른 장소에서 찍힌 동일 여성입니다. 같은 사람 사진 2장을 모두 고르세요!"
+    id: "ea_3", cat: "east", type: "odd4", answer: "C",
+    cards: {
+      A: { img: "assets/v3/ea_3_A.jpg" },
+      B: { img: "assets/v3/ea_3_B.jpg" },
+      C: { img: "assets/v3/ea_3_C.jpg" },
+      D: { img: "assets/v3/ea_3_D.jpg" }
     },
-    prompt: { de: "Tippe 2 Fotos derselben Frau an!", en: "Tap the 2 photos of the SAME woman!", ko: "동일 인물 사진 2장을 선택하세요!" },
     explain: {
-      de: "[[A]] (Café) und [[D]] (Büro) zeigen dieselbe Frau: sanft geschwungene Augen, V-Kinn und kleiner Schönheitsfleck unterm Auge.",
-      en: "[[A]] (café) and [[D]] (office) are the same woman: upturned eyes, V-chin, and subtle under-eye beauty mark.",
-      ko: "[[A]](카페 니트)와 [[D]](오피스 정장)가 올라간 눈매, 갸름한 턱선, 눈 밑 점까지 완벽히 같은 인물입니다."
+      de: "[[C]] ist der Fremde (sichtbare Lidfalte, rundere Nasenspitze, weicheres Kinn)! [[A]], [[B]] und [[D]] zeigen alle denselben Mann in drei völlig verschiedenen Looks.",
+      en: "[[C]] is the impostor (creased eyelids, rounder nose tip, softer chin)! [[A]], [[B]], and [[D]] are all the exact same man across suit, glasses, and turtleneck.",
+      ko: "스파이는 [[C]]입니다(쌍꺼풀 라인과 둥근 코끝·부드러운 턱)! 나머지 [[A]]·[[B]]·[[D]] 세 장은 정장·안경·터틀넥으로 스타일만 바꾼 동일 인물입니다."
     }
   },
   {
-    id: "ea_4", cat: "east", type: "target3", answer: "C",
-    compositeImg: "assets/v2/ea_04.jpg",
-    title: { de: "K-Pop Platinblond-Falle", en: "K-Pop Platinum Blonde Trap", ko: "K-팝 백금발 탈색머리 함정" },
-    brief: {
-      de: "Helle Haarfarben ziehen 90 % unserer Aufmerksamkeit auf sich. Finde den TARGET-Idol unten wieder!",
-      en: "Bright hair dye hijacks 90% of visual memory. Find the TARGET idol below!",
-      ko: "화려한 탈색 머리는 시선의 90%를 빼앗아 갑니다. 염색에 속지 말고 TARGET과 같은 인물을 찾으세요!"
+    id: "ea_4", cat: "east", type: "target4", answer: "A",
+    target: { img: "assets/v3/ea_4_T.jpg" },
+    cards: {
+      A: { img: "assets/v3/ea_4_A.jpg" },
+      B: { img: "assets/v3/ea_4_B.jpg" },
+      C: { img: "assets/v3/ea_4_C.jpg" },
+      D: { img: "assets/v3/ea_4_D.jpg" }
     },
-    prompt: { de: "Welcher ist derselbe Sänger wie TARGET?", en: "Which one is the TARGET singer?", ko: "누가 TARGET과 같은 인물일까요?" },
     explain: {
-      de: "[[C]] hat die Haare schwarz gefärbt, besitzt aber exakt dieselben Augen, Kieferlinie und den Punkt nahe dem Mundwinkel!",
-      en: "[[C]] dyed his hair dark, but shares TARGET's exact eye shape, narrow jawline, and lower-cheek mole!",
-      ko: "[[C]]는 흑발과 니트로 바꿨지만 눈매·콧날·갸름한 턱선과 입가 아래 점까지 TARGET과 동일 인물입니다!"
+      de: "[[A]] hat glattes schwarzes Haar statt aschbrauner Wellen, teilt aber exakt Augenabstand, Nasenspitze und Lippenform mit TARGET.",
+      en: "[[A]] switched from ash-brown waves to tucked black hair, matching TARGET's exact eye spacing, nose tip, and lip bow.",
+      ko: "[[A]]가 애쉬브라운 웨이브에서 흑발 생머리로 바꿨지만 눈매 간격·코끝 모양·입술산 비율이 TARGET 본인입니다. [[B]]는 흑발 도플갱어, [[C]]·[[D]]는 웨이브 도플갱어입니다."
     }
   },
   {
-    id: "ea_5", cat: "east", type: "pair4", answer: "BC",
-    compositeImg: "assets/v2/ea_05.jpg",
-    title: { de: "Runde Brille & Dunkler Anzug", en: "Round Glasses & Dark Suit", ko: "둥근 안경 & 정장 끝판왕 퀴즈" },
-    brief: {
-      de: "Alle vier tragen runde Metallbrillen und dunkle Sakkos. Welche ZWEI Bilder zeigen denselben Mann?",
-      en: "All four wear round metal glasses and dark suits. Which TWO portraits are the exact same man?",
-      ko: "네 명 모두 동그란 메탈 안경과 어두운 정장을 입었습니다. 진짜 동일 인물 2장을 찾아보세요!"
+    id: "ea_5", cat: "east", type: "pair4", answer: "AC",
+    cards: {
+      A: { img: "assets/v3/ea_5_A.jpg" },
+      B: { img: "assets/v3/ea_5_B.jpg" },
+      C: { img: "assets/v3/ea_5_C.jpg" },
+      D: { img: "assets/v3/ea_5_D.jpg" }
     },
-    prompt: { de: "Wähle die 2 identischen Männer!", en: "Tap the 2 matching men!", ko: "같은 남성 사진 2장을 선택하세요!" },
     explain: {
-      de: "[[B]] und [[C]] teilen das schmale Gesicht, identische Augenpartie und Nasenform. [[A]] ist rundlich, [[D]] hat einen breiten Kiefer.",
-      en: "[[B]] and [[C]] share the narrow jawline, identical eye shape, and nose bridge. [[A]] has a round face and [[D]] a broad square jaw.",
-      ko: "[[B]](오피스)와 [[C]](거리 미소)가 갸름한 턱선·눈매·콧날이 일치하는 동일 인물입니다! [[A]]는 둥근 얼굴, [[D]]는 넓은 사각턱입니다."
+      de: "[[A]] (kurzer Crew-Cut) und [[C]] (Pony & Hornbrille) sind derselbe Mann: identische Brauenlinie, Nasenbreite und Kieferwinkel.",
+      en: "[[A]] (short crew-cut) and [[C]] (grown fringe & tortoiseshell glasses) are the same man: identical brow ridge, nose width, and jaw taper.",
+      ko: "[[A]](짧은 크루컷)와 [[C]](내린 앞머리+호피 안경)가 눈썹뼈 라인·콧볼 폭·하관 각도가 완벽히 일치하는 동일 인물입니다."
+    }
+  },
+  {
+    id: "ea_6", cat: "east", type: "odd4", answer: "B",
+    cards: {
+      A: { img: "assets/v3/ea_6_A.jpg" },
+      B: { img: "assets/v3/ea_6_B.jpg" },
+      C: { img: "assets/v3/ea_6_C.jpg" },
+      D: { img: "assets/v3/ea_6_D.jpg" }
+    },
+    explain: {
+      de: "[[B]] ist der Impostor (weiterer Augenabstand, rundere Nase, vollere Wangen)! [[A]], [[C]] (Brille ohne Pony) und [[D]] (Dutt) zeigen dieselbe Frau.",
+      en: "[[B]] is the impostor (wider-set eyes, rounder nasal tip, fuller cheeks)! [[A]], [[C]] (glasses, no bangs), and [[D]] (updo) are all the same woman.",
+      ko: "다른 사람은 [[B]]입니다(더 넓은 미간·둥근 코끝·볼살)! [[A]](시스루뱅)·[[C]](이마 노출+안경)·[[D]](올림머리) 세 장은 모두 같은 여성입니다."
     }
   },
 
-  // ==================== BLACK (5) ====================
+  // ==================== BLACK (6) ====================
   {
-    id: "bk_1", cat: "black", type: "target3", answer: "A",
-    title: { de: "Skin-Fade & Vollbart-Falle", en: "Skin-Fade & Boxed Beard Trap", ko: "스킨페이드 & 풀박스 수염 함정" },
-    brief: {
-      de: "Ein markanter Vollbart verdeckt die untere Gesichtshälfte, ist aber in 5 Minuten abrasiert! Finde TARGET unten.",
-      en: "A sharp boxed beard dominates memory—until someone shaves! Find the TARGET man below.",
-      ko: "진한 풀박스 수염은 하관을 가리지만 면도하면 5분 만에 사라집니다! 면도 후 TARGET을 찾아보세요."
-    },
-    prompt: { de: "Wer unten ist die TARGET-Person?", en: "Who below is TARGET?", ko: "아래 중 TARGET과 같은 남성은?" },
-    explain: {
-      de: "[[A]] hat sich rasiert, behält aber exakt dieselben Mandelaugen, schmale Nase und das Mal an der Braue! [[B]] & [[C]] tragen nur denselben Bart.",
-      en: "[[A]] shaved his beard, keeping the exact almond eyes, narrow nose bridge, and brow mark! [[B]] & [[C]] only copy the beard.",
-      ko: "[[A]]가 수염을 밀었지만 아몬드 눈매·콧날·눈썹 근처 점이 그대로입니다! [[B]]·[[C]]는 수염과 터틀넥만 같습니다."
-    },
-    target: { img: "assets/v2/bk_r1_T.jpg" },
+    id: "bk_1", cat: "black", type: "target4", answer: "A",
+    target: { img: "assets/v3/bk_1_T.jpg" },
     cards: {
-      A: { img: "assets/v2/bk_r1_A.jpg" },
-      B: { img: "assets/v2/bk_r1_B.jpg" },
-      C: { img: "assets/v2/bk_r1_C.jpg" }
+      A: { img: "assets/v3/bk_1_A.jpg" },
+      B: { img: "assets/v3/bk_1_B.jpg" },
+      C: { img: "assets/v3/bk_1_C.jpg" },
+      D: { img: "assets/v3/bk_1_D.jpg" }
+    },
+    explain: {
+      de: "[[A]] ist glattrasiert mit Locken, besitzt aber exakt TARGETs Mandelaugen, Brauenbogen und Nasenform. [[B]] ist ebenfalls rasiert, hat aber andere Augen & Nase.",
+      en: "[[A]] shaved his beard and grew short curls, keeping TARGET's exact almond eyes, brow ridge, and nasal structure. [[B]] is a clean-shaven decoy!",
+      ko: "[[A]]가 수염을 밀고 컬 헤어로 바꿨지만 눈매·눈썹뼈·코 비율이 TARGET 본인입니다! [[B]] 역시 면도한 도플갱어라 '면도한 사람 찍기'가 통하지 않습니다."
     }
   },
   {
-    id: "bk_2", cat: "black", type: "pair4", answer: "AC",
-    title: { de: "Lange Box Braids – Welches Paar?", en: "Box Braids – Find the Same Woman", ko: "긴 박스 브레이드 – 같은 여성 찾기" },
-    brief: {
-      de: "Alle vier Frauen tragen lange Box Braids. Welche ZWEI Fotos zeigen dieselbe Frau bei anderem Licht?",
-      en: "All four women wear long box braids. Which TWO photos show the exact same woman in different settings?",
-      ko: "네 명 모두 긴 박스 브레이드 헤어입니다. 서로 다른 장소에서 찍힌 동일 여성 2장을 고르세요!"
-    },
-    prompt: { de: "Tippe die 2 Fotos derselben Frau an!", en: "Tap the 2 matching women!", ko: "같은 여성 사진 2장을 탭하세요!" },
-    explain: {
-      de: "[[A]] und [[C]] sind identisch: V-förmige Wangenpartie, Mandelaugen und kleiner Schönheitsfleck über der Oberlippe.",
-      en: "[[A]] and [[C]] are the exact same woman: sculpted V-jaw, almond eyes, and subtle upper-lip beauty mark.",
-      ko: "[[A]](옐로 탑)와 [[C]](네이비 재킷)가 V라인 턱선·눈매·윗입술 위 매력점까지 완벽히 같은 인물입니다."
-    },
+    id: "bk_2", cat: "black", type: "pair4", answer: "AD",
     cards: {
-      A: { img: "assets/v2/bk_r2_A.jpg" },
-      B: { img: "assets/v2/bk_r2_B.jpg" },
-      C: { img: "assets/v2/bk_r2_C.jpg" },
-      D: { img: "assets/v2/bk_r2_D.jpg" }
+      A: { img: "assets/v3/bk_2_A.jpg" },
+      B: { img: "assets/v3/bk_2_B.jpg" },
+      C: { img: "assets/v3/bk_2_C.jpg" },
+      D: { img: "assets/v3/bk_2_D.jpg" }
+    },
+    explain: {
+      de: "[[A]] (offene Braids) und [[D]] (hoher Dutt) sind dieselbe Frau: identische Wangenknochen, Augenform und Kinnlinie.",
+      en: "[[A]] (braids down) and [[D]] (high bun) are the exact same woman: identical cheekbones, almond eye tilt, and sculpted chin.",
+      ko: "[[A]](긴 브레이드)와 [[D]](높은 올림머리)가 광대 라인·눈매 각도·턱 끝 윤곽이 완벽히 일치하는 동일 인물입니다."
     }
   },
   {
-    id: "bk_3", cat: "black", type: "target3", answer: "C",
-    title: { de: "Dreadlocks offen vs. Dutt", en: "Locs Down vs Office Bun Trap", ko: "드레드락 후드티 ↔ 오피스 올림머리" },
-    brief: {
-      de: "Offene Dreadlocks prägen die Silhouette extrem. Erkennst du TARGET wieder, wenn die Haare hochgebunden sind?",
-      en: "Loose shoulder-length locs create a strong silhouette. Can you spot TARGET with his hair tied up?",
-      ko: "어깨까지 내려오는 드레드락은 강한 외곽선 인상을 줍니다. 머리를 묶은 TARGET을 찾아보세요!"
-    },
-    prompt: { de: "Wer unten ist TARGET?", en: "Which portrait is TARGET?", ko: "머리를 묶은 TARGET은 누구?" },
-    explain: {
-      de: "[[C]] trägt die Locs als Dutt und weißes Hemd, hat aber denselben Augenabstand, V-Kiefer und Punkt am Kiefer!",
-      en: "[[C]] tied his locs into a high bun and put on a shirt, keeping the exact eyes, V-jaw, and jaw mark!",
-      ko: "[[C]]가 머리를 위로 묶고 셔츠를 입었지만 눈 간격·V라인 턱·턱 옆 점이 그대로입니다!"
-    },
-    target: { img: "assets/v2/bk_r5_T.jpg" },
+    id: "bk_3", cat: "black", type: "odd4", answer: "D",
     cards: {
-      A: { img: "assets/v2/bk_r5_A.jpg" },
-      B: { img: "assets/v2/bk_r5_B.jpg" },
-      C: { img: "assets/v2/bk_r5_C.jpg" }
+      A: { img: "assets/v3/bk_3_A.jpg" },
+      B: { img: "assets/v3/bk_3_B.jpg" },
+      C: { img: "assets/v3/bk_3_C.jpg" },
+      D: { img: "assets/v3/bk_3_D.jpg" }
+    },
+    explain: {
+      de: "[[D]] ist der Fremde (schmalere Nasenflügel, anderer Augenabstand & spitzeres Kinn)! [[A]], [[B]] (Brille & Dutt) und [[C]] sind exakt derselbe Mann.",
+      en: "[[D]] is the impostor (narrower nose tip, different eye spacing, sharper chin)! [[A]], [[B]] (glasses & bun), and [[C]] are the exact same man.",
+      ko: "스파이는 [[D]]입니다(더 좁은 코끝과 다른 미간·날렵한 턱)! [[A]](후드)·[[B]](묶은 머리+안경)·[[C]](데님 재킷) 세 장은 모두 동일 남성입니다."
     }
   },
   {
-    id: "bk_4", cat: "black", type: "pair4", answer: "BD",
-    title: { de: "Afro-Locken & Gold-Creolen", en: "Natural Afro Curls & Gold Hoops", ko: "아프로 컬 & 골드 링 귀걸이 함정" },
-    brief: {
-      de: "Voluminöse Locken und große Ohrringe ziehen den Blick nach außen. Welche ZWEI Bilder zeigen dieselbe Person?",
-      en: "Voluminous curls and gold hoops pull your gaze outward—focus on the center triangle of the face!",
-      ko: "풍성한 컬과 골드 링 귀걸이가 시선을 바깥으로 분산시킵니다. 얼굴 중심 이목구비를 보고 2장을 고르세요!"
-    },
-    prompt: { de: "Finde das identische Paar!", en: "Tap the 2 photos of the same person!", ko: "같은 인물 사진 2장을 탭하세요!" },
-    explain: {
-      de: "[[B]] und [[D]] zeigen dieselbe Frau: schmales ovales Gesicht, ruhige Mandelaugen und feines Kinn.",
-      en: "[[B]] and [[D]] are the same woman: narrow oval face, calm almond eyes, and matching nose & chin proportions.",
-      ko: "[[B]](블랙 터틀넥)와 [[D]](화이트 셔츠)가 갸름한 달걀형 얼굴과 눈·코 비율이 완벽히 일치하는 동일 인물입니다."
-    },
+    id: "bk_4", cat: "black", type: "target4", answer: "A",
+    target: { img: "assets/v3/bk_4_T.jpg" },
     cards: {
-      A: { img: "assets/v2/bk_r4_A.jpg" },
-      B: { img: "assets/v2/bk_r4_B.jpg" },
-      C: { img: "assets/v2/bk_r4_C.jpg" },
-      D: { img: "assets/v2/bk_r4_D.jpg" }
+      A: { img: "assets/v3/bk_4_A.jpg" },
+      B: { img: "assets/v3/bk_4_B.jpg" },
+      C: { img: "assets/v3/bk_4_C.jpg" },
+      D: { img: "assets/v3/bk_4_D.jpg" }
+    },
+    explain: {
+      de: "[[A]] trägt das Haar streng zurück ohne Brille, teilt aber exakt Augenpartie, Nasenrücken und Lippenkontur mit TARGET.",
+      en: "[[A]] pulled her curls back and removed her glasses, matching TARGET's exact eye shape, nose bridge, and lip contour.",
+      ko: "[[A]]가 안경을 벗고 머리를 뒤로 묶었지만 눈매·콧대·입술 윤곽이 TARGET 본인입니다. [[B]]는 묶은 머리 도플갱어, [[C]]·[[D]]는 컬+안경 도플갱어입니다."
     }
   },
   {
-    id: "bk_5", cat: "black", type: "target3", answer: "B",
-    title: { de: "Glatze, Brille & Business-Suit", en: "Bald, Glasses & Executive Suit", ko: "민머리 & 뿔테 안경 임원 함정" },
-    brief: {
-      de: "Keine Haare als Hinweis – dafür eine markante Brille als Ablenkung! Wer unten ist derselbe Manager wie TARGET?",
-      en: "Zero hair cues—and heavy glasses acting as a decoy! Which man below is TARGET?",
-      ko: "머리카락 단서가 없는 대신 진한 사각 안경이 착시를 유도합니다. 안경 벗은 TARGET을 찾아보세요!"
-    },
-    prompt: { de: "Wer unten stimmt mit TARGET überein?", en: "Who matches TARGET?", ko: "아래 중 TARGET 본인은 누구?" },
-    explain: {
-      de: "[[B]] hat Brille und Anzug abgelegt, besitzt aber exakt dieselben geschwungenen Brauen, schmalen Kiefer und Wangenfleck!",
-      en: "[[B]] took off his glasses and suit, matching TARGET's arched brows, narrow oval jaw, and cheek mark!",
-      ko: "[[B]]가 안경과 수트를 벗고 니트를 입었지만 아치형 눈썹·갸름한 턱선·오른볼 점이 TARGET과 일치합니다!"
-    },
-    target: { img: "assets/v2/bk_r3_T.jpg" },
+    id: "bk_5", cat: "black", type: "pair4", answer: "AC",
     cards: {
-      A: { img: "assets/v2/bk_r3_A.jpg" },
-      B: { img: "assets/v2/bk_r3_B.jpg" },
-      C: { img: "assets/v2/bk_r3_C.jpg" }
+      A: { img: "assets/v3/bk_5_A.jpg" },
+      B: { img: "assets/v3/bk_5_B.jpg" },
+      C: { img: "assets/v3/bk_5_C.jpg" },
+      D: { img: "assets/v3/bk_5_D.jpg" }
+    },
+    explain: {
+      de: "[[A]] (Anzug & Brille) und [[C]] (Pullover ohne Brille) zeigen denselben Mann: identische Brauenlinie, Wangenstruktur und Kieferform.",
+      en: "[[A]] (suit & glasses) and [[C]] (sweater, no glasses) are the same man: identical brow arch, cheekbone structure, and jawline.",
+      ko: "[[A]](수트+안경)와 [[C]](니트+맨얼굴)가 눈썹 아치·광대 골격·턱선 각도가 일치하는 동일 인물입니다."
+    }
+  },
+  {
+    id: "bk_6", cat: "black", type: "odd4", answer: "A",
+    cards: {
+      A: { img: "assets/v3/bk_6_A.jpg" },
+      B: { img: "assets/v3/bk_6_B.jpg" },
+      C: { img: "assets/v3/bk_6_C.jpg" },
+      D: { img: "assets/v3/bk_6_D.jpg" }
+    },
+    explain: {
+      de: "[[A]] ist die Fremde (breitere Nasenpartie & runderes Kinn)! [[B]] (kurze Curls), [[C]] (Kopftuch) und [[D]] (lange Locken) zeigen alle dieselbe Frau.",
+      en: "[[A]] is the impostor (wider nasal bridge & softer chin)! [[B]] (short curls), [[C]] (headwrap), and [[D]] (twist-out curls) are all the same woman.",
+      ko: "다른 사람은 [[A]]입니다! [[B]](숏 컬)·[[C]](헤드랩 터번)·[[D]](트위스트 컬) 세 장은 헤어스타일이 완전히 달라도 이목구비가 일치하는 동일 여성입니다."
     }
   },
 
-  // ==================== EUROPEAN / WESTERN (5) ====================
+  // ==================== EUROPEAN / WESTERN (6) ====================
   {
-    id: "eu_1", cat: "euro", type: "target3", answer: "B",
-    title: { de: "Der „Münchner Tech-Bro“-Klon", en: "The Munich Tech-Bro Clone", ko: "뮌헨 테크브로 플리스 조끼 클론" },
-    brief: {
-      de: "Blonder Seitenscheitel, Dreitagebart und Fleece-Weste: Für Ungeübte verschmelzen diese drei sofort! Wer ist TARGET?",
-      en: "Sandy-blonde side-part, light stubble, and fleece vest: to non-Europeans, they blur into one! Find TARGET.",
-      ko: "금발 가르마·수염 자국·플리스 조끼! 비유럽권 눈에는 셋 다 한 사람처럼 보입니다. 진짜 TARGET은?"
-    },
-    prompt: { de: "Wer unten ist derselbe Mann wie TARGET?", en: "Who below is the exact same man?", ko: "아래 중 TARGET과 동일 인물은?" },
-    explain: {
-      de: "[[B]] trägt Sakko ohne Weste, hat aber exakt das schmale Gesicht, die blaugrauen Augen und das Kinngrübchen!",
-      en: "[[B]] ditched the vest and stubble, keeping the exact narrow face, blue-grey hooded eyes, and cleft chin!",
-      ko: "[[B]]가 조끼 대신 네이비 재킷을 입었지만 갸름한 얼굴·청회색 눈매·턱 끝 보조개가 그대로입니다!"
-    },
-    target: { img: "assets/v2/eu_r1_T.jpg" },
+    id: "eu_1", cat: "euro", type: "target4", answer: "A",
+    target: { img: "assets/v3/eu_1_T.jpg" },
     cards: {
-      A: { img: "assets/v2/eu_r1_A.jpg" },
-      B: { img: "assets/v2/eu_r1_B.jpg" },
-      C: { img: "assets/v2/eu_r1_C.jpg" }
+      A: { img: "assets/v3/eu_1_A.jpg" },
+      B: { img: "assets/v3/eu_1_B.jpg" },
+      C: { img: "assets/v3/eu_1_D.jpg" },
+      D: { img: "assets/v3/eu_1_E.jpg" }
+    },
+    explain: {
+      de: "[[A]] ist glattrasiert mit lockerem Haar, stimmt aber in Augenabstand, geradem Nasenrücken und Kinn exakt mit TARGET überein.",
+      en: "[[A]] shaved his stubble and tousled his hair, matching TARGET's exact deep-set eyes, straight nose bridge, and chin.",
+      ko: "[[A]]가 수염을 밀고 머리를 자연스럽게 흐트러뜨렸지만 눈매 깊이·곧은 콧대·턱 끝 골격이 TARGET과 일치합니다."
     }
   },
   {
     id: "eu_2", cat: "euro", type: "pair4", answer: "AC",
-    title: { de: "Honigblonde Wellen – Welches Paar?", en: "Honey-Blonde Waves – Match the Pair", ko: "허니블론드 웨이브 – 같은 여성 찾기" },
-    brief: {
-      de: "Alle vier Frauen haben schulterlange honigblonde Wellen. Welche ZWEI Fotos zeigen dieselbe Frau?",
-      en: "All four European women have honey-blonde wavy hair. Which TWO photos show the exact same woman?",
-      ko: "네 명 모두 어깨 길이의 허니블론드 웨이브입니다. 눈 색과 얼굴 골격을 보고 동일 인물 2장을 찾으세요!"
-    },
-    prompt: { de: "Tippe 2 Fotos derselben Frau an!", en: "Tap the 2 matching women!", ko: "같은 여성 사진 2장을 탭하세요!" },
-    explain: {
-      de: "[[A]] und [[C]] sind dieselbe Frau: grüne Mandelaugen, markantes V-Kinn und kleiner Fleck auf der Wange.",
-      en: "[[A]] and [[C]] are the same woman: green almond eyes, sculpted V-chin, and subtle cheek beauty mark.",
-      ko: "[[A]](화이트 셔츠)와 [[C]](블랙 터틀넥)가 녹색 아몬드 눈매·날렵한 V턱선·볼 점까지 같은 인물입니다."
-    },
     cards: {
-      A: { img: "assets/v2/eu_r2_A.jpg" },
-      B: { img: "assets/v2/eu_r2_B.jpg" },
-      C: { img: "assets/v2/eu_r2_C.jpg" },
-      D: { img: "assets/v2/eu_r2_D.jpg" }
+      A: { img: "assets/v3/eu_2_A.jpg" },
+      B: { img: "assets/v3/eu_2_B.jpg" },
+      C: { img: "assets/v3/eu_2_C.jpg" },
+      D: { img: "assets/v3/eu_2_D.jpg" }
+    },
+    explain: {
+      de: "[[A]] (offene Wellen) und [[C]] (hoher Dutt) zeigen dieselbe Frau: identischer Brauenbogen, Augenform und schmales Kinn.",
+      en: "[[A]] (waves down) and [[C]] (messy bun) are the exact same woman: identical arched brows, eye shape, and tapered chin.",
+      ko: "[[A]](웨이브 긴머리)와 [[C]](업스타일 번)가 눈썹 아치·눈매·갸름한 턱 끝 비율이 완벽히 같은 동일 인물입니다."
     }
   },
   {
-    id: "eu_3", cat: "euro", type: "target3", answer: "A",
-    title: { de: "Berlin-Hipster: Mütze, Bart & Hornbrille", en: "Berlin Hipster: Beanie, Beard & Glasses", ko: "베를린 힙스터 비니·뿔테·수염 함정" },
-    brief: {
-      de: "Mütze + Hornbrille + Vollbart verdecken fast 70 % des Kopfs! Erkennst du TARGET ohne Mütze wieder?",
-      en: "Beanie + thick glasses + beard cover nearly 70% of the head! Can you spot TARGET without the beanie?",
-      ko: "비니·두꺼운 뿔테·수염이 얼굴의 70%를 가립니다! 비니와 뿔테를 벗은 TARGET을 찾아보세요."
-    },
-    prompt: { de: "Wer unten ist TARGET?", en: "Which one below is TARGET?", ko: "비니를 벗은 TARGET은 누구?" },
-    explain: {
-      de: "[[A]] hat Mütze und Vollbart abgelegt, behält aber die haselnussbraunen Augen, Kieferform und das Mal an der Braue!",
-      en: "[[A]] ditched the beanie and trimmed his beard, keeping the wide-set hazel eyes, V-jaw, and brow mark!",
-      ko: "[[A]]가 비니와 덥수룩한 수염을 정리하고 셔츠를 입었지만 헤이즐넛 눈매·턱선·눈썹 위 점이 동일합니다!"
-    },
-    target: { img: "assets/v2/eu_r3_T.jpg" },
+    id: "eu_3", cat: "euro", type: "target4", answer: "A",
+    target: { img: "assets/v3/eu_3_T.jpg" },
     cards: {
-      A: { img: "assets/v2/eu_r3_A.jpg" },
-      B: { img: "assets/v2/eu_r3_B.jpg" },
-      C: { img: "assets/v2/eu_r3_C.jpg" }
+      A: { img: "assets/v3/eu_3_A.jpg" },
+      B: { img: "assets/v3/eu_3_B.jpg" },
+      C: { img: "assets/v3/eu_3_C.jpg" },
+      D: { img: "assets/v3/eu_3_D.jpg" }
+    },
+    explain: {
+      de: "[[A]] hat Mütze und Brille abgelegt, teilt aber exakt Augenform, Nasenrücken und Kieferpartie mit TARGET. [[B]] ist ein fast identischer Doppelgänger ohne Mütze!",
+      en: "[[A]] removed the beanie and glasses, matching TARGET's exact eye tilt, nose bridge, and jaw. [[B]] is a close hatless decoy!",
+      ko: "[[A]]가 비니와 안경을 벗고 수염을 다듬은 TARGET 본인입니다! [[B]] 역시 비니·안경을 벗은 초유사 도플갱어라 이목구비를 정밀 비교해야 합니다."
     }
   },
   {
-    id: "eu_4", cat: "euro", type: "pair4", answer: "BD",
-    title: { de: "Wiesn-Tracht-Edition: Welches Paar?", en: "Bavarian Tracht Edition: Twin Photos", ko: "독일 옥토버페스트 전통의상 쌍둥이" },
-    brief: {
-      de: "Alle vier tragen Trachtenjanker und braune Haare. Welche ZWEI Bilder zeigen denselben Mann?",
-      en: "All four wear Bavarian Tracht jackets and medium-brown hair. Which TWO portraits are the same man?",
-      ko: "네 명 모두 바이에른 전통 재킷과 갈색 머리입니다. 옷차림에 속지 말고 같은 남성 2장을 고르세요!"
-    },
-    prompt: { de: "Wähle die 2 identischen Männer!", en: "Tap the 2 photos of the SAME man!", ko: "같은 남성 사진 2장을 선택하세요!" },
-    explain: {
-      de: "[[B]] und [[D]] zeigen denselben Mann: schmales langes Gesicht, dichte Brauen, schmale Nase und Kinngrübchen.",
-      en: "[[B]] and [[D]] are the exact same man: narrow elongated face, thick brows, slim nose, and cleft chin.",
-      ko: "[[B]](거리 미소)와 [[D]](실내 무표정)가 긴 갸름한 얼굴·짙은 눈썹·좁은 콧날·턱 보조개까지 동일 인물입니다."
-    },
+    id: "eu_4", cat: "euro", type: "odd4", answer: "B",
     cards: {
-      A: { img: "assets/v2/eu_r4_A.jpg" },
-      B: { img: "assets/v2/eu_r4_B.jpg" },
-      C: { img: "assets/v2/eu_r4_C.jpg" },
-      D: { img: "assets/v2/eu_r4_D.jpg" }
+      A: { img: "assets/v3/eu_4_A.jpg" },
+      B: { img: "assets/v3/eu_4_B.jpg" },
+      C: { img: "assets/v3/eu_4_C.jpg" },
+      D: { img: "assets/v3/eu_4_D.jpg" }
+    },
+    explain: {
+      de: "[[B]] ist der Impostor (hellere Augenfarbe, flacherer Brauenbogen, breiteres Kinn)! [[A]], [[C]] (Brille) und [[D]] (Park) sind derselbe Mann.",
+      en: "[[B]] is the impostor (lighter eye tone, straighter brow, slightly wider chin)! [[A]], [[C]] (glasses), and [[D]] (park) are the exact same man.",
+      ko: "스파이는 [[B]]입니다(미세하게 더 밝은 눈동자와 다른 눈썹·턱폭)! [[A]](거리 코트)·[[C]](오피스 안경)·[[D]](공원 셔츠) 세 장은 모두 동일 인물입니다."
     }
   },
   {
-    id: "eu_5", cat: "euro", type: "target3", answer: "C",
-    title: { de: "Nordisch-Minimalistisch im Rollkragen", en: "Nordic Minimalist Platinum Look", ko: "북유럽 플래티넘 올백 & 터틀넥 함정" },
-    brief: {
-      de: "Streng zurückgebundenes Platinblond & schwarzer Rollkragen: Lass dich nicht vom Look täuschen!",
-      en: "Sleek icy-blonde hair & black turtleneck: look past the minimalist styling and match the bone structure!",
-      ko: "차가운 플래티넘 올백 머리와 블랙 터틀넥! 미니멀 스타일 너머의 진짜 얼굴 골격을 매칭하세요."
-    },
-    prompt: { de: "Welche Frau unten ist TARGET?", en: "Which woman below is TARGET?", ko: "아래 중 TARGET 본인은 누구?" },
-    explain: {
-      de: "[[C]] trägt offene Wellen und Strick, teilt aber exakt die eisblauen Augen, V-Kieferlinie und den Punkt unterm Auge!",
-      en: "[[C]] wore her hair down in waves, matching TARGET's icy-blue eyes, sharp V-jawline, and under-eye beauty mark!",
-      ko: "[[C]]가 머리를 웨이브로 풀고 니트를 입었지만 아이스블루 눈매·날렵한 V턱선·눈 밑 점이 일치합니다!"
-    },
-    target: { img: "assets/v2/eu_r5_T.jpg" },
+    id: "eu_5", cat: "euro", type: "pair4", answer: "AD",
     cards: {
-      A: { img: "assets/v2/eu_r5_A.jpg" },
-      B: { img: "assets/v2/eu_r5_B.jpg" },
-      C: { img: "assets/v2/eu_r5_C.jpg" }
+      A: { img: "assets/v3/eu_5_A.jpg" },
+      B: { img: "assets/v3/eu_5_B.jpg" },
+      C: { img: "assets/v3/eu_5_C.jpg" },
+      D: { img: "assets/v3/eu_5_D.jpg" }
+    },
+    explain: {
+      de: "[[A]] (streng zurückgebunden) und [[D]] (offene Wellen) sind dieselbe Frau: identische Augenpartie, feine Nase und markante Kieferlinie.",
+      en: "[[A]] (sleek pulled-back hair) and [[D]] (loose waves) are the same woman: identical eye spacing, nose tip, and sculpted V-jawline.",
+      ko: "[[A]](올백 터틀넥)와 [[D]](풀어 내린 웨이브)가 눈매 간격·코끝·날렵한 V라인 골격이 일치하는 동일 인물입니다."
+    }
+  },
+  {
+    id: "eu_6", cat: "euro", type: "odd4", answer: "C",
+    cards: {
+      A: { img: "assets/v3/eu_6_A.jpg" },
+      B: { img: "assets/v3/eu_6_B.jpg" },
+      C: { img: "assets/v3/eu_6_C.jpg" },
+      D: { img: "assets/v3/eu_6_D.jpg" }
+    },
+    explain: {
+      de: "[[C]] ist die Fremde (breitere Nase & weichere Wangenpartie)! [[A]] (offen), [[B]] (Zopf & Brille) und [[D]] (halb hochgesteckt) zeigen dieselbe Frau.",
+      en: "[[C]] is the impostor (slightly wider nose & fuller lower cheeks)! [[A]] (blazer), [[B]] (ponytail & glasses), and [[D]] (half-up) are the same woman.",
+      ko: "스파이는 [[C]]입니다(미세하게 더 넓은 콧볼과 부드러운 하관)! [[A]](블레이저)·[[B]](포니테일+안경)·[[D]](반묶음) 세 장은 모두 같은 여성입니다."
     }
   }
 ];
 
 // ==================== IMAGE PRELOADER & PAINT GATE ====================
-const IMG_CACHE = new Map(); // url -> Promise<HTMLImageElement>
-const LOADED_SET = new Set(); // urls already decoded in memory
+const IMG_CACHE = new Map();
+const LOADED_SET = new Set();
 
 function getRoundUrls(r) {
   if (!r) return [];
-  if (r.compositeImg) return [r.compositeImg];
   const urls = [];
   if (r.target && r.target.img) urls.push(r.target.img);
   if (r.cards) {
@@ -1285,20 +1196,14 @@ function preloadUrl(url) {
   return p;
 }
 
-async function preloadRound(r, onProgress) {
+async function preloadRound(r) {
   const urls = getRoundUrls(r);
   if (!urls.length) return;
-  let completed = 0;
-  if (onProgress) onProgress(0, urls.length);
-  await Promise.all(urls.map(u => preloadUrl(u).then(() => {
-    completed++;
-    if (onProgress) onProgress(completed, urls.length);
-  })));
+  await Promise.all(urls.map(u => preloadUrl(u)));
 }
 
 function isRoundReadyInMemory(r) {
-  const urls = getRoundUrls(r);
-  return urls.every(u => LOADED_SET.has(u));
+  return getRoundUrls(r).every(u => LOADED_SET.has(u));
 }
 
 let bgQueueRunning = false;
@@ -1316,7 +1221,6 @@ async function warmDeckInBackground(roundsList) {
   }
 }
 
-// Wait for live DOM <img> elements inside #stage to be 100% decoded & painted on screen
 async function waitForStagePaint() {
   const imgs = Array.from(document.querySelectorAll("#stage img"));
   await Promise.all(imgs.map(img => new Promise(res => {
@@ -1346,18 +1250,20 @@ function detectInitialLang() {
 }
 
 let lang = detectInitialLang();
-let speedSec = 6.0;
+let gameMode = "normal"; // normal (5.0s) | blitz (3.0s) | memory (1.8s memorize + 3.5s blind / 2.6s)
 let activeCat = "east";
 let deck = [];
 let idx = 0;
 let score = 0;
 let historyLog = [];
-let phase = "home"; // home | brief | loading | play | review | result
-let roundSeq = 0;   // token to cancel stale async transitions
+let phase = "home"; // home | loading | memorize | play | review | result
+let roundSeq = 0;
 let picked = [];
 let bioOn = false;
 let timerId = null;
 let startTs = 0;
+let currentLimitSec = 5.0;
+let targetHidden = false;
 let lastVerdict = null;
 
 function shuffleArr(arr) {
@@ -1370,14 +1276,7 @@ function shuffleArr(arr) {
 }
 
 function prepareRoundInstance(raw) {
-  if (raw.compositeImg) {
-    const cleanExplain = {};
-    ["de", "en", "ko"].forEach(l => {
-      cleanExplain[l] = raw.explain[l].replace(/\[\[([ABCD])\]\]/g, "$1");
-    });
-    return { ...raw, explain: cleanExplain };
-  }
-  const origKeys = raw.type === "target3" ? ["A", "B", "C"] : ["A", "B", "C", "D"];
+  const origKeys = ["A", "B", "C", "D"];
   const shuffledOrig = shuffleArr(origKeys);
   const slotOf = {};
   const newCards = {};
@@ -1407,6 +1306,12 @@ function catName(cat) {
   return "🎲 " + t.catAll;
 }
 
+function getRoundTimeSec(r) {
+  if (gameMode === "normal") return 5.0;
+  if (gameMode === "blitz") return 3.0;
+  return r.type === "target4" ? 3.5 : 2.7;
+}
+
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -1420,20 +1325,22 @@ function setLang(l) {
     document.getElementById("btn-" + code).classList.toggle("active", code === l);
   });
   renderStaticText();
-  if (phase === "brief" || phase === "loading") renderBrief();
-  else if (phase === "play" || phase === "review") renderPlayOrReview();
-  else if (phase === "result") renderResult();
+  if (phase === "loading" || phase === "memorize" || phase === "play" || phase === "review") {
+    renderPlayOrReview();
+  } else if (phase === "result") {
+    renderResult();
+  }
 }
 
-function setSpeed(s) {
-  speedSec = s;
-  document.getElementById("speed-normal").classList.toggle("active", s === 6.0);
-  document.getElementById("speed-blitz").classList.toggle("active", s === 3.5);
+function setMode(m) {
+  gameMode = m;
+  document.getElementById("speed-normal").classList.toggle("active", m === "normal");
+  document.getElementById("speed-blitz").classList.toggle("active", m === "blitz");
+  document.getElementById("speed-memory").classList.toggle("active", m === "memory");
 }
 
 function renderStaticText() {
   const t = UI[lang];
-  document.getElementById("btn-back-brief").textContent = t.backBtn;
   document.getElementById("btn-back-play").textContent = t.backBtn;
   document.getElementById("t-hero-title").textContent = t.heroTitle;
   document.getElementById("t-hero-sub").textContent = t.heroSub;
@@ -1441,6 +1348,7 @@ function renderStaticText() {
   document.getElementById("t-speed-label").textContent = t.speedLabel;
   document.getElementById("t-speed-normal-desc").textContent = t.speedNormalDesc;
   document.getElementById("t-speed-blitz-desc").textContent = t.speedBlitzDesc;
+  document.getElementById("t-speed-memory-desc").textContent = t.speedMemoryDesc;
   document.getElementById("t-cat-label").textContent = t.catLabel;
   document.getElementById("t-cat-east").textContent = t.catEast;
   document.getElementById("t-cat-east-desc").textContent = t.catEastDesc;
@@ -1451,11 +1359,11 @@ function renderStaticText() {
   document.getElementById("t-cat-all").textContent = t.catAll;
   document.getElementById("t-cat-all-desc").textContent = t.catAllDesc;
 
-  const sTxt = `5 ${t.unitRounds}`;
+  const sTxt = `6${t.unitRounds}`;
   document.getElementById("pill-east").textContent = sTxt;
   document.getElementById("pill-black").textContent = sTxt;
   document.getElementById("pill-euro").textContent = sTxt;
-  document.getElementById("pill-all").textContent = `15 ${t.unitMix}`;
+  document.getElementById("pill-all").textContent = `18 ${t.unitMix}`;
 }
 
 function goHome() {
@@ -1468,130 +1376,107 @@ function goHome() {
 function startGame(cat) {
   activeCat = cat;
   const rawPool = cat === "all" ? ROUNDS : ROUNDS.filter(r => r.cat === cat);
-  // Strict deduplication guard by round id and primary image asset
   const seenIds = new Set();
-  const seenPrimaryImg = new Set();
   const uniquePool = [];
   for (const r of rawPool) {
-    const primaryImg = r.compositeImg || (r.target && r.target.img) || (r.cards && r.cards.A && r.cards.A.img);
-    if (seenIds.has(r.id) || seenPrimaryImg.has(primaryImg)) continue;
+    if (seenIds.has(r.id)) continue;
     seenIds.add(r.id);
-    seenPrimaryImg.add(primaryImg);
     uniquePool.push(r);
   }
   deck = shuffleArr(uniquePool).map(prepareRoundInstance);
   idx = 0;
   score = 0;
   historyLog = [];
-  openBrief();
-  // Kick off background deck preloading immediately
+  launchRound();
   warmDeckInBackground(deck);
 }
 
-function openBrief() {
-  roundSeq++;
-  const mySeq = roundSeq;
+async function launchRound() {
+  const mySeq = ++roundSeq;
   stopTimer();
-  phase = "brief";
+  const r = deck[idx];
   picked = [];
   bioOn = false;
   lastVerdict = null;
-  renderBrief();
-  showScreen("screen-brief");
-
-  const r = deck[idx];
-  const hintEl = document.getElementById("brief-preload-status");
-  if (isRoundReadyInMemory(r)) {
-    hintEl.textContent = UI[lang].preloadedHint;
-    if (idx + 1 < deck.length) preloadRound(deck[idx + 1]);
-  } else {
-    hintEl.textContent = UI[lang].preloadingHint;
-    preloadRound(r).then(() => {
-      if (mySeq !== roundSeq) return;
-      if (phase === "brief") {
-        hintEl.textContent = UI[lang].preloadedHint;
-      }
-      if (idx + 1 < deck.length) preloadRound(deck[idx + 1]);
-    });
-  }
-}
-
-function renderBrief() {
-  const t = UI[lang];
-  const r = deck[idx];
-  document.getElementById("brief-progress").textContent = `${t.roundWord} ${idx + 1} / ${deck.length}`;
-  document.getElementById("brief-cat-badge").textContent = catName(r.cat);
-  document.getElementById("brief-mode-tag").textContent =
-    r.type === "target3" ? t.modeTarget3 : r.type === "pair4" ? t.modePair4 : t.modePsy4;
-  document.getElementById("brief-title").textContent = r.title[lang];
-  document.getElementById("brief-text").textContent = r.brief[lang];
-
-  const btn = document.getElementById("btn-ready");
-  if (phase === "loading") {
-    btn.disabled = true;
-  } else {
-    btn.disabled = false;
-    btn.textContent = t.readyBtn;
-  }
-  const hintEl = document.getElementById("brief-preload-status");
-  hintEl.textContent = isRoundReadyInMemory(r) ? t.preloadedHint : t.preloadingHint;
-}
-
-async function revealPhotos() {
-  if (phase !== "brief") return;
-  const mySeq = ++roundSeq;
-  const t = UI[lang];
-  const r = deck[idx];
-  const btn = document.getElementById("btn-ready");
-
-  // 1. Ensure 100% of current round images are downloaded & decoded BEFORE leaving brief screen
-  if (!isRoundReadyInMemory(r)) {
-    phase = "loading";
-    btn.disabled = true;
-    await preloadRound(r, (done, total) => {
-      if (mySeq === roundSeq) {
-        btn.textContent = `${t.loadingBtn} (${done}/${total})…`;
-      }
-    });
-    if (mySeq !== roundSeq) return;
-  }
-
-  // 2. Render photos into #stage with timer frozen at 100% (NOT counting down yet!)
-  stopTimer();
-  phase = "loading";
-  picked = [];
-  bioOn = false;
+  targetHidden = false;
+  currentLimitSec = getRoundTimeSec(r);
 
   const bar = document.getElementById("timer-bar");
   const num = document.getElementById("timer-num");
   bar.style.width = "100%";
   bar.classList.remove("danger");
-  num.textContent = speedSec.toFixed(1) + "s";
+  num.textContent = currentLimitSec.toFixed(1) + "s";
 
   showScreen("screen-play");
+
+  // 1. Preload images into RAM if not cached yet
+  if (!isRoundReadyInMemory(r)) {
+    phase = "loading";
+    renderPlayOrReview();
+    await preloadRound(r);
+    if (mySeq !== roundSeq) return;
+  }
+
+  // 2. Memory Hardcore phase for target4 rounds: show TARGET for 1.8s with choices blurred, then hide TARGET!
+  if (gameMode === "memory" && r.type === "target4") {
+    phase = "memorize";
+    targetHidden = false;
+    renderPlayOrReview();
+    await waitForStagePaint();
+    if (mySeq !== roundSeq) return;
+
+    const memSec = 1.8;
+    const memStart = performance.now();
+    await new Promise(resolve => {
+      timerId = setInterval(() => {
+        if (mySeq !== roundSeq) {
+          stopTimer();
+          resolve();
+          return;
+        }
+        const el = (performance.now() - memStart) / 1000;
+        const left = Math.max(0, memSec - el);
+        bar.style.width = ((left / memSec) * 100) + "%";
+        num.textContent = left.toFixed(1) + "s";
+        if (left <= 0) {
+          stopTimer();
+          resolve();
+        }
+      }, 40);
+    });
+    if (mySeq !== roundSeq) return;
+    targetHidden = true;
+  } else {
+    phase = "loading";
+    renderPlayOrReview();
+    await waitForStagePaint();
+    if (mySeq !== roundSeq) return;
+    // Brief 0.32s visual beat so player registers mission color pill & painted faces before clock ticks
+    await new Promise(res => setTimeout(res, 320));
+    if (mySeq !== roundSeq) return;
+  }
+
+  // 3. Start live play timer!
+  phase = "play";
+  bar.style.width = "100%";
+  bar.classList.remove("danger");
+  num.textContent = currentLimitSec.toFixed(1) + "s";
   renderPlayOrReview();
 
-  // 3. Wait until live DOM <img> elements are decoded AND painted on screen (2x rAF)
-  await waitForStagePaint();
-  if (mySeq !== roundSeq) return;
-
-  // 4. NOW start play phase & timer!
-  phase = "play";
   startTs = performance.now();
   timerId = setInterval(() => {
     const elapsed = (performance.now() - startTs) / 1000;
-    const left = Math.max(0, speedSec - elapsed);
-    const pct = (left / speedSec) * 100;
+    const left = Math.max(0, currentLimitSec - elapsed);
+    const pct = (left / currentLimitSec) * 100;
     bar.style.width = pct + "%";
-    if (left <= 1.8) bar.classList.add("danger");
+    if (left <= 1.4) bar.classList.add("danger");
     num.textContent = left.toFixed(1) + "s";
     if (left <= 0) {
       stopTimer();
       finishRound("timeout");
     }
-  }, 50);
+  }, 45);
 
-  // Preload next round silently while user plays
   if (idx + 1 < deck.length) {
     preloadRound(deck[idx + 1]);
   }
@@ -1604,7 +1489,6 @@ function stopTimer() {
   }
 }
 
-// Zero-flicker class toggle for pair4 first tap (avoids rebuilding stage DOM!)
 function syncPairSelectionUI() {
   document.querySelectorAll("[data-choice-card]").forEach(el => {
     const k = el.getAttribute("data-choice-card");
@@ -1640,11 +1524,12 @@ function tapChoice(key) {
 }
 
 function finishRound(verdict) {
-  const elapsed = Math.min(speedSec, (performance.now() - startTs) / 1000);
+  const elapsed = Math.min(currentLimitSec, (performance.now() - startTs) / 1000);
   const isOk = verdict === "correct";
   if (isOk) score++;
   historyLog.push({ cat: deck[idx].cat, correct: isOk, elapsed });
   lastVerdict = verdict;
+  targetHidden = false;
   phase = "review";
   renderPlayOrReview();
 }
@@ -1654,13 +1539,13 @@ function toggleBio() {
   renderPlayOrReview();
 }
 
-function renderPortraitCard(p, showBio, bioMatch) {
-  const col = bioMatch ? "#38bdf8" : "#f87171";
+function renderPortraitCard(p, showBio, bioGood) {
+  const col = bioGood ? "#38bdf8" : "#f87171";
   const bioOverlay = showBio
-    ? `<svg viewBox="0 0 200 225" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;">
-        <rect x="34" y="26" width="132" height="158" rx="22" fill="none" stroke="${col}" stroke-width="2.5" stroke-dasharray="6 4"/>
-        <line x1="65" y1="94" x2="135" y2="94" stroke="${col}" stroke-width="1.6" stroke-dasharray="3 2"/>
-        <polygon points="72,94 128,94 100,130 100,168" fill="rgba(56,189,248,0.08)" stroke="${col}" stroke-width="1.4"/>
+    ? `<svg viewBox="0 0 200 210" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;">
+        <rect x="36" y="20" width="128" height="162" rx="24" fill="none" stroke="${col}" stroke-width="2.4" stroke-dasharray="6 4"/>
+        <line x1="64" y1="88" x2="136" y2="88" stroke="${col}" stroke-width="1.6" stroke-dasharray="3 2"/>
+        <polygon points="72,88 128,88 100,124 100,162" fill="rgba(56,189,248,0.09)" stroke="${col}" stroke-width="1.4"/>
       </svg>`
     : "";
   return `<div style="position:relative;width:100%;height:100%;">
@@ -1669,71 +1554,71 @@ function renderPortraitCard(p, showBio, bioMatch) {
   </div>`;
 }
 
+function getMissionText(r, t) {
+  if (phase === "loading" && !isRoundReadyInMemory(r)) return t.loadingPill;
+  if (phase === "memorize") return t.memorizePill;
+  if (r.type === "target4") return t.missionTarget4;
+  if (r.type === "pair4") return t.missionPair4;
+  return t.missionOdd4;
+}
+
 function renderPlayOrReview() {
   const t = UI[lang];
   const r = deck[idx];
   document.getElementById("play-progress").textContent = `${t.roundWord} ${idx + 1}/${deck.length}`;
   document.getElementById("play-score").textContent = `${t.pointsWord}: ${score}`;
-  document.getElementById("play-prompt").textContent = r.prompt[lang];
 
-  const keys = r.type === "target3" ? ["A", "B", "C"] : ["A", "B", "C", "D"];
-  const ansChars = r.answer.split("");
+  const pill = document.getElementById("mission-pill");
+  pill.className = `mission-pill mode-${r.type}`;
+  pill.textContent = getMissionText(r, t);
+
   const stage = document.getElementById("stage");
+  stage.className = r.type === "target4" ? "stage is-target4" : "stage";
+
+  const keys = ["A", "B", "C", "D"];
+  const ansChars = r.answer.split("");
   let html = "";
 
-  if (r.compositeImg) {
-    const gridCls = r.type === "target3" ? "comp-grid-3" : "comp-grid-4";
-    let zones = "";
-    keys.forEach(k => {
-      let zCls = "comp-zone";
-      const isAns = ansChars.includes(k);
-      const isPicked = picked.includes(k);
-      if ((phase === "play" || phase === "loading") && isPicked) zCls += " selected";
-      if (phase === "review") {
-        if (isAns) zCls += " correct";
-        else if (isPicked) zCls += " wrong";
-      }
-      zones += `<div class="${zCls}" data-choice-card="${k}" onclick="tapChoice('${k}')"></div>`;
-    });
-    html = `<div class="composite-wrap">
-      <img src="${r.compositeImg}" alt="" decoding="async" />
-      <div class="${gridCls}">${zones}</div>
+  if (r.type === "target4") {
+    const maskHtml = (phase === "play" && targetHidden)
+      ? `<div class="target-mask">${t.hiddenTargetTxt.replace("\n", "<br>")}</div>`
+      : "";
+    html += `<div class="target-top">
+      <div class="target-card">
+        <span class="card-tag">TARGET</span>
+        ${maskHtml}
+        ${renderPortraitCard(r.target, phase === "review" && bioOn, true)}
+      </div>
     </div>`;
-  } else {
-    if (r.type === "target3") {
-      html += `<div class="target-top">
-        <div class="target-card">
-          <span class="card-tag">TARGET</span>
-          ${renderPortraitCard(r.target, phase === "review" && bioOn, true)}
-        </div>
-      </div>`;
-    }
-    html += `<div class="${r.type === 'target3' ? 'choices-3' : 'choices-4'}">`;
-    keys.forEach(k => {
-      let cls = "face-card";
-      const isAns = ansChars.includes(k);
-      const isPicked = picked.includes(k);
-      if ((phase === "play" || phase === "loading") && isPicked) cls += " selected";
-      if (phase === "review") {
-        if (isAns) cls += " correct";
-        else if (isPicked) cls += " wrong";
-      }
-      const showCardBio = phase === "review" && bioOn && (isAns || isPicked);
-      html += `<div class="${cls}" data-choice-card="${k}" onclick="tapChoice('${k}')">
-        <span class="card-tag">${k}</span>
-        ${renderPortraitCard(r.cards[k], showCardBio, isAns)}
-      </div>`;
-    });
-    html += `</div>`;
   }
+
+  html += `<div class="choices-4">`;
+  keys.forEach(k => {
+    let cls = "face-card";
+    const isAns = ansChars.includes(k);
+    const isPicked = picked.includes(k);
+    if (phase === "memorize") cls += " locked-blur";
+    if ((phase === "play" || phase === "loading") && isPicked) cls += " selected";
+    if (phase === "review") {
+      if (isAns) cls += " correct";
+      else if (isPicked) cls += " wrong";
+    }
+    const showCardBio = phase === "review" && bioOn && (isAns || isPicked);
+    html += `<div class="${cls}" data-choice-card="${k}" onclick="tapChoice('${k}')">
+      <span class="card-tag">${k}</span>
+      ${renderPortraitCard(r.cards[k], showCardBio, isAns)}
+    </div>`;
+  });
+  html += `</div>`;
   stage.innerHTML = html;
 
   const bottom = document.getElementById("bottom-controls");
-  if (phase === "play" || phase === "loading") {
-    let btns = `<div class="thumb-bar ${keys.length === 3 ? 'cols-3' : 'cols-4'}">`;
+  if (phase !== "review") {
+    const disabledAttr = phase !== "play" ? "disabled" : "";
+    let btns = `<div class="thumb-bar">`;
     keys.forEach(k => {
       const sel = picked.includes(k) ? "selected" : "";
-      btns += `<button class="thumb-btn ${sel}" data-choice-btn="${k}" onclick="tapChoice('${k}')">${k}</button>`;
+      btns += `<button class="thumb-btn ${sel}" ${disabledAttr} data-choice-btn="${k}" onclick="tapChoice('${k}')">${k}</button>`;
     });
     btns += `</div>`;
     bottom.innerHTML = btns;
@@ -1741,13 +1626,12 @@ function renderPlayOrReview() {
     const vText = lastVerdict === "correct" ? t.correctMsg : lastVerdict === "timeout" ? t.timeoutMsg : t.wrongMsg;
     const vCls = lastVerdict === "correct" ? "verdict-good" : "verdict-bad";
     const nextLbl = idx + 1 < deck.length ? t.nextBtn : t.finishBtn;
-    const showBioBtn = !r.compositeImg;
     bottom.innerHTML = `<div class="explain-box">
       <div class="verdict-line ${vCls}">${vText}</div>
-      <div style="color:#d6e0f8;margin-bottom:8px;">${r.explain[lang]}</div>
-      <div class="explain-actions ${showBioBtn ? 'has-bio' : ''}">
-        ${showBioBtn ? `<button class="bio-btn ${bioOn ? 'active' : ''}" onclick="toggleBio()">${t.bioBtn}</button>` : ""}
-        <button class="primary-btn" style="padding:10px 12px;font-size:0.86rem;" onclick="nextRound()">${nextLbl}</button>
+      <div style="color:#d6e0f8;margin-bottom:7px;">${r.explain[lang]}</div>
+      <div class="explain-actions">
+        <button class="bio-btn ${bioOn ? 'active' : ''}" onclick="toggleBio()">${t.bioBtn}</button>
+        <button class="primary-btn" style="padding:9px 12px;font-size:0.85rem;" onclick="nextRound()">${nextLbl}</button>
       </div>
     </div>`;
   }
@@ -1756,7 +1640,7 @@ function renderPlayOrReview() {
 function nextRound() {
   if (idx + 1 < deck.length) {
     idx++;
-    openBrief();
+    launchRound();
   } else {
     phase = "result";
     renderResult();
@@ -1768,7 +1652,7 @@ function renderResult() {
   const t = UI[lang];
   const pct = Math.round((score / deck.length) * 100);
   const avg = historyLog.length ? (historyLog.reduce((a, b) => a + b.elapsed, 0) / historyLog.length).toFixed(2) : "0.00";
-  let rIdx = pct >= 85 ? 0 : pct >= 60 ? 1 : pct >= 35 ? 2 : 3;
+  let rIdx = pct >= 83 ? 0 : pct >= 55 ? 1 : pct >= 33 ? 2 : 3;
 
   document.getElementById("res-cat-badge").textContent = catName(activeCat);
   document.getElementById("res-score").textContent = `${score} / ${deck.length}`;
@@ -1843,15 +1727,15 @@ async function shareGameLink() {
 async function copyShare() {
   const t = UI[lang];
   const avg = historyLog.length ? (historyLog.reduce((a, b) => a + b.elapsed, 0) / historyLog.length).toFixed(2) : "0.00";
-  const modeStr = speedSec === 3.5 ? "Blitz 3.5s ⚡" : "Normal 6.0s ⏱️";
+  const modeStr = gameMode === "memory" ? "Memory Hardcore 🔥" : gameMode === "blitz" ? "Blitz 3.0s ⚡" : "Normal 5.0s ⏱️";
   const url = getCleanShareUrl();
   let msg = "";
   if (lang === "de") {
-    msg = `🧠 Cross-Race-Effekt Challenge (${catName(activeCat)} | ${modeStr})\nTreffer: ${score}/${deck.length} (Ø ${avg}s)\nSchaffst du mehr? Ohne Login direkt spielen:\n${url}`;
+    msg = `🧠 Cross-Race Hardcore-Test (${catName(activeCat)} | ${modeStr})\nTreffer: ${score}/${deck.length} (Ø ${avg}s)\nSchaffst du mehr ohne Tipps?\n${url}`;
   } else if (lang === "ko") {
-    msg = `🧠 타인종 안면인식 스피드 테스트 (${catName(activeCat)} | ${modeStr})\n점수: ${score}/${deck.length} (평균 ${avg}초)\n로그인 없이 링크 클릭 후 바로 도전해 보세요!\n${url}`;
+    msg = `🧠 타인종 안면인식 하드코어 테스트 (${catName(activeCat)} | ${modeStr})\n점수: ${score}/${deck.length} (평균 ${avg}초)\n노힌트 도플갱어 함정, 바로 도전해 보세요!\n${url}`;
   } else {
-    msg = `🧠 Cross-Race Effect Challenge (${catName(activeCat)} | ${modeStr})\nScore: ${score}/${deck.length} (Avg ${avg}s)\nPlay instantly (no login):\n${url}`;
+    msg = `🧠 Cross-Race Hardcore Challenge (${catName(activeCat)} | ${modeStr})\nScore: ${score}/${deck.length} (Avg ${avg}s)\nZero hints — try it now:\n${url}`;
   }
 
   if (navigator.share) {
@@ -1867,8 +1751,7 @@ async function copyShare() {
 }
 
 setLang(lang);
-// Gently warm-cache images during idle time on the home screen
-setTimeout(() => warmDeckInBackground(ROUNDS.slice(0, 6)), 350);
+setTimeout(() => warmDeckInBackground(ROUNDS.slice(0, 6)), 300);
 </script>
 </body>
 </html>
