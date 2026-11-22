@@ -1288,6 +1288,7 @@ const ROUNDS = [
   // ==================== EAST ASIAN (12) ====================
   {
     cat: "east", type: "psy4", answer: "C",
+    compositeImg: "assets/user_quiz/01.jpg",
     title: { de: "Echter PSY-Stil im Smoking", en: "Find the Real PSY Style", ko: "턱시도 속 진짜 싸이(PSY) 찾기" },
     brief: {
       de: "Alle vier tragen Smoking, Fliege und zurückgegelte schwarze Haare. Wer hat PSYs schmale Lachaugen, volle Wangen und breites Grinsen?",
@@ -1309,6 +1310,7 @@ const ROUNDS = [
   },
   {
     cat: "east", type: "target3", answer: "B",
+    compositeImg: "assets/user_quiz/02.jpg",
     title: { de: "Die K-Two-Block-Frisurenfalle", en: "The K-Two-Block Hair Trap", ko: "K-투블럭 & 블랙 후드 함정" },
     brief: {
       de: "Merke dir den TARGET-Mann oben. Wer unten ist exakt dieselbe Person – trotz komplett anderem Styling?",
@@ -1330,6 +1332,7 @@ const ROUNDS = [
   },
   {
     cat: "east", type: "pair4", answer: "AD",
+    compositeImg: "assets/user_quiz/03.jpg",
     title: { de: "Lange schwarze Haare – Welches Paar?", en: "Long Straight Hair – Matching Pair", ko: "긴 생머리 – 같은 사람 2장 찾기" },
     brief: {
       de: "Zwei dieser vier Fotos zeigen exakt dieselbe Frau an verschiedenen Tagen. Tippe die BEIDEN Bilder an!",
@@ -1351,6 +1354,7 @@ const ROUNDS = [
   },
   {
     cat: "east", type: "target3", answer: "C",
+    compositeImg: "assets/user_quiz/04.jpg",
     title: { de: "K-Pop Platinblond-Falle", en: "K-Pop Platinum Blonde Trap", ko: "K-팝 백금발 탈색 함정" },
     brief: {
       de: "Helle Haarfarben ziehen 90 % unserer Aufmerksamkeit auf sich. Finde den TARGET-Idol unten wieder!",
@@ -1372,6 +1376,7 @@ const ROUNDS = [
   },
   {
     cat: "east", type: "pair4", answer: "BC",
+    compositeImg: "assets/user_quiz/05.jpg",
     title: { de: "Runde Brille & Dunkler Anzug", en: "Round Glasses & Dark Suit", ko: "동그란 메탈 안경 & 정장 클론" },
     brief: {
       de: "Alle vier tragen runde Metallbrillen und dunkle Sakkos. Welche ZWEI Bilder zeigen denselben Mann?",
@@ -1435,6 +1440,7 @@ const ROUNDS = [
   },
   {
     cat: "east", type: "target3", answer: "C",
+    compositeImg: "assets/user_quiz/04.jpg",
     title: { de: "Seongsu Café-Stil vs. Buzz-Cut", en: "Curtain Bangs & Browline Glasses Trap", ko: "성수동 가르마펌 & 하프프레임 안경 함정" },
     brief: {
       de: "Braune Curtain-Bangs und Retro-Brille prägen das Gesicht stark. Wer unten ist TARGET nach dem Friseurbesuch?",
@@ -1498,6 +1504,7 @@ const ROUNDS = [
   },
   {
     cat: "east", type: "target3", answer: "B",
+    compositeImg: "assets/user_quiz/02.jpg",
     title: { de: "Sport-Ponytail vs. Büro-Brille", en: "Gym Ponytail vs Cat-Eye Office Look", ko: "운동복 포니테일 ↔ 오피스 안경 변신" },
     brief: {
       de: "Breites Lachen und hoher Pferdeschwanz beim Sport – erkennst du TARGET mit seriösem Büro-Styling wieder?",
@@ -2085,6 +2092,13 @@ function shuffleArr(arr) {
 
 // Permutes card slots A/B/C(/D) so answers can never be memorized, while remapping [[X]] tokens in explain!
 function prepareRoundInstance(raw) {
+  if (raw.compositeImg) {
+    const cleanExplain = {};
+    ["de", "en", "ko"].forEach(l => {
+      cleanExplain[l] = raw.explain[l].replace(/\[\[([ABCD])\]\]/g, "$1");
+    });
+    return { ...raw, explain: cleanExplain };
+  }
   const origKeys = raw.type === "target3" ? ["A", "B", "C"] : ["A", "B", "C", "D"];
   const shuffledOrig = shuffleArr(origKeys);
   const slotOf = {};
@@ -2325,7 +2339,12 @@ function renderPlayOrReview() {
   const stage = document.getElementById("stage");
   let html = "";
 
-  if (r.type === "target3") {
+  if (r.compositeImg) {
+    html = `<div style="display:flex;justify-content:center;align-items:center;width:100%;">
+      <img src="${r.compositeImg}" alt="" loading="eager" style="width:100%;max-width:390px;max-height:54dvh;object-fit:contain;border-radius:14px;border:2px solid var(--border);display:block;" />
+    </div>`;
+  } else {
+    if (r.type === "target3") {
     html += `<div class="target-top">
       <div class="target-card">
         <span class="card-tag">TARGET</span>
@@ -2351,6 +2370,7 @@ function renderPlayOrReview() {
     </div>`;
   });
   html += `</div>`;
+  }
   stage.innerHTML = html;
 
   const bottom = document.getElementById("bottom-controls");
