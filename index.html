@@ -165,7 +165,7 @@
     }
     .speed-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 6px;
     }
     .speed-btn {
@@ -595,6 +595,10 @@
       <div>
         <div class="section-label" id="t-speed-label"></div>
         <div class="speed-row">
+          <button class="speed-btn" id="speed-easy" onclick="setMode('easy')">
+            <strong>🌱 10.0s</strong>
+            <span id="t-speed-easy-desc"></span>
+          </button>
           <button class="speed-btn active" id="speed-normal" onclick="setMode('normal')">
             <strong>⏱️ 5.0s</strong>
             <span id="t-speed-normal-desc"></span>
@@ -716,6 +720,7 @@ const UI = {
     heroSub: "Null Vorab-Tipps, keine verräterischen Kleidungs-Tricks! 18 echte Doppelgänger-Runden – erkennst du die echte Knochenstruktur?",
     scienceNote: "🧠 <b>3 Modi im Zufalls-Mix:</b> 🎯 <b>TARGET-Match (1/4)</b> · 👥 <b>Zwillings-Paar (2/4)</b> · 🕵️ <b>Hochstapler finden (3 gleich, 1 anders)</b>. Kleidung & Frisur helfen hier nicht!",
     speedLabel: "Schwierigkeitsgrad wählen",
+    speedEasyDesc: "Entspanntes Analysieren",
     speedNormalDesc: "Standard ohne Tipps",
     speedBlitzDesc: "Reiner Instinkt",
     speedMemoryDesc: "TARGET verschwindet!",
@@ -767,6 +772,7 @@ const UI = {
     heroSub: "Zero pre-round hints, zero outfit giveaways, 4 close lookalikes every round! Can you read pure bone structure under pressure?",
     scienceNote: "🧠 <b>3 Mixed Modes:</b> 🎯 <b>Match TARGET (1/4)</b> · 👥 <b>Same Person Pair (2/4)</b> · 🕵️ <b>Spot the Impostor (3 same, 1 different)</b>. Hair & clothes won't save you!",
     speedLabel: "Select Difficulty Mode",
+    speedEasyDesc: "Relaxed observation",
     speedNormalDesc: "No-hint standard",
     speedBlitzDesc: "Split-second gut",
     speedMemoryDesc: "TARGET vanishes!",
@@ -818,6 +824,7 @@ const UI = {
     heroSub: "사전 힌트 제로 · 옷차림/점 꼼수 제로! 초박빙 실사 도플갱어들 사이에서 오직 안면 골격만으로 정답을 찾아보세요.",
     scienceNote: "🧠 <b>3가지 실전 미션 랜덤 출제:</b> 🎯 <b>TARGET 매칭(4지선다)</b> · 👥 <b>동일인물 2장 찾기</b> · 🕵️ <b>스파이 1명 색출(3장 동일인물 · 1명 타인)</b>. 머리·안경·배경 패턴으로는 절대 풀 수 없습니다!",
     speedLabel: "난이도 모드 선택 (사진 100% 표시 후 카운트 시작)",
+    speedEasyDesc: "이지 · 여유로운 관찰",
     speedNormalDesc: "노힌트 실전 표준",
     speedBlitzDesc: "초고속 직관 극한",
     speedMemoryDesc: "1.8초 뒤 타겟 블라인드!",
@@ -1307,6 +1314,7 @@ function catName(cat) {
 }
 
 function getRoundTimeSec(r) {
+  if (gameMode === "easy") return 10.0;
   if (gameMode === "normal") return 5.0;
   if (gameMode === "blitz") return 3.0;
   return r.type === "target4" ? 3.5 : 2.7;
@@ -1334,6 +1342,7 @@ function setLang(l) {
 
 function setMode(m) {
   gameMode = m;
+  document.getElementById("speed-easy").classList.toggle("active", m === "easy");
   document.getElementById("speed-normal").classList.toggle("active", m === "normal");
   document.getElementById("speed-blitz").classList.toggle("active", m === "blitz");
   document.getElementById("speed-memory").classList.toggle("active", m === "memory");
@@ -1346,6 +1355,7 @@ function renderStaticText() {
   document.getElementById("t-hero-sub").textContent = t.heroSub;
   document.getElementById("t-science-note").innerHTML = t.scienceNote;
   document.getElementById("t-speed-label").textContent = t.speedLabel;
+  document.getElementById("t-speed-easy-desc").textContent = t.speedEasyDesc;
   document.getElementById("t-speed-normal-desc").textContent = t.speedNormalDesc;
   document.getElementById("t-speed-blitz-desc").textContent = t.speedBlitzDesc;
   document.getElementById("t-speed-memory-desc").textContent = t.speedMemoryDesc;
@@ -1727,7 +1737,7 @@ async function shareGameLink() {
 async function copyShare() {
   const t = UI[lang];
   const avg = historyLog.length ? (historyLog.reduce((a, b) => a + b.elapsed, 0) / historyLog.length).toFixed(2) : "0.00";
-  const modeStr = gameMode === "memory" ? "Memory Hardcore 🔥" : gameMode === "blitz" ? "Blitz 3.0s ⚡" : "Normal 5.0s ⏱️";
+  const modeStr = gameMode === "easy" ? "Easy 10.0s 🌱" : gameMode === "memory" ? "Memory Hardcore 🔥" : gameMode === "blitz" ? "Blitz 3.0s ⚡" : "Normal 5.0s ⏱️";
   const url = getCleanShareUrl();
   let msg = "";
   if (lang === "de") {
