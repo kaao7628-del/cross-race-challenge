@@ -572,7 +572,7 @@
             <span id="t-speed-blitz-desc"></span>
           </button>
         </div>
-        <div class="len-row">
+        <div class="len-row" style="display:none;">
           <button class="len-btn" id="len-quick" onclick="setLenMode('quick')">
             <strong id="t-len-quick"></strong>
             <span id="t-len-quick-sub"></span>
@@ -1603,11 +1603,11 @@ const ROUNDS = [
       en: "[[C]] tied his locs into a bun and put on a shirt, keeping the wide-set eyes, V-jaw, and left-jaw mark!",
       ko: "[[C]]가 머리를 번으로 묶고 셔츠를 입었지만 넓은 눈 간격·V라인 턱·왼쪽 턱 점이 그대로입니다!"
     },
-    target: { skin:"bk2", jaw:"v", eyeSpacing:3, eyes:"almond", brow:"straight", noseW:11, lips:"full", mole:"l_jaw", expr:"neutral", hair:"locs_down", outfit:"hoodie_grey", bg:"street" },
+    target: { img:"assets/bk_r5_T.jpg", skin:"bk2", jaw:"v", eyeSpacing:3, eyes:"almond", brow:"straight", noseW:11, lips:"full", mole:"l_jaw", expr:"neutral", hair:"locs_down", outfit:"hoodie_grey", bg:"street" },
     cards: {
-      A: { skin:"bk2", jaw:"round", eyeSpacing:-2, eyes:"round", brow:"thick", noseW:14, lips:"full", expr:"neutral", hair:"locs_down", outfit:"hoodie_grey", bg:"street" },
-      B: { skin:"bk1", jaw:"square", eyeSpacing:0, eyes:"hooded", eyeTilt:3, brow:"arched", noseW:13, lips:"medium", expr:"smile", hair:"locs_down", outfit:"hoodie_grey", bg:"street" },
-      C: { skin:"bk2", jaw:"v", eyeSpacing:3, eyes:"almond", brow:"straight", noseW:11, lips:"full", mole:"l_jaw", expr:"smile", hair:"locs_bun", outfit:"shirt_white", bg:"office" }
+      A: { img:"assets/bk_r5_A.jpg", skin:"bk2", jaw:"round", eyeSpacing:-2, eyes:"round", brow:"thick", noseW:14, lips:"full", expr:"neutral", hair:"locs_down", outfit:"hoodie_grey", bg:"street" },
+      B: { img:"assets/bk_r5_B.jpg", skin:"bk1", jaw:"square", eyeSpacing:0, eyes:"hooded", eyeTilt:3, brow:"arched", noseW:13, lips:"medium", expr:"smile", hair:"locs_down", outfit:"hoodie_grey", bg:"street" },
+      C: { img:"assets/bk_r5_C.jpg", skin:"bk2", jaw:"v", eyeSpacing:3, eyes:"almond", brow:"straight", noseW:11, lips:"full", mole:"l_jaw", expr:"smile", hair:"locs_bun", outfit:"shirt_white", bg:"office" }
     }
   },
   {
@@ -1625,10 +1625,10 @@ const ROUNDS = [
       ko: "[[B]]와 [[D]]가 좁은 미간·갸름한 얼굴형·턱 끝 보조개까지 완벽히 일치하는 동일 인물입니다."
     },
     cards: {
-      A: { skin:"bk1", jaw:"round", eyeSpacing:3, eyes:"round", brow:"arched", noseW:13, lips:"full", hoops:true, expr:"grin", hair:"afro_curls", outfit:"yellow_top", bg:"cafe" },
-      B: { skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", cleft:true, hoops:true, expr:"neutral", hair:"afro_curls", outfit:"turtleneck", bg:"studio" },
-      C: { skin:"bk3", jaw:"square", eyeSpacing:2, eyes:"double", brow:"thick", noseW:14, lips:"full", hoops:true, expr:"smile", hair:"afro_curls", outfit:"sweater_beige", bg:"street" },
-      D: { skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", cleft:true, hoops:true, expr:"smile", hair:"afro_curls", outfit:"shirt_white", bg:"office" }
+      A: { img:"assets/bk_r4_A.jpg", skin:"bk1", jaw:"round", eyeSpacing:3, eyes:"round", brow:"arched", noseW:13, lips:"full", hoops:true, expr:"grin", hair:"afro_curls", outfit:"yellow_top", bg:"cafe" },
+      B: { img:"assets/bk_r4_B.jpg", skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", cleft:true, hoops:true, expr:"neutral", hair:"afro_curls", outfit:"turtleneck", bg:"studio" },
+      C: { img:"assets/bk_r4_C.jpg", skin:"bk3", jaw:"square", eyeSpacing:2, eyes:"double", brow:"thick", noseW:14, lips:"full", hoops:true, expr:"smile", hair:"afro_curls", outfit:"sweater_beige", bg:"street" },
+      D: { img:"assets/bk_r4_D.jpg", skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", cleft:true, hoops:true, expr:"smile", hair:"afro_curls", outfit:"shirt_white", bg:"office" }
     }
   },
   {
@@ -1879,10 +1879,10 @@ const ROUNDS = [
       ko: "[[B]]와 [[D]]가 가까운 눈 간격·짙은 눈썹·좁은 콧날·턱 끝 보조개까지 완벽히 같은 인물입니다."
     },
     cards: {
-      A: { skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:12, expr:"grin", hair:"side_part", hairColor:"#5a3e28", outfit:"tracht", bg:"street" },
-      B: { skin:"eu2", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:8, cleft:true, expr:"smile", hair:"tousled", hairColor:"#5a3e28", outfit:"tracht", bg:"street" },
-      C: { skin:"eu1", jaw:"wide", eyeSpacing:2, eyes:"double", eyeTilt:3, iris:"#4f7356", brow:"arched", noseW:13, expr:"neutral", hair:"side_part", hairColor:"#5a3e28", outfit:"tracht", bg:"cafe" },
-      D: { skin:"eu2", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:8, cleft:true, expr:"neutral", hair:"side_part", hairColor:"#5a3e28", outfit:"tracht", bg:"office" }
+      A: { img:"assets/eu_r4_A.jpg", skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:12, expr:"grin", hair:"side_part", hairColor:"#5a3e28", outfit:"tracht", bg:"street" },
+      B: { img:"assets/eu_r4_B.jpg", skin:"eu2", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:8, cleft:true, expr:"smile", hair:"tousled", hairColor:"#5a3e28", outfit:"tracht", bg:"street" },
+      C: { img:"assets/eu_r4_C.jpg", skin:"eu1", jaw:"wide", eyeSpacing:2, eyes:"double", eyeTilt:3, iris:"#4f7356", brow:"arched", noseW:13, expr:"neutral", hair:"side_part", hairColor:"#5a3e28", outfit:"tracht", bg:"cafe" },
+      D: { img:"assets/eu_r4_D.jpg", skin:"eu2", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:8, cleft:true, expr:"neutral", hair:"side_part", hairColor:"#5a3e28", outfit:"tracht", bg:"office" }
     }
   },
   {
@@ -1899,11 +1899,11 @@ const ROUNDS = [
       en: "[[C]] wore her hair down in waves, matching TARGET's icy-blue upturned eyes, sharp jawline, and under-eye mark!",
       ko: "[[C]]가 머리를 웨이브로 풀고 니트를 입었지만 아이스블루 눈매·날렵한 V턱선·눈 밑 점이 일치합니다!"
     },
-    target: { skin:"eu1", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-3, iris:"#4a6b82", brow:"thin", noseW:8, lips:"thin", mole:"l_eye", expr:"neutral", hair:"pulled_back", hairColor:"#efe4c6", outfit:"turtleneck", bg:"studio" },
+    target: { img:"assets/eu_r5_T.jpg", skin:"eu1", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-3, iris:"#4a6b82", brow:"thin", noseW:8, lips:"thin", mole:"l_eye", expr:"neutral", hair:"pulled_back", hairColor:"#efe4c6", outfit:"turtleneck", bg:"studio" },
     cards: {
-      A: { skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:11, lips:"full", expr:"neutral", hair:"pulled_back", hairColor:"#efe4c6", outfit:"turtleneck", bg:"studio" },
-      B: { skin:"eu2", jaw:"square", eyeSpacing:2, eyes:"hooded", iris:"#4f7356", brow:"thick", noseW:11, lips:"medium", expr:"neutral", hair:"pulled_back", hairColor:"#efe4c6", outfit:"turtleneck", bg:"studio" },
-      C: { skin:"eu1", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-3, iris:"#4a6b82", brow:"thin", noseW:8, lips:"thin", mole:"l_eye", expr:"smile", hair:"blonde_waves", hairColor:"#efe4c6", outfit:"sweater_beige", bg:"cafe" }
+      A: { img:"assets/eu_r5_A.jpg", skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:11, lips:"full", expr:"neutral", hair:"pulled_back", hairColor:"#efe4c6", outfit:"turtleneck", bg:"studio" },
+      B: { img:"assets/eu_r5_B.jpg", skin:"eu2", jaw:"square", eyeSpacing:2, eyes:"hooded", iris:"#4f7356", brow:"thick", noseW:11, lips:"medium", expr:"neutral", hair:"pulled_back", hairColor:"#efe4c6", outfit:"turtleneck", bg:"studio" },
+      C: { img:"assets/eu_r5_C.jpg", skin:"eu1", jaw:"v", eyeSpacing:-2, eyes:"almond", eyeTilt:-3, iris:"#4a6b82", brow:"thin", noseW:8, lips:"thin", mole:"l_eye", expr:"smile", hair:"blonde_waves", hairColor:"#efe4c6", outfit:"sweater_beige", bg:"cafe" }
     }
   },
   {
@@ -2165,9 +2165,12 @@ function setLenMode(m) {
 }
 
 function getCounts() {
-  if (lenMode === "quick") return { single: 5, mixPerCat: 3 }; // 5R / 9 Mix
-  if (lenMode === "full") return { single: 12, mixPerCat: 12 }; // 12R / 36 Mix
-  return { single: 10, mixPerCat: 5 }; // 10R / 15 Mix
+  return { single: 5, mixPerCat: 5 };
+}
+
+function getPhotoRounds(cat) {
+  const isPhoto = (r) => Boolean(r.compositeImg || Object.values(r.cards).every(c => c.img));
+  return ROUNDS.filter(r => r.cat === cat && isPhoto(r));
 }
 
 function updateCategoryPills() {
@@ -2214,16 +2217,14 @@ function goHome() {
 
 function startGame(cat) {
   activeCat = cat;
-  const { single, mixPerCat } = getCounts();
   let selected = [];
   if (cat === "all") {
     ["east", "black", "euro"].forEach(c => {
-      const sub = shuffleArr(ROUNDS.filter(r => r.cat === c)).slice(0, mixPerCat);
-      selected.push(...sub);
+      selected.push(...getPhotoRounds(c));
     });
     selected = shuffleArr(selected);
   } else {
-    selected = shuffleArr(ROUNDS.filter(r => r.cat === cat)).slice(0, single);
+    selected = shuffleArr(getPhotoRounds(cat));
   }
   deck = selected.map(prepareRoundInstance);
   idx = 0;
