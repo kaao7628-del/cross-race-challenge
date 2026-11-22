@@ -878,6 +878,20 @@ const SKINS = {
 };
 
 function renderPortraitSVG(p, showBio, bioMatch) {
+  if (p.img) {
+    const col = bioMatch ? "#38bdf8" : "#f87171";
+    const bioOverlay = showBio
+      ? `<svg viewBox="0 0 200 225" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;">
+          <rect x="34" y="28" width="132" height="156" rx="22" fill="none" stroke="${col}" stroke-width="2.5" stroke-dasharray="6 4"/>
+          <line x1="65" y1="95" x2="135" y2="95" stroke="${col}" stroke-width="1.6" stroke-dasharray="3 2"/>
+          <polygon points="72,95 128,95 100,132 100,168" fill="rgba(56,189,248,0.08)" stroke="${col}" stroke-width="1.3"/>
+        </svg>`
+      : "";
+    return `<div style="position:relative;width:100%;height:100%;">
+      <img src="${p.img}" alt="" loading="eager" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;" />
+      ${bioOverlay}
+    </div>`;
+  }
   const sk = SKINS[p.skin] || SKINS.ea1;
   const uid = "u" + Math.random().toString(36).slice(2, 8);
   const bgMap = {
@@ -1287,10 +1301,10 @@ const ROUNDS = [
       ko: "[[C]]가 특유의 가늘게 웃는 무쌍 눈매와 넓은 광대·턱선을 가졌습니다. [[A]]는 큰 둥근 눈, [[B]]는 각진 턱, [[D]]는 처진 쌍꺼풀 눈매입니다."
     },
     cards: {
-      A: { skin:"ea1", jaw:"round", eyes:"round", brow:"thick", noseW:10, expr:"smile", hair:"slick", outfit:"tux", bg:"studio" },
-      B: { skin:"ea2", jaw:"square", eyeSpacing:3, eyes:"monolid", brow:"straight", noseW:13, expr:"neutral", hair:"slick", outfit:"tux", bg:"studio" },
-      C: { skin:"ea1", jaw:"wide", eyeSpacing:1, eyes:"psy", eyeTilt:-1, brow:"natural", noseW:12, expr:"grin", hair:"slick", outfit:"tux", bg:"studio" },
-      D: { skin:"ea2", jaw:"round", faceLen:4, eyes:"double", eyeTilt:4, brow:"thin", lips:"thin", expr:"smile", hair:"slick", outfit:"tux", bg:"studio" }
+      A: { img:"assets/ea_r1_A.jpg", skin:"ea1", jaw:"round", eyes:"round", brow:"thick", noseW:10, expr:"smile", hair:"slick", outfit:"tux", bg:"studio" },
+      B: { img:"assets/ea_r1_B.jpg", skin:"ea2", jaw:"square", eyeSpacing:3, eyes:"monolid", brow:"straight", noseW:13, expr:"neutral", hair:"slick", outfit:"tux", bg:"studio" },
+      C: { img:"assets/ea_r1_C.jpg", skin:"ea1", jaw:"wide", eyeSpacing:1, eyes:"psy", eyeTilt:-1, brow:"natural", noseW:12, expr:"grin", hair:"slick", outfit:"tux", bg:"studio" },
+      D: { img:"assets/ea_r1_D.jpg", skin:"ea2", jaw:"round", faceLen:4, eyes:"double", eyeTilt:4, brow:"thin", lips:"thin", expr:"smile", hair:"slick", outfit:"tux", bg:"studio" }
     }
   },
   {
@@ -1307,11 +1321,11 @@ const ROUNDS = [
       en: "[[B]] is the exact same man (sharp monolids, narrow nose, right-cheek mole) with slicked hair! [[A]] and [[C]] only copy the bangs and hoodie.",
       ko: "[[B]]가 올백 머리와 셔츠로 바꿨지만 날카로운 무쌍 눈매·좁은 콧볼·오른볼 점까지 동일 인물입니다! [[A]]·[[C]]는 투블럭과 후드만 따라 했습니다."
     },
-    target: { skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-2, brow:"straight", noseW:8, mole:"r_cheek", expr:"neutral", hair:"twoblock", outfit:"hoodie_black", bg:"studio" },
+    target: { img:"assets/ea_r2_T.jpg", skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-2, brow:"straight", noseW:8, mole:"r_cheek", expr:"neutral", hair:"twoblock", outfit:"hoodie_black", bg:"studio" },
     cards: {
-      A: { skin:"ea1", jaw:"round", eyeSpacing:2, eyes:"round", brow:"natural", noseW:11, expr:"smile", hair:"twoblock", outfit:"hoodie_black", bg:"studio" },
-      B: { skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-2, brow:"straight", noseW:8, mole:"r_cheek", expr:"smile", hair:"slick", outfit:"shirt_white", bg:"office" },
-      C: { skin:"ea2", jaw:"square", eyeSpacing:3, eyes:"monolid", brow:"thick", noseW:13, expr:"neutral", hair:"twoblock", outfit:"hoodie_black", bg:"studio" }
+      A: { img:"assets/ea_r2_A.jpg", skin:"ea1", jaw:"round", eyeSpacing:2, eyes:"round", brow:"natural", noseW:11, expr:"smile", hair:"twoblock", outfit:"hoodie_black", bg:"studio" },
+      B: { img:"assets/ea_r2_B.jpg", skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-2, brow:"straight", noseW:8, mole:"r_cheek", expr:"smile", hair:"slick", outfit:"shirt_white", bg:"office" },
+      C: { img:"assets/ea_r2_C.jpg", skin:"ea2", jaw:"square", eyeSpacing:3, eyes:"monolid", brow:"thick", noseW:13, expr:"neutral", hair:"twoblock", outfit:"hoodie_black", bg:"studio" }
     }
   },
   {
@@ -1329,10 +1343,10 @@ const ROUNDS = [
       ko: "[[A]]와 [[D]]가 올라간 고양이 눈매, V라인 턱, 왼쪽 눈 밑 눈물점까지 완벽히 같은 인물입니다."
     },
     cards: {
-      A: { skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-3, brow:"natural", noseW:8, mole:"l_eye", expr:"smile", hair:"long_straight", outfit:"sweater_beige", bg:"cafe" },
-      B: { skin:"ea1", jaw:"round", eyeSpacing:2, eyes:"round", brow:"straight", noseW:10, expr:"smile", hair:"long_bangs", outfit:"hoodie_grey", bg:"office" },
-      C: { skin:"ea2", jaw:"square", eyeSpacing:3, eyes:"double", brow:"arched", noseW:11, expr:"neutral", hair:"long_straight", outfit:"blazer_navy", bg:"street" },
-      D: { skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-3, brow:"natural", noseW:8, mole:"l_eye", expr:"neutral", hair:"long_straight", outfit:"blazer_navy", bg:"office" }
+      A: { img:"assets/ea_r3_A.jpg", skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-3, brow:"natural", noseW:8, mole:"l_eye", expr:"smile", hair:"long_straight", outfit:"sweater_beige", bg:"cafe" },
+      B: { img:"assets/ea_r3_B.jpg", skin:"ea1", jaw:"round", eyeSpacing:2, eyes:"round", brow:"straight", noseW:10, expr:"smile", hair:"long_bangs", outfit:"hoodie_grey", bg:"office" },
+      C: { img:"assets/ea_r3_C.jpg", skin:"ea2", jaw:"square", eyeSpacing:3, eyes:"double", brow:"arched", noseW:11, expr:"neutral", hair:"long_straight", outfit:"blazer_navy", bg:"street" },
+      D: { img:"assets/ea_r3_D.jpg", skin:"ea1", jaw:"v", eyeSpacing:-1, eyes:"monolid", eyeTilt:-3, brow:"natural", noseW:8, mole:"l_eye", expr:"neutral", hair:"long_straight", outfit:"blazer_navy", bg:"office" }
     }
   },
   {
@@ -1540,11 +1554,11 @@ const ROUNDS = [
       en: "[[A]] shaved his beard, keeping the exact almond eyes, narrow nose bridge, and right-brow mark! [[B]] & [[C]] only copy the beard.",
       ko: "[[A]]가 수염을 밀었지만 좁은 미간의 아몬드 눈매·콧날·오른쪽 눈썹 위 점이 그대로입니다! [[B]]·[[C]]는 수염만 같습니다."
     },
-    target: { skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", mole:"r_brow", beard:"full_box", expr:"neutral", hair:"skin_fade", outfit:"turtleneck", bg:"studio" },
+    target: { img:"assets/bk_r1_T.jpg", skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", mole:"r_brow", beard:"full_box", expr:"neutral", hair:"skin_fade", outfit:"turtleneck", bg:"studio" },
     cards: {
-      A: { skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", mole:"r_brow", expr:"smile", hair:"short_curls", outfit:"knit_olive", bg:"street" },
-      B: { skin:"bk1", jaw:"wide", eyeSpacing:3, eyes:"round", brow:"thick", noseW:14, lips:"full", beard:"full_box", expr:"neutral", hair:"skin_fade", outfit:"turtleneck", bg:"studio" },
-      C: { skin:"bk2", jaw:"square", eyeSpacing:2, eyes:"double", eyeTilt:3, brow:"arched", noseW:13, lips:"full", beard:"full_box", expr:"neutral", hair:"skin_fade", outfit:"turtleneck", bg:"studio" }
+      A: { img:"assets/bk_r1_A.jpg", skin:"bk1", jaw:"narrow", eyeSpacing:-2, eyes:"almond", eyeTilt:-2, brow:"straight", noseW:10, lips:"medium", mole:"r_brow", expr:"smile", hair:"short_curls", outfit:"knit_olive", bg:"street" },
+      B: { img:"assets/bk_r1_B.jpg", skin:"bk1", jaw:"wide", eyeSpacing:3, eyes:"round", brow:"thick", noseW:14, lips:"full", beard:"full_box", expr:"neutral", hair:"skin_fade", outfit:"turtleneck", bg:"studio" },
+      C: { img:"assets/bk_r1_C.jpg", skin:"bk2", jaw:"square", eyeSpacing:2, eyes:"double", eyeTilt:3, brow:"arched", noseW:13, lips:"full", beard:"full_box", expr:"neutral", hair:"skin_fade", outfit:"turtleneck", bg:"studio" }
     }
   },
   {
@@ -1562,10 +1576,10 @@ const ROUNDS = [
       ko: "[[A]]와 [[C]]가 V라인 턱선·올라간 아몬드 눈매·입술 위 매력점까지 완벽히 같은 인물입니다."
     },
     cards: {
-      A: { skin:"bk3", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-3, brow:"arched", noseW:10, lips:"full", mole:"u_lip", expr:"smile", hair:"box_braids", outfit:"yellow_top", bg:"cafe" },
-      B: { skin:"bk3", jaw:"round", eyeSpacing:3, eyes:"round", brow:"natural", noseW:13, lips:"full", expr:"smile", hair:"box_braids", outfit:"sweater_beige", bg:"street" },
-      C: { skin:"bk3", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-3, brow:"arched", noseW:10, lips:"full", mole:"u_lip", expr:"neutral", hair:"box_braids", outfit:"blazer_navy", bg:"office" },
-      D: { skin:"bk1", jaw:"square", faceLen:4, eyeSpacing:2, eyes:"hooded", brow:"thick", noseW:12, lips:"medium", expr:"neutral", hair:"box_braids", outfit:"turtleneck", bg:"studio" }
+      A: { img:"assets/bk_r2_A.jpg", skin:"bk3", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-3, brow:"arched", noseW:10, lips:"full", mole:"u_lip", expr:"smile", hair:"box_braids", outfit:"yellow_top", bg:"cafe" },
+      B: { img:"assets/bk_r2_B.jpg", skin:"bk3", jaw:"round", eyeSpacing:3, eyes:"round", brow:"natural", noseW:13, lips:"full", expr:"smile", hair:"box_braids", outfit:"sweater_beige", bg:"street" },
+      C: { img:"assets/bk_r2_C.jpg", skin:"bk3", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-3, brow:"arched", noseW:10, lips:"full", mole:"u_lip", expr:"neutral", hair:"box_braids", outfit:"blazer_navy", bg:"office" },
+      D: { img:"assets/bk_r2_D.jpg", skin:"bk1", jaw:"square", faceLen:4, eyeSpacing:2, eyes:"hooded", brow:"thick", noseW:12, lips:"medium", expr:"neutral", hair:"box_braids", outfit:"turtleneck", bg:"studio" }
     }
   },
   {
@@ -1624,11 +1638,11 @@ const ROUNDS = [
       en: "[[B]] took off his glasses and suit, matching TARGET's arched brows, narrow jaw, and right-cheek mark!",
       ko: "[[B]]가 안경과 수트를 벗었지만 아치형 눈썹·갸름한 턱선·오른볼 점이 TARGET과 일치합니다!"
     },
-    target: { skin:"bk2", jaw:"narrow", faceLen:3, eyeSpacing:-1, eyes:"hooded", brow:"arched", noseW:10, lips:"medium", mole:"r_cheek", glasses:"rect", expr:"neutral", hair:"bald", outfit:"suit_dark", bg:"office" },
+    target: { img:"assets/bk_r3_T.jpg", skin:"bk2", jaw:"narrow", faceLen:3, eyeSpacing:-1, eyes:"hooded", brow:"arched", noseW:10, lips:"medium", mole:"r_cheek", glasses:"rect", expr:"neutral", hair:"bald", outfit:"suit_dark", bg:"office" },
     cards: {
-      A: { skin:"bk2", jaw:"wide", eyeSpacing:3, eyes:"round", brow:"thick", noseW:14, lips:"full", glasses:"rect", expr:"neutral", hair:"bald", outfit:"suit_dark", bg:"office" },
-      B: { skin:"bk2", jaw:"narrow", faceLen:3, eyeSpacing:-1, eyes:"hooded", brow:"arched", noseW:10, lips:"medium", mole:"r_cheek", expr:"smile", hair:"bald", outfit:"knit_olive", bg:"cafe" },
-      C: { skin:"bk1", jaw:"square", eyeSpacing:2, eyes:"almond", brow:"straight", noseW:13, lips:"full", glasses:"rect", expr:"smile", hair:"bald", outfit:"suit_dark", bg:"office" }
+      A: { img:"assets/bk_r3_A.jpg", skin:"bk2", jaw:"wide", eyeSpacing:3, eyes:"round", brow:"thick", noseW:14, lips:"full", glasses:"rect", expr:"neutral", hair:"bald", outfit:"suit_dark", bg:"office" },
+      B: { img:"assets/bk_r3_B.jpg", skin:"bk2", jaw:"narrow", faceLen:3, eyeSpacing:-1, eyes:"hooded", brow:"arched", noseW:10, lips:"medium", mole:"r_cheek", expr:"smile", hair:"bald", outfit:"knit_olive", bg:"cafe" },
+      C: { img:"assets/bk_r3_C.jpg", skin:"bk1", jaw:"square", eyeSpacing:2, eyes:"almond", brow:"straight", noseW:13, lips:"full", glasses:"rect", expr:"smile", hair:"bald", outfit:"suit_dark", bg:"office" }
     }
   },
   {
@@ -1794,11 +1808,11 @@ const ROUNDS = [
       en: "[[B]] ditched the vest and stubble, keeping the exact close-set blue-grey hooded eyes, narrow nose, and cleft chin!",
       ko: "[[B]]가 조끼와 수염을 없앴지만 좁은 미간의 청회색 속쌍꺼풀·오똑한 코·턱 끝 보조개가 그대로입니다!"
     },
-    target: { skin:"eu1", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"straight", noseW:8, lips:"thin", cleft:true, beard:"stubble", hair:"side_part", hairColor:"#c8a96e", outfit:"fleece_vest", bg:"office" },
+    target: { img:"assets/eu_r1_T.jpg", skin:"eu1", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"straight", noseW:8, lips:"thin", cleft:true, beard:"stubble", hair:"side_part", hairColor:"#c8a96e", outfit:"fleece_vest", bg:"office" },
     cards: {
-      A: { skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:12, lips:"medium", beard:"stubble", hair:"side_part", hairColor:"#c8a96e", outfit:"fleece_vest", bg:"office" },
-      B: { skin:"eu1", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"straight", noseW:8, lips:"thin", cleft:true, expr:"smile", hair:"tousled", hairColor:"#b89658", outfit:"blazer_navy", bg:"cafe" },
-      C: { skin:"eu2", jaw:"square", eyeSpacing:2, eyes:"double", iris:"#4f7356", brow:"thick", noseW:12, lips:"medium", beard:"stubble", hair:"side_part", hairColor:"#c8a96e", outfit:"fleece_vest", bg:"office" }
+      A: { img:"assets/eu_r1_A.jpg", skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:12, lips:"medium", beard:"stubble", hair:"side_part", hairColor:"#c8a96e", outfit:"fleece_vest", bg:"office" },
+      B: { img:"assets/eu_r1_B.jpg", skin:"eu1", jaw:"narrow", faceLen:3, eyeSpacing:-2, eyes:"hooded", iris:"#4a6b82", brow:"straight", noseW:8, lips:"thin", cleft:true, expr:"smile", hair:"tousled", hairColor:"#b89658", outfit:"blazer_navy", bg:"cafe" },
+      C: { img:"assets/eu_r1_C.jpg", skin:"eu2", jaw:"square", eyeSpacing:2, eyes:"double", iris:"#4f7356", brow:"thick", noseW:12, lips:"medium", beard:"stubble", hair:"side_part", hairColor:"#c8a96e", outfit:"fleece_vest", bg:"office" }
     }
   },
   {
@@ -1816,10 +1830,10 @@ const ROUNDS = [
       ko: "[[A]]와 [[C]]가 녹색 아몬드 눈매·갸름한 V라인 턱·오른볼 점까지 정확히 같은 인물입니다."
     },
     cards: {
-      A: { skin:"eu1", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-2, iris:"#4f7356", brow:"arched", noseW:8, lips:"medium", mole:"r_cheek", expr:"smile", hair:"blonde_waves", hairColor:"#d8b878", outfit:"linen_white", bg:"street" },
-      B: { skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:11, lips:"full", expr:"smile", hair:"blonde_waves", hairColor:"#d8b878", outfit:"sweater_beige", bg:"cafe" },
-      C: { skin:"eu1", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-2, iris:"#4f7356", brow:"arched", noseW:8, lips:"medium", mole:"r_cheek", expr:"neutral", hair:"blonde_waves", hairColor:"#d8b878", outfit:"turtleneck", bg:"studio" },
-      D: { skin:"eu2", jaw:"square", eyeSpacing:2, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:11, lips:"thin", expr:"neutral", hair:"blonde_waves", hairColor:"#d8b878", outfit:"blazer_navy", bg:"office" }
+      A: { img:"assets/eu_r2_A.jpg", skin:"eu1", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-2, iris:"#4f7356", brow:"arched", noseW:8, lips:"medium", mole:"r_cheek", expr:"smile", hair:"blonde_waves", hairColor:"#d8b878", outfit:"linen_white", bg:"street" },
+      B: { img:"assets/eu_r2_B.jpg", skin:"eu1", jaw:"round", eyeSpacing:3, eyes:"round", iris:"#4a6b82", brow:"natural", noseW:11, lips:"full", expr:"smile", hair:"blonde_waves", hairColor:"#d8b878", outfit:"sweater_beige", bg:"cafe" },
+      C: { img:"assets/eu_r2_C.jpg", skin:"eu1", jaw:"v", eyeSpacing:-1, eyes:"almond", eyeTilt:-2, iris:"#4f7356", brow:"arched", noseW:8, lips:"medium", mole:"r_cheek", expr:"neutral", hair:"blonde_waves", hairColor:"#d8b878", outfit:"turtleneck", bg:"studio" },
+      D: { img:"assets/eu_r2_D.jpg", skin:"eu2", jaw:"square", eyeSpacing:2, eyes:"hooded", iris:"#6e5835", brow:"thick", noseW:11, lips:"thin", expr:"neutral", hair:"blonde_waves", hairColor:"#d8b878", outfit:"blazer_navy", bg:"office" }
     }
   },
   {
@@ -1836,11 +1850,11 @@ const ROUNDS = [
       en: "[[A]] ditched the beanie and trimmed his beard, keeping the wide-set hazel eyes, slim nose, and right-brow mark!",
       ko: "[[A]]가 비니와 덥수룩한 수염을 정리했지만 넓은 미간의 헤이즐넛 눈·슬림한 코·눈썹 위 점이 동일합니다!"
     },
-    target: { skin:"eu1", jaw:"v", eyeSpacing:3, eyes:"almond", iris:"#6e5835", brow:"straight", noseW:8, mole:"r_brow", beard:"full_box", beardColor:"#4a3423", glasses:"horn", expr:"neutral", hair:"beanie", hairColor:"#4a3423", outfit:"turtleneck", bg:"cafe" },
+    target: { img:"assets/eu_r3_T.jpg", skin:"eu1", jaw:"v", eyeSpacing:3, eyes:"almond", iris:"#6e5835", brow:"straight", noseW:8, mole:"r_brow", beard:"full_box", beardColor:"#4a3423", glasses:"horn", expr:"neutral", hair:"beanie", hairColor:"#4a3423", outfit:"turtleneck", bg:"cafe" },
     cards: {
-      A: { skin:"eu1", jaw:"v", eyeSpacing:3, eyes:"almond", iris:"#6e5835", brow:"straight", noseW:8, mole:"r_brow", beard:"stubble", beardColor:"#4a3423", glasses:"wire", expr:"smile", hair:"tousled", hairColor:"#4a3423", outfit:"shirt_white", bg:"office" },
-      B: { skin:"eu2", jaw:"round", eyeSpacing:-2, eyes:"round", iris:"#4a6b82", brow:"thick", noseW:12, beard:"full_box", beardColor:"#4a3423", glasses:"horn", expr:"neutral", hair:"beanie", hairColor:"#4a3423", outfit:"turtleneck", bg:"cafe" },
-      C: { skin:"eu1", jaw:"square", eyeSpacing:0, eyes:"hooded", iris:"#4f7356", brow:"arched", noseW:12, beard:"full_box", beardColor:"#4a3423", glasses:"horn", expr:"neutral", hair:"beanie", hairColor:"#4a3423", outfit:"turtleneck", bg:"cafe" }
+      A: { img:"assets/eu_r3_A.jpg", skin:"eu1", jaw:"v", eyeSpacing:3, eyes:"almond", iris:"#6e5835", brow:"straight", noseW:8, mole:"r_brow", beard:"stubble", beardColor:"#4a3423", glasses:"wire", expr:"smile", hair:"tousled", hairColor:"#4a3423", outfit:"shirt_white", bg:"office" },
+      B: { img:"assets/eu_r3_B.jpg", skin:"eu2", jaw:"round", eyeSpacing:-2, eyes:"round", iris:"#4a6b82", brow:"thick", noseW:12, beard:"full_box", beardColor:"#4a3423", glasses:"horn", expr:"neutral", hair:"beanie", hairColor:"#4a3423", outfit:"turtleneck", bg:"cafe" },
+      C: { img:"assets/eu_r3_C.jpg", skin:"eu1", jaw:"square", eyeSpacing:0, eyes:"hooded", iris:"#4f7356", brow:"arched", noseW:12, beard:"full_box", beardColor:"#4a3423", glasses:"horn", expr:"neutral", hair:"beanie", hairColor:"#4a3423", outfit:"turtleneck", bg:"cafe" }
     }
   },
   {
