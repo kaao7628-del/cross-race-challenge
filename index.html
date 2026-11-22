@@ -485,7 +485,7 @@
     .verdict-bad { color: var(--bad); }
     .explain-actions {
       display: grid;
-      grid-template-columns: 1fr 1.25fr;
+      grid-template-columns: 1fr;
       gap: 7px;
     }
     .bio-btn {
@@ -571,8 +571,8 @@
   <div class="app">
     <div class="topbar">
       <div class="brand" onclick="goHome()">
-        <span class="brand-badge">HARD</span>
-        <span class="brand-title">Cross-Race Quiz</span>
+        <span class="brand-badge">QUIZ</span>
+        <span class="brand-title">인종 구분 테스트</span>
       </div>
       <div class="top-controls">
         <button class="icon-btn" id="btn-top-link" onclick="shareGameLink()" title="Share URL">🔗 URL</button>
@@ -847,7 +847,7 @@ const UI = {
     missionOdd4: "🕵️ 3장은 동일 인물! 다른 사람(스파이) 1명은?",
     roundWord: "라운드",
     pointsWord: "정답",
-    correctMsg: "✅ 정답! 헤어·안경·표정에 속지 않고 진짜 안면 골격을 읽었습니다.",
+    correctMsg: "✅ 정답! 스타일링 변화에 속지 않고 진짜 이목구비를 읽었습니다.",
     wrongMsg: "❌ 오답! 도플갱어의 스타일링·표정 변화에 첫인상이 낚였습니다.",
     timeoutMsg: "⏰ 시간 초과! 외적 단서 없이는 짧은 순간 골격 비교가 훨씬 까다롭습니다.",
     bioBtn: "골격 가이드 🔍",
@@ -931,7 +931,7 @@ const ROUNDS = [
     explain: {
       de: "[[A]] hat glattes schwarzes Haar statt aschbrauner Wellen, teilt aber exakt Augenabstand, Nasenspitze und Lippenform mit TARGET.",
       en: "[[A]] switched from ash-brown waves to tucked black hair, matching TARGET's exact eye spacing, nose tip, and lip bow.",
-      ko: "[[A]]가 애쉬브라운 웨이브에서 흑발 생머리로 바꿨지만 눈매 간격·코끝 모양·입술산 비율이 TARGET 본인입니다. [[B]]는 흑발 도플갱어, [[C]]·[[D]]는 웨이브 도플갱어입니다."
+      ko: "[[A]]가 애쉬브라운 웨이브에서 흑발 묶음머리로 바꿨지만 날카로운 눈 앞머리·눈매 기울기·좁은 콧대·V라인 턱선이 TARGET 본인입니다. [[B]]는 흑발 도플갱어, [[C]]·[[D]]는 웨이브 도플갱어입니다."
     }
   },
   {
@@ -959,7 +959,7 @@ const ROUNDS = [
     explain: {
       de: "[[B]] ist der Impostor (weiterer Augenabstand, rundere Nase, vollere Wangen)! [[A]], [[C]] (Brille ohne Pony) und [[D]] (Dutt) zeigen dieselbe Frau.",
       en: "[[B]] is the impostor (wider-set eyes, rounder nasal tip, fuller cheeks)! [[A]], [[C]] (glasses, no bangs), and [[D]] (updo) are all the same woman.",
-      ko: "다른 사람은 [[B]]입니다(더 넓은 미간·둥근 코끝·볼살)! [[A]](시스루뱅)·[[C]](이마 노출+안경)·[[D]](올림머리) 세 장은 모두 같은 여성입니다."
+      ko: "다른 사람은 [[B]]입니다(더 완만하고 낮은 눈썹·살짝 넓은 코끝)! [[A]](블레이저)·[[C]](포니테일+안경)·[[D]](반묶음) 세 장은 아치형 눈썹·날렵한 콧대·V턱선이 일치하는 동일 여성입니다."
     }
   },
 
@@ -1033,7 +1033,7 @@ const ROUNDS = [
     explain: {
       de: "[[A]] (Anzug & Brille) und [[C]] (Pullover ohne Brille) zeigen denselben Mann: identische Brauenlinie, Wangenstruktur und Kieferform.",
       en: "[[A]] (suit & glasses) and [[C]] (sweater, no glasses) are the same man: identical brow arch, cheekbone structure, and jawline.",
-      ko: "[[A]](수트+안경)와 [[C]](니트+맨얼굴)가 눈썹 아치·광대 골격·턱선 각도가 일치하는 동일 인물입니다."
+      ko: "[[A]](수트+안경)와 [[C]](니트+맨얼굴)가 두상 실루엣·귀 모양·긴 코·마른 하관이 일치하는 동일 인물입니다."
     }
   },
   {
@@ -1093,7 +1093,7 @@ const ROUNDS = [
     explain: {
       de: "[[A]] hat Mütze und Brille abgelegt, teilt aber exakt Augenform, Nasenrücken und Kieferpartie mit TARGET. [[B]] ist ein fast identischer Doppelgänger ohne Mütze!",
       en: "[[A]] removed the beanie and glasses, matching TARGET's exact eye tilt, nose bridge, and jaw. [[B]] is a close hatless decoy!",
-      ko: "[[A]]가 비니와 안경을 벗고 수염을 다듬은 TARGET 본인입니다! [[B]] 역시 비니·안경을 벗은 초유사 도플갱어라 이목구비를 정밀 비교해야 합니다."
+      ko: "[[A]]가 비니와 안경을 벗고 수염을 다듬은 TARGET 본인입니다! [[B]]·[[C]]는 비니·안경으로 위장한 도플갱어, [[D]]는 비니·안경을 벗은 오답입니다."
     }
   },
   {
@@ -1550,17 +1550,8 @@ function toggleBio() {
 }
 
 function renderPortraitCard(p, showBio, bioGood) {
-  const col = bioGood ? "#38bdf8" : "#f87171";
-  const bioOverlay = showBio
-    ? `<svg viewBox="0 0 200 210" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2;">
-        <rect x="36" y="20" width="128" height="162" rx="24" fill="none" stroke="${col}" stroke-width="2.4" stroke-dasharray="6 4"/>
-        <line x1="64" y1="88" x2="136" y2="88" stroke="${col}" stroke-width="1.6" stroke-dasharray="3 2"/>
-        <polygon points="72,88 128,88 100,124 100,162" fill="rgba(56,189,248,0.09)" stroke="${col}" stroke-width="1.4"/>
-      </svg>`
-    : "";
   return `<div style="position:relative;width:100%;height:100%;">
     <img src="${p.img}" alt="" decoding="async" />
-    ${bioOverlay}
   </div>`;
 }
 
@@ -1640,7 +1631,6 @@ function renderPlayOrReview() {
       <div class="verdict-line ${vCls}">${vText}</div>
       <div style="color:#d6e0f8;margin-bottom:7px;">${r.explain[lang]}</div>
       <div class="explain-actions">
-        <button class="bio-btn ${bioOn ? 'active' : ''}" onclick="toggleBio()">${t.bioBtn}</button>
         <button class="primary-btn" style="padding:9px 12px;font-size:0.85rem;" onclick="nextRound()">${nextLbl}</button>
       </div>
     </div>`;
