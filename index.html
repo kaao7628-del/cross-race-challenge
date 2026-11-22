@@ -222,9 +222,25 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
       font-size: 0.8rem;
       color: var(--muted);
       font-weight: 700;
+    }
+    .back-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .back-btn:hover, .back-btn:active {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
     }
     .badge {
       display: inline-flex;
@@ -687,6 +703,7 @@
     <!-- BRIEFING SCREEN -->
     <div class="screen" id="screen-brief">
       <div class="hud">
+        <button class="back-btn" id="btn-back-brief" onclick="goHome()"></button>
         <span id="brief-progress"></span>
         <span class="badge" id="brief-cat-badge"></span>
       </div>
@@ -703,6 +720,7 @@
     <div class="screen" id="screen-play">
       <div>
         <div class="hud" style="margin-bottom:5px;">
+          <button class="back-btn" id="btn-back-play" onclick="goHome()"></button>
           <span id="play-progress"></span>
           <span id="play-score"></span>
         </div>
@@ -750,6 +768,7 @@
 <script>
 const UI = {
   de: {
+    backBtn: "← Zurück",
     heroTitle: "Cross-Race-Effekt Speed-Test",
     heroSub: "Warum sehen ungewohnte Gesichter unter Zeitdruck oft „gleich“ aus? 15 echte Foto-Runden – fair in alle Richtungen!",
     scienceNote: "🧠 <b>Kein Rassismus, sondern Neurobiologie:</b> Die <i>Fusiform Face Area (FFA)</i> speichert bei vertrauten Gruppen feine Knochen- & Augenabstände, achtet bei weniger vertrauten Gruppen aber zuerst auf Frisur, Bart, Mütze oder Brille.",
@@ -800,6 +819,7 @@ const UI = {
     resScience: "💡 <b>Fazit:</b> Jedes Gehirn nutzt Abkürzungen (Haare, Bart, Brille), wenn es eine Gruppe seltener im Alltag sieht. Schick den Link weiter und vergleicht eure Werte!"
   },
   en: {
+    backBtn: "← Back",
     heroTitle: "Cross-Race Effect Speed Quiz",
     heroSub: "Why do unfamiliar faces blur together under time pressure? 15 photorealistic rounds—fairly testing every direction!",
     scienceNote: "🧠 <b>Neuroscience, not prejudice:</b> Your brain's <i>Fusiform Face Area (FFA)</i> encodes fine bone & eye spacing for faces you see daily, but defaults to hair, beard, hat, or glasses first for less familiar groups.",
@@ -850,6 +870,7 @@ const UI = {
     resScience: "💡 <b>Takeaway:</b> Every human brain leans on shortcuts (hair, beard, glasses) for groups it has less lifetime visual training with. Send the link to a friend and compare!"
   },
   ko: {
+    backBtn: "← 뒤로",
     heroTitle: "타인종 안면인식 스피드 테스트",
     heroSub: "왜 덜 익숙한 인종의 얼굴은 시간 압박 속에서 비슷해 보일까요? 100% 실사 15라운드로 내 뇌의 눈썰미를 테스트해 보세요!",
     scienceNote: "🧠 <b>편견이 아닌 뇌과학(FFA) 현상:</b> 인간의 뇌 <i>방추상 얼굴 영역(FFA)</i>은 매일 접한 인종엔 눈 간격·턱선 골격을 정밀 저장하지만, 덜 접한 그룹엔 헤어스타일·수염·모자·안경 같은 외적 단서에 먼저 의존합니다.",
@@ -1412,6 +1433,8 @@ function setSpeed(s) {
 
 function renderStaticText() {
   const t = UI[lang];
+  document.getElementById("btn-back-brief").textContent = t.backBtn;
+  document.getElementById("btn-back-play").textContent = t.backBtn;
   document.getElementById("t-hero-title").textContent = t.heroTitle;
   document.getElementById("t-hero-sub").textContent = t.heroSub;
   document.getElementById("t-science-note").innerHTML = t.scienceNote;
